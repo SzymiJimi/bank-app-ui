@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import {HttpClientModule} from '@angular/common/http';
+import { TransactionComponent } from './transaction/transaction.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TransactionComponent,
+    UserComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
