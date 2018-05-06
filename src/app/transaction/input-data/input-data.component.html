@@ -1,0 +1,131 @@
+<div class="row">
+  <div class=".col-6 ">
+    <div class="card overflow-data" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ownerUserData.name+ " "+ ownerUserData.surname}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{bankAccountNr}}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Dostępne środki: <span
+            class="text-muted user-details-info">{{avaibleFounds}}</span></li>
+          <li class="list-group-item">Adres email: <span
+            class="text-muted user-details-info">{{ownerUserData.email}}</span></li>
+          <li class="list-group-item">Data przelewu: <span class="text-muted user-details-info">{{today | date}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class=".col-6 transaction-data">
+    <form [formGroup]="transactionForm" class="transaction-form" novalidate>
+      <div class="form-group">
+        <label>Nazwa odbiorcy</label>
+        <input type="text"
+               class="form-control"
+               [ngClass]="{
+               'is-invalid':name.invalid && name.dirty,
+               'is-valid':name.valid
+                }"
+               id="recipientName"
+               formControlName="name"
+               placeholder="Imię i nazwisko, lub nazwa firmy..."
+               required>
+        <div
+          class=invalid-feedback>
+          <p
+            *ngIf="name.hasError('required')">
+            Nazwa odbiorcy jest wymagana...
+          </p>
+        </div>
+        <div class=valid-feedback>
+          <p>Numer konta jest poprawny</p>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label>Numer rachunku</label>
+        <input type="text"
+               class="form-control"
+               [ngClass]="{
+               'is-invalid':accountNr.invalid && accountNr.dirty,
+               'is-valid':accountNr.valid
+                }"
+               id="receipientAccountNr"
+               name="receipientAccountNr"
+               formControlName="accountNr"
+               placeholder="Numer konta..."
+               required>
+        <div class=invalid-feedback>
+          <p *ngIf="accountNr.hasError('required')">Numer konta jest wymagany...</p>
+          <p *ngIf="accountNr.hasError('pattern')">Numer konta powinien składać się z 26 cyfr...</p>
+        </div>
+        <div class=valid-feedback>
+          <p>Numer konta jest poprawny</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Adres odbiorcy</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+               'is-invalid':address.invalid && address.dirty,
+               'is-valid':address.valid
+                }"
+          id="receipientAddress"
+          formControlName="address"
+          placeholder="Pełny adres odbiorcy..."
+          required>
+        <div class=invalid-feedback>
+          <p *ngIf="address.hasError('required')">Adres jest wymagany...</p>
+        </div>
+        <div class=valid-feedback>
+          <p>Adres jest poprawny</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tytuł przelewu</label>
+        <input type="text"
+               class="form-control"
+               [ngClass]="{
+               'is-invalid':title.invalid && title.dirty,
+               'is-valid':title.valid
+                }"
+               id="transactionTitle"
+               formControlName="title"
+               placeholder="Podaj tytuł przelewu..."
+               required>
+        <div class=invalid-feedback>
+          <p *ngIf="title.hasError('required')">Tytuł jest wymagany...</p>
+        </div>
+        <div class=valid-feedback>
+          <p>Tytuł przelewu jest poprawny</p>
+        </div>
+      </div>
+      <div class="form-group" style="width: 20%">
+        <label>Kwota przelewu</label>
+        <input type="text"
+               class="form-control"
+               [ngClass]="{
+               'is-invalid':amount.invalid && amount.dirty,
+               'is-valid':amount.valid
+                }"
+               formControlName="amount"
+               placeholder="0,00"
+               required>
+        <div class=invalid-feedback>
+          <p *ngIf="amount.hasError('required')">Kwota jest wymagana...</p>
+          <p *ngIf="amount.hasError('pattern')">Podaj prawidłową kwotę...</p>
+        </div>
+        <div class="valid-feedback" style="width: 150%">
+          <p>Kwota przelewu jest poprawna</p>
+        </div>
+      </div>
+      <div class="form-group">
+      </div>
+      [disabled]="transactionForm.invalid"
+      <button type="submit" class="btn btn-primary" (click)="continueTransaction()"
+              [disabled]="transactionForm.invalid">Dalej
+      </button>
+    </form>
+  </div>
+</div>
+
