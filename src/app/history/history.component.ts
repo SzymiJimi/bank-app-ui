@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-history',
@@ -162,6 +164,8 @@ export class HistoryComponent implements OnInit {
   blockedFounds: string = '23.15zł';
   debitLimit: string = '500zł';
   avaibleFounds: string = '952.34zł';
+  datePickerSelectedDate = new FormControl(null);
+
 
   ngOnInit() {
     this.user.name = 'Szymon';
@@ -194,31 +198,29 @@ export class HistoryComponent implements OnInit {
     return converterStringDate >= dateFromDatepicker;
   }
 
-  compateDateWithTimePeriod(elementDate: string):boolean {
+  compateDateWithTimePeriod(elementDate: string): boolean {
 
-    let todayDate: Date= new Date();
+    let todayDate: Date = new Date();
 
-    switch(this.selectedPeriod) {
+    switch (this.selectedPeriod) {
       case 'week': {
-          todayDate.setMilliseconds(todayDate.getMilliseconds()-604800000);
+        todayDate.setMilliseconds(todayDate.getMilliseconds() - 604800000);
         break;
       }
       case 'month': {
-        if(todayDate.getMonth()>=1)
-        {
-          todayDate.setMonth(todayDate.getMonth()-1);
-        }else{
+        if (todayDate.getMonth() >= 1) {
+          todayDate.setMonth(todayDate.getMonth() - 1);
+        } else {
           todayDate.setMonth(11);
-          todayDate.setFullYear(todayDate.getFullYear()-1);
+          todayDate.setFullYear(todayDate.getFullYear() - 1);
         }
 
         break;
       }
       case 'quarter': {
-        if(todayDate.getMonth()>=3)
-        {
-          todayDate.setMonth(todayDate.getMonth()-3);
-        }else{
+        if (todayDate.getMonth() >= 3) {
+          todayDate.setMonth(todayDate.getMonth() - 3);
+        } else {
           todayDate.setMonth(0);
         }
         break;
@@ -254,12 +256,15 @@ export class HistoryComponent implements OnInit {
     }
   }
 
-  resetSelects(){
-    this.selectedOperationType='';
-    this.selectedPeriod='';
+  resetSelects() {
+    this.selectedOperationType = '';
+    this.selectedPeriod = '';
+    this.datePickerSelectedDate = new FormControl(null);
+    this.dateFromPicker = null;
   }
 
   filterData() {
+
     if (this.dateFromPicker !== null && this.dateFromPicker !== undefined) {
 
       this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
@@ -275,18 +280,22 @@ export class HistoryComponent implements OnInit {
       }
       this.resetSelects();
     } else {
-      if(this.selectedPeriod!=='')
-      {
+      if (this.selectedPeriod !== '' && this.selectedOperationType !== '') {
         this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
             return this.compateDateWithTimePeriod(data.date);
           }
         ));
-      }
-      if (this.selectedOperationType !== '') {
-        this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
+        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data.filter(data => {
             return this.checkTypeTransaction(data.amount);
           }
         ));
+      } else {
+        if (this.selectedOperationType !== '') {
+          this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
+              return this.checkTypeTransaction(data.amount);
+            }
+          ));
+        }
       }
       this.resetSelects();
     }

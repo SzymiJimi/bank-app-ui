@@ -21,7 +21,7 @@
     <div class="card-footer bg-transparent">
       <div style="display: inline-flex;">
         <mat-form-field class="time-period-select">
-          <mat-select placeholder="Wybierz okres" [(ngModel)]="selectedPeriod">
+          <mat-select placeholder="Wybierz okres" [(ngModel)]="selectedPeriod" [disabled]="datePickerSelectedDate.value!==null">
             <mat-option value="week">Tydzień</mat-option>
             <mat-option value="month">Miesiąc</mat-option>
             <mat-option value="quarter">Kwartał</mat-option>
@@ -30,7 +30,7 @@
         <span class="mat-typography filtering-divider" style=" margin-top: 2%;">lub</span>
         <mat-form-field  class="example-full-width time-period-select filtering-divider">
           <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
-                 (dateChange)="changeDateFromPicker($event)" placeholder="Wybierz datę" [disabled]="selectedPeriod!==''">
+                 (dateChange)="changeDateFromPicker($event)" placeholder="Wybierz datę" [formControl]="datePickerSelectedDate" [disabled]="selectedPeriod!==''">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
