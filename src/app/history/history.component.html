@@ -1,0 +1,82 @@
+<div class="content-style">
+  <div class="card personal-info-style">
+    <h5 class="card-header">Historia rachunku</h5>
+    <div class="card-body row" style="display: inline-flex">
+      <div style="margin-left: 3%">
+        <h5 class="card-title">{{user.name+" "+user.surname}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{bankAccountNr}}</h6>
+      </div>
+      <div style="margin-left: 13%">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Blokady: {{blockedFounds}}</li>
+        <li class="list-group-item">Saldo: {{avaibleFounds}}</li>
+        <li class="list-group-item">Limit debetowy: {{debitLimit}}</li>
+      </ul>
+      </div>
+      <div style="margin-left: 17%">
+        <h6 class="card-subtitle mb-2 text-muted">Dostępne środki</h6>
+        <h5 class="card-title">{{avaibleFounds}}</h5>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent" style="display: inline-flex;">
+      <mat-form-field>
+        <mat-select placeholder="Wybierz okres">
+          <mat-option value="red">Tydzień</mat-option>
+          <mat-option value="green">Miesiąc</mat-option>
+          <mat-option value="blue">Kwartał</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-paginator style="margin-left: 7%" #paginator
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 20]"
+                     [showFirstLastButtons]="true">co tam
+      </mat-paginator>
+    </div>
+  </div>
+
+
+  <div class="example-container mat-elevation-z8">
+
+
+    <table mat-table #table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data transakcji</th>
+        <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="recipient">
+        <th mat-header-cell *matHeaderCellDef> Odbiorce</th>
+        <td mat-cell *matCellDef="let element"> {{element.recipient}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="sender">
+        <th mat-header-cell *matHeaderCellDef> Nadawca</th>
+        <td mat-cell *matCellDef="let element"> {{element.sender}}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Tytuł</th>
+        <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Kwota</th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}}</td>
+      </ng-container>
+      <ng-container matColumnDef="balanceAfterTransaction">
+        <th mat-header-cell *matHeaderCellDef> Saldo po transakcji</th>
+        <td mat-cell *matCellDef="let element"> {{element.balanceAfterTransaction}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  </div>
+</div>

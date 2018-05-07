@@ -1,5 +1,5 @@
 <div class="row">
-  <div class=".col-6 ">
+  <div class=".col-6  ">
     <div class="card overflow-data" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{ownerUserData.name+ " "+ ownerUserData.surname}}</h5>
@@ -121,9 +121,8 @@
       </div>
       <div class="form-group">
       </div>
-      [disabled]="transactionForm.invalid"
       <button type="submit" class="btn btn-primary" (click)="continueTransaction()"
-              [disabled]="transactionForm.invalid">Dalej
+              [disabled]="transactionForm.invalid" >Dalej
       </button>
     </form>
   </div>
