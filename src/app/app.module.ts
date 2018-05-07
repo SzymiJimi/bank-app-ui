@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {Injectable, NgModule} from '@angular/core';
+import {ChangeDetectorRef, Injectable, NgModule} from '@angular/core';
 
 
 import { AppComponent } from './app.component';
@@ -12,9 +12,17 @@ import { SummaryComponent } from './transaction/summary/summary.component';
 import { InputDataComponent } from './transaction/input-data/input-data.component';
 import { FinalMessageComponent } from './transaction/final-message/final-message.component';
 import { HistoryComponent } from './history/history.component';
-import {MatTableModule, MatPaginatorModule, MatPaginatorIntl, MatSelectModule} from '@angular/material';
+import {
+  MatTableModule,
+  MatPaginatorModule,
+  MatPaginatorIntl,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatInputModule, MatNativeDateModule
+} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DatePipe} from '@angular/common';
 
 
 @Injectable()
@@ -54,8 +62,11 @@ export class CustomPaginator extends MatPaginatorIntl {
     CdkTableModule,
     MatTableModule,
     MatSelectModule,
-    BrowserAnimationsModule,
+    MatInputModule,
     MatPaginatorModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -74,6 +85,9 @@ export class CustomPaginator extends MatPaginatorIntl {
   exports:[
     MatSelectModule,
     CdkTableModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
     MatTableModule,
     MatPaginatorModule,
   ],
