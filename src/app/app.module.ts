@@ -71,7 +71,6 @@ export class CustomPaginator extends MatPaginatorIntl {
     AppComponent,
     TransactionComponent,
     UserComponent,
-
     SummaryComponent,
     InputDataComponent,
     FinalMessageComponent,
@@ -121,23 +120,23 @@ export class CustomPaginator extends MatPaginatorIntl {
     ReactiveFormsModule,
     RouterModule.forRoot(
       [{
-        path: 'history',
+        path: 'user/history',
         component: HistoryComponent
       },
         {
-          path: 'transaction',
+          path: 'user/transaction',
           component: TransactionComponent
         },
         {
-          path: 'card',
+          path: 'user/card',
           component: CardManagementComponent
         },
         {
-          path: 'card/changepin',
+          path: 'user/card/changepin',
           component: ChangePinComponent
         },
         {
-          path: 'card/blockcard',
+          path: 'user/card/blockcard',
           component: BlockCardComponent
         },
         {

@@ -45,7 +45,7 @@ export class ManagerStatsComponent implements OnInit {
 
 
   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Ilość w PLN'},
   ];
   public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions:any = {

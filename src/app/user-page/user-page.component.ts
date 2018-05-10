@@ -1,7 +1,9 @@
+///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -68,10 +70,8 @@ export class UserPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user.name="Szymon"
-    this.user.surname="Dudek"
-
-    
+    this.user.name="Szymon";
+    this.user.surname="Dudek";
 
   }
 
