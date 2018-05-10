@@ -1,0 +1,66 @@
+<div style="width:600px; text-align:center; margin:0 auto;">
+  <h3>Zarejstruj użytkownika</h3>
+<form [formGroup]="registerForm" class="register-form" novalidate>
+    <div class="form-group">
+      
+      <input type="text"
+             class="form-control"
+             placeholder="Imię"
+             required>
+      
+    </div>
+    <div class="form-group ">
+     
+      <input type="text"
+             class="form-control"
+             
+              placeholder="Nazwisko"
+             required>
+      
+      
+    </div>
+    <div class="form-group">
+     
+      <input
+        type="text"
+        class="form-control"
+       
+        placeholder="Login"
+        required>
+      
+      
+    </div>
+    <div class="form-group">
+      
+      <input type="password"
+             class="form-control"
+             
+             placeholder="Hasło"
+             required>
+     
+    </div>
+    <div class="form-group" >
+     
+      <input type="email"
+             class="form-control"
+            
+             placeholder="Email"
+             required>
+     
+    </div>
+    <div class="form-group">
+        
+        <input type="tel"
+               class="form-control"
+               
+               placeholder="Telefon"
+               required>
+       
+      </div>
+    <div class="form-group">
+    </div>
+    <button type="submit" class="btn btn-primary" 
+             >Zarejstruj
+    </button>
+  </form>
+</div>

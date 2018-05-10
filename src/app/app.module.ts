@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Injectable, NgModule} from '@angular/core';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TransactionComponent } from './transaction/transaction.component';
@@ -19,6 +19,7 @@ import {
   MatDatepickerModule,
   MatInputModule, MatNativeDateModule, MatGridListModule, MatDialogModule, MatButtonModule, MatCardModule
 } from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CardManagementComponent } from './card-management/card-management.component';
@@ -34,6 +35,14 @@ import { ManagerHomeComponent } from './manager/manager-home/manager-home.compon
 import { ManagerStatsComponent } from './manager/manager-stats/manager-stats.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+import {NavbarComponent} from './navbar/navbar.component';
+import { NavbarUserComponent } from './navbar-user/navbar-user.component';
+import { CounselornavbarComponent } from './counselornavbar/counselornavbar.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { LoginComponent } from './login/login.component';
+import { RegistryComponent } from './registry/registry.component';
+import { FindclientComponent } from './findclient/findclient.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -72,12 +81,21 @@ export class CustomPaginator extends MatPaginatorIntl {
     DialogComponent,
     ChangePinComponent,
     BlockCardComponent,
+    NavbarComponent,
+    NavbarUserComponent,
+    CounselornavbarComponent,
+    HomepageComponent,
+    LoginComponent,
+    RegistryComponent,
+    FindclientComponent,
+    UserPageComponent,
     CancelCardComponent,
     ChangeLimitsComponent,
     ChangeAddressComponent,
     ManagerComponent,
     ManagerHomeComponent,
     ManagerStatsComponent,
+
   ],
   imports: [
     ChartsModule,
@@ -90,7 +108,9 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatMenuModule,
     MatInputModule,
+    MatAutocompleteModule,
     MatPaginatorModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -121,6 +141,27 @@ export class CustomPaginator extends MatPaginatorIntl {
           component: BlockCardComponent
         },
         {
+          path: "",
+          component: HomepageComponent
+        },
+        {
+          path: "login",
+          component: LoginComponent
+        },
+
+        {
+          path: "signIn",
+          component: RegistryComponent
+        },
+        {
+          path: "findClient",
+          component: FindclientComponent
+        },
+        {
+          path: "user",
+          component: UserPageComponent
+        },
+       {
           path: 'manager/home',
           component: ManagerHomeComponent
         },
