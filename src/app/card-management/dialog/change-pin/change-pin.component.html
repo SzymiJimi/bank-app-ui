@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Nadanie/zmiana kodu PIN do karty kredytowej</h1>
+<div mat-dialog-content>
+  <p>Nadaj nowy pin do karty, pamiętaj, że kod PIN powinien być trudny do odgadnięcia. Unikaj podawania kilku kolejnych
+    lub takich samych cyfr np.(1111, 1234). Nie podawaj nikomu swojego kodu PIN. </p>
+  <form [formGroup]="newPinForm" novalidate>
+    <div class="form-group">
+      <label>Nowy PIN</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':pinCode.invalid && pinCode.dirty,
+               'is-valid':pinCode.valid
+                }"
+             [(ngModel)]="data.pin"
+             id="pinCodeNr"
+             name="pinCodeNr"
+             formControlName="pinCode"
+             placeholder="Kod PIN"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="pinCode.hasError('required')">PIN jest wymagany...</p>
+        <p *ngIf="pinCode.hasError('pattern')">PIN powinien składać się z 4 cyfr...</p>
+      </div>
+      <div class=valid-feedback>
+        <p>PIN jest poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Powtórz nowy PIN</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':pinCodeDuplicate.invalid && pinCodeDuplicate.dirty,
+               'is-valid':pinCodeDuplicate.valid
+                }"
+             id="pinCodeDuplicateNr"
+             name="pinCodeDuplicateNr"
+             formControlName="pinCodeDuplicate"
+             placeholder="Powtórzony kod PIN"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="pinCodeDuplicate.hasError('required')">PIN jest wymagany...</p>
+        <p *ngIf="pinCodeDuplicate.hasError('pattern')">PIN powinien składać się z 4 cyfr...</p>
+        <p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>
+      </div>
+      <div class=valid-feedback>
+        <p>PIN jest poprawny</p>
+      </div>
+    </div>
+  </form>
+</div>
+<hr style=" margin: 2% auto;">
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Zmień PIN</button>
+</div>

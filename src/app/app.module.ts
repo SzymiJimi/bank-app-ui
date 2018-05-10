@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ChangeDetectorRef, Injectable, NgModule} from '@angular/core';
-
+import { Injectable, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,11 +17,15 @@ import {
   MatPaginatorIntl,
   MatSelectModule,
   MatDatepickerModule,
-  MatInputModule, MatNativeDateModule
+  MatInputModule, MatNativeDateModule, MatGridListModule, MatDialogModule, MatButtonModule, MatCardModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DatePipe} from '@angular/common';
+import { CardManagementComponent } from './card-management/card-management.component';
+import { CardInformationComponent } from './card-management/card-information/card-information.component';
+import { DialogComponent } from './card-management/dialog/dialog.component';
+import { ChangePinComponent } from './card-management/dialog/change-pin/change-pin.component';
+import { BlockCardComponent } from './card-management/dialog/block-card/block-card.component';
 
 
 @Injectable()
@@ -55,17 +58,30 @@ export class CustomPaginator extends MatPaginatorIntl {
     SummaryComponent,
     InputDataComponent,
     FinalMessageComponent,
-    HistoryComponent
+    HistoryComponent,
+    CardManagementComponent,
+    CardInformationComponent,
+    DialogComponent,
+    ChangePinComponent,
+    BlockCardComponent,
+
+
   ],
   imports: [
     BrowserModule,
     CdkTableModule,
     MatTableModule,
     MatSelectModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDialogModule,
+    MatButtonModule,
     MatInputModule,
     MatPaginatorModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -78,6 +94,18 @@ export class CustomPaginator extends MatPaginatorIntl {
         {
           path: 'transaction',
           component: TransactionComponent
+        },
+        {
+          path: 'card',
+          component: CardManagementComponent
+        },
+        {
+          path: 'card/changepin',
+          component: ChangePinComponent
+        },
+        {
+          path: 'card/blockcard',
+          component: BlockCardComponent
         }]
     )
 

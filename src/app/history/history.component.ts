@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
@@ -295,6 +296,8 @@ export class HistoryComponent implements OnInit {
               return this.checkTypeTransaction(data.amount);
             }
           ));
+        }else{
+          this.dataSource = new MatTableDataSource<Element>(this.transactionData);
         }
       }
       this.resetSelects();

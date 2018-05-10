@@ -8,5 +8,6 @@ export class UserModel {
    email: string;
    phone: string;
    role_idRole: number;
+   bankAccountNr: string;
 
 }

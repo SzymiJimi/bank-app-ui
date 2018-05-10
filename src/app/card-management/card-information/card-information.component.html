@@ -1,0 +1,106 @@
+<div class="content-style">
+
+  <div class="card overflow-data" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title">Karta {{cardData.type +" "+ cardData.number}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Dostępne środki: {{cardData.founds}}</h6>
+    </div>
+  </div>
+  <div class="card overflow-data" style="width: 100%;">
+    <div class="card-body">
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <div style="width: 97%; top: 0px; position: absolute">
+            <h6 class="card-title">Podstawowe informacje: </h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item card-info-data">Nazwa karty: <span
+                class="text-muted user-details-info">Moja nazwa karty ziomek</span></li>
+              <li class="list-group-item card-info-data">Posiadacz karty:
+                <span class="text-muted user-details-info">
+                  {{ownerUserData.name+ " "+ ownerUserData.surname}}
+                </span>
+              </li>
+              <li class="list-group-item card-info-data">Numer karty: <span
+                class="text-muted user-details-info">{{cardData.number}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Data ważności:<span
+                class="text-muted user-details-info">{{cardData.expirationDate}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Status karty: <span
+                class="text-muted user-details-info">{{cardData.status}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Rachunek dla którego wydano kartę: <span
+                class="text-muted user-details-info">{{cardData.owner.bankAccountNr}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Posiadacz rachunku: <span
+                class="text-muted user-details-info">{{cardData.owner.name+ " "+ cardData.owner.surname}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Adres korespondencyjny: <span
+                class="text-muted user-details-info">{{address}}</span>
+              </li>
+              <li class="list-group-item card-info-data">Adres email: <span
+                class="text-muted user-details-info">{{ownerUserData.email}}</span>
+              </li>
+            </ul>
+          </div>
+
+
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div style="width: 97%; top: 0px; position: absolute">
+            <h6 class="card-title">Limity: </h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item card-info-data">Dzienny limit wypłat gotówki:<span
+                class="text-muted user-details-info">{{cardData.dailyWithdrawalLimit}}</span></li>
+              <li class="list-group-item card-info-data">Dzienny limit operacji płatniczych: <span
+                class="text-muted user-details-info">{{cardData.dailyOperationLimit}}</span></li>
+              <li class="list-group-item card-info-data">Dzienny limit operacji internetowych: <span
+                class="text-muted user-details-info">{{cardData.dailyInternetOperationsLimit}}</span>
+              </li>
+            </ul>
+            <h6 class="card-title" style="margin-top: 12%">Usługi: </h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item card-info-data">Autoryzacja:<span
+                class="text-muted user-details-info">
+                email: rekas1@tlen.pl</span></li>
+              <li class="list-group-item card-info-data">
+                <button type="button" class="btn btn-outline-secondary card-settings-btn2" data-toggle="modal" data-target="#exampleModal" (click)="openDialog()">Nadaj/zmień PIN</button>
+                <button type="button" class="btn btn-outline-secondary card-settings-btn2" >Zablokuj czasowo</button>
+              </li>
+              <li class="list-group-item card-info-data">
+                <button type="button" class="btn btn-outline-secondary card-settings-btn3">Unieważnij kartę</button>
+                <button type="button" class="btn btn-outline-secondary card-settings-btn3">Zmień limity</button>
+                <button type="button" class="btn btn-outline-secondary card-settings-btn3">Zmień adres</button>
+              </li>
+            </ul>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+
+</div>
+
+<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button id="closeExampleModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
