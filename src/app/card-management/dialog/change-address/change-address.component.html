@@ -1,0 +1,101 @@
+<h1 mat-dialog-title>Zmiana adresu korespondencyjnego</h1>
+<div mat-dialog-content>
+  <p>Nadaj nowy pin do karty, pamiętaj, że kod PIN powinien być trudny do odgadnięcia. Unikaj podawania kilku kolejnych
+    lub takich samych cyfr np.(1111, 1234). Nie podawaj nikomu swojego kodu PIN. </p>
+  <hr style=" margin: 2% auto;">
+  <h6 class="card-title">Właściciel karty: <span class="card-subtitle mb-2 text-muted">{{data.owner}}</span></h6>
+  <hr style=" margin: 2% auto; width: 80%">
+  <h6 class="card-title">Adres korespondencyjny: <span class="card-subtitle mb-2 text-muted">{{data.address}}</span></h6>
+  <hr style=" margin: 2% auto; width: 80%">
+  <h6 class="card-title">Adres email: <span class="card-subtitle mb-2 text-muted">{{data.email}}</span></h6>
+  <hr style=" margin: 2% auto;">
+  <form [formGroup]="changeAddressForm" novalidate>
+    <div class="form-group">
+      <label>Numer domu</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':houseNr.invalid && houseNr.dirty,
+               'is-valid':houseNr.valid
+                }"
+             [(ngModel)]="data.houseNr"
+             formControlName="houseNr"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="houseNr.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="houseNr.hasError('pattern')">Niepoprawny format kwoty...</p>
+      </div>
+      <div class=valid-feedback>
+        <p>Numer domu jest poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Kod pocztowy</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':postalCode.invalid && postalCode.dirty,
+               'is-valid':postalCode.valid
+                }"
+             [(ngModel)]="data.postalCode"
+             formControlName="postalCode"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="postalCode.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="postalCode.hasError('pattern')">Niepoprawny format kwoty...</p>
+        <!--<p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>-->
+      </div>
+      <div class=valid-feedback>
+        <p>Kod pocztowy jest poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Miasto</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':city.invalid && city.dirty,
+               'is-valid':city.valid
+                }"
+             [(ngModel)]="data.city"
+             formControlName="city"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="city.hasError('required')">Kwota jest wymagana...</p>
+        <!--<p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>-->
+      </div>
+      <div class=valid-feedback>
+        <p>Miasto jest poprawne</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Email</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':emailAddress.invalid && emailAddress.dirty,
+               'is-valid':emailAddress.valid
+                }"
+             [(ngModel)]="data.email"
+             formControlName="emailAddress"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="emailAddress.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="emailAddress.hasError('pattern')">Niepoprawny format kwoty...</p>
+        <!--<p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>-->
+      </div>
+      <div class=valid-feedback>
+        <p>Email jest poprawny</p>
+      </div>
+    </div>
+
+  </form>
+</div>
+<hr style=" margin: 2% auto;">
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" cdkFocusInitial>Zmień adres</button>
+</div>

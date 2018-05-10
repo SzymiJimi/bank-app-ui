@@ -6,6 +6,9 @@ import {ChangePinComponent} from '../dialog/change-pin/change-pin.component';
 import * as $AB from 'jquery';
 import * as bootstrap from 'bootstrap';
 import {BlockCardComponent} from '../dialog/block-card/block-card.component';
+import {CancelCardComponent} from '../dialog/cancel-card/cancel-card.component';
+import {ChangeLimitsComponent} from '../dialog/change-limits/change-limits.component';
+import {ChangeAddressComponent} from '../dialog/change-address/change-address.component';
 
 
 @Component({
@@ -38,9 +41,9 @@ export class CardInformationComponent implements OnInit {
     this.cardData.expirationDate= '03/22' ;
     this.cardData.owner= this.ownerUserData;
     this.cardData.status = 'Aktywna';
-    this.cardData.dailyWithdrawalLimit= '500.00zł';
-    this.cardData.dailyOperationLimit= '500.00zł';
-    this.cardData.dailyInternetOperationsLimit= '500.00zł';
+    this.cardData.dailyWithdrawalLimit= '500.00';
+    this.cardData.dailyOperationLimit= '500.00';
+    this.cardData.dailyInternetOperationsLimit= '500.00';
     this.cardData.founds='784.24zł' ;
     this.cardData.type = 'mastercard'.toUpperCase();
     this.address= 'Szczechowice 22, 34-534 Szczechów'
@@ -83,7 +86,57 @@ export class CardInformationComponent implements OnInit {
     });
   }
 
+  openCancelDialog(): void {
+    let dialogRef = this.dialog.open(CancelCardComponent, {
+      width: '500px',
+      data: {
+        cardNumber: this.cardData.number,
+        cardOwner: this.cardData.owner.name+" "+this.cardData.owner.surname,
+        cardName: this.cardData.type,
+        expirationDate: this.cardData.expirationDate,
+        status: this.cardData.status }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+
+  openChangeLimitsDialog(): void {
+    let dialogRef = this.dialog.open(ChangeLimitsComponent, {
+      width: '500px',
+      data: { name: this.pin }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.cardData.dailyWithdrawalLimit = result.dailyWithdrawalLimit;
+      this.cardData.dailyOperationLimit = result.dailyOperationLimit;
+      this.cardData.dailyInternetOperationsLimit = result.dailyInternetOperationsLimit;
+    });
+  }
+
+
+  openChangeAsdressDialog(): void {
+    let dialogRef = this.dialog.open(ChangeAddressComponent, {
+      width: '500px',
+      data: {
+        owner: this.ownerUserData.name+ " " + this.ownerUserData.surname,
+        address: this.address,
+        email: this.ownerUserData.email
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.address = result.city+ " "+ result.houseNr+", "+ result.postalCode+" "+result.city;
+      this.ownerUserData.email=result.email;
+      this.cardData.dailyInternetOperationsLimit = result.dailyInternetOperationsLimit;
+    });
+
+
+  }
 
 
 

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Unieważnienie karty</h1>
+<div mat-dialog-content>
+  <p>Zablokowanie karty spowoduje, że nie będzie ona już aktywna i nie będzie można jej już odblokować. Jedyna możliwość to będzie zamówienie nowej karty...</p>
+  <hr style=" margin: 2% auto;">
+  <h6 class="card-title">Karta: <span class="card-subtitle mb-2 text-muted">{{data.cardName}}</span></h6>
+  <h6 class="card-title">Numer: <span class="card-subtitle mb-2 text-muted">{{data.cardNumber}}</span></h6>
+  <h6 class="card-title">Właściciel: <span class="card-subtitle mb-2 text-muted">{{data.cardOwner}}</span></h6>
+  <h6 class="card-title">Data ważności: <span class="card-subtitle mb-2 text-muted">{{data.expirationDate}}</span></h6>
+  <h6 class="card-title">Status: <span class="card-subtitle mb-2 text-muted">{{data.status}}</span></h6>
+
+</div>
+<hr style=" margin: 2% auto;">
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Unieważnij</button>
+</div>

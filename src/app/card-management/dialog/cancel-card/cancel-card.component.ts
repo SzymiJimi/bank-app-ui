@@ -1,19 +1,18 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 import {ChangePinComponent} from '../change-pin/change-pin.component';
 import {MatDialogRef} from '@angular/material';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatButton} from '@angular/material';
 
 
 @Component({
-  selector: 'app-block-card',
-  templateUrl: './block-card.component.html',
-  styleUrls: ['./block-card.component.css']
+  selector: 'app-cancel-card',
+  templateUrl: './cancel-card.component.html',
+  styleUrls: ['./cancel-card.component.css']
 })
-export class BlockCardComponent {
+export class CancelCardComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<BlockCardComponent>,
+    public dialogRef: MatDialogRef<CancelCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
