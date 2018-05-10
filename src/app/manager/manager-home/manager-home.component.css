@@ -1,0 +1,13 @@
+.content-style {
+  width: 60% ;
+  margin: 3% auto auto;
+}
+
+.property-style{
+  right: 0;
+  position: absolute;
+}
+
+.statistic-footer{
+  display: grid ;
+}

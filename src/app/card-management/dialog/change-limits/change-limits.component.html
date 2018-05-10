@@ -1,0 +1,83 @@
+<h1 mat-dialog-title>Zmiana limitów</h1>
+<div mat-dialog-content>
+  <p>Zmień limity dla swojego konta. </p>
+  <form [formGroup]="changeLimitsForm" novalidate>
+    <div class="form-group">
+      <label>Dzienny limit operacji kartą</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':dailyWithdrawalLimit.invalid && dailyWithdrawalLimit.dirty,
+               'is-valid':dailyWithdrawalLimit.valid
+                }"
+             [(ngModel)]="data.pin"
+             id="dailyWithdrawalLimitAmount"
+             name="dailyWithdrawalLimitAmount"
+             [(ngModel)]="data.dailyWithdrawalLimit"
+             formControlName="dailyWithdrawalLimit"
+             placeholder="0,00"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="dailyWithdrawalLimit.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="dailyWithdrawalLimit.hasError('pattern')">Niepoprawny format kwoty...</p>
+      </div>
+      <div class=valid-feedback>
+        <p>PIN jest poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Dzienny limit przelewów</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':dailyOperationLimit.invalid && dailyOperationLimit.dirty,
+               'is-valid':dailyOperationLimit.valid
+                }"
+             id="dailyOperationLimitAmount"
+             name="dailyOperationLimitAmount"
+             [(ngModel)]="data.dailyOperationLimit"
+             formControlName="dailyOperationLimit"
+             placeholder="0,00"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="dailyOperationLimit.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="dailyOperationLimit.hasError('pattern')">Niepoprawny format kwoty...</p>
+        <!--<p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>-->
+      </div>
+      <div class=valid-feedback>
+        <p>PIN jest poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label>Dzienny limit operacji internetowych</label>
+      <input type="text"
+             class="form-control"
+             [ngClass]="{
+               'is-invalid':dailyInternetOperationsLimit.invalid && dailyInternetOperationsLimit.dirty,
+               'is-valid':dailyInternetOperationsLimit.valid
+                }"
+             id="dailyInternetOperationsLimitAmount"
+             name="dailyInternetOperationsLimitAmount"
+             [(ngModel)]="data.dailyInternetOperationsLimit"
+             formControlName="dailyInternetOperationsLimit"
+             placeholder="0,00"
+             required>
+      <div class=invalid-feedback>
+        <p *ngIf="dailyInternetOperationsLimit.hasError('required')">Kwota jest wymagana...</p>
+        <p *ngIf="dailyInternetOperationsLimit.hasError('pattern')">Niepoprawny format kwoty...</p>
+        <!--<p *ngIf="pinCode!=pinCodeDuplicate">Kod PIN jest inny od tego powyżej...</p>-->
+      </div>
+      <div class=valid-feedback>
+        <p>PIN jest poprawny</p>
+      </div>
+    </div>
+
+  </form>
+</div>
+<hr style=" margin: 2% auto;">
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" cdkFocusInitial>Zmień limity</button>
+</div>

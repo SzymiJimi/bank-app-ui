@@ -26,6 +26,13 @@ import { CardInformationComponent } from './card-management/card-information/car
 import { DialogComponent } from './card-management/dialog/dialog.component';
 import { ChangePinComponent } from './card-management/dialog/change-pin/change-pin.component';
 import { BlockCardComponent } from './card-management/dialog/block-card/block-card.component';
+import { CancelCardComponent } from './card-management/dialog/cancel-card/cancel-card.component';
+import { ChangeLimitsComponent } from './card-management/dialog/change-limits/change-limits.component';
+import { ChangeAddressComponent } from './card-management/dialog/change-address/change-address.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
+import { ManagerStatsComponent } from './manager/manager-stats/manager-stats.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 @Injectable()
@@ -55,6 +62,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     AppComponent,
     TransactionComponent,
     UserComponent,
+
     SummaryComponent,
     InputDataComponent,
     FinalMessageComponent,
@@ -64,10 +72,15 @@ export class CustomPaginator extends MatPaginatorIntl {
     DialogComponent,
     ChangePinComponent,
     BlockCardComponent,
-
-
+    CancelCardComponent,
+    ChangeLimitsComponent,
+    ChangeAddressComponent,
+    ManagerComponent,
+    ManagerHomeComponent,
+    ManagerStatsComponent,
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     CdkTableModule,
     MatTableModule,
@@ -106,6 +119,14 @@ export class CustomPaginator extends MatPaginatorIntl {
         {
           path: 'card/blockcard',
           component: BlockCardComponent
+        },
+        {
+          path: 'manager/home',
+          component: ManagerHomeComponent
+        },
+        {
+          path: 'manager/stats',
+          component: ManagerStatsComponent
         }]
     )
 
@@ -119,6 +140,12 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatTableModule,
     MatPaginatorModule,
   ],
+  entryComponents: [
+    CancelCardComponent,
+    ChangeLimitsComponent,
+    ChangeAddressComponent,
+  ]
+  ,
   providers: [{provide: MatPaginatorIntl, useClass: CustomPaginator}],
   bootstrap: [AppComponent]
 })
