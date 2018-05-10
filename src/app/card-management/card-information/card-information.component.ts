@@ -5,6 +5,7 @@ import {CardModel} from '../card.model';
 import {ChangePinComponent} from '../dialog/change-pin/change-pin.component';
 import * as $AB from 'jquery';
 import * as bootstrap from 'bootstrap';
+import {BlockCardComponent} from '../dialog/block-card/block-card.component';
 
 
 @Component({
@@ -69,6 +70,20 @@ export class CardInformationComponent implements OnInit {
       this.pin = result;
     });
   }
+
+  openBlockDialog(): void {
+    let dialogRef = this.dialog.open(BlockCardComponent, {
+      width: '500px',
+      data: { cardNumber: this.cardData.number, cardOwner: this.cardData.owner.name+" "+this.cardData.owner.surname, cardName: this.cardData.type}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.pin = result;
+    });
+  }
+
+
 
 
 

@@ -64,8 +64,8 @@
                 class="text-muted user-details-info">
                 email: rekas1@tlen.pl</span></li>
               <li class="list-group-item card-info-data">
-                <button type="button" class="btn btn-outline-secondary card-settings-btn2" data-toggle="modal" data-target="#exampleModal" (click)="openDialog()">Nadaj/zmień PIN</button>
-                <button type="button" class="btn btn-outline-secondary card-settings-btn2" >Zablokuj czasowo</button>
+                <button type="button" class="btn btn-outline-secondary card-settings-btn2" (click)="openDialog()">Nadaj/zmień PIN</button>
+                <button type="button" class="btn btn-outline-secondary card-settings-btn2" (click)="openBlockDialog()" >Zablokuj czasowo</button>
               </li>
               <li class="list-group-item card-info-data">
                 <button type="button" class="btn btn-outline-secondary card-settings-btn3">Unieważnij kartę</button>
