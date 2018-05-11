@@ -40,10 +40,10 @@ import { UserPageComponent } from './user-page/user-page.component';
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
   itemsPerPageLabel = 'Wierszy na stronę';
-  nextPageLabel='Następna strona';
-  previousPageLabel='Poprzednia strona';
-  firstPageLabel='Pierwsza strona';
-  lastPageLabel='Ostatnia strona';
+  nextPageLabel = 'Następna strona';
+  previousPageLabel = 'Poprzednia strona';
+  firstPageLabel = 'Pierwsza strona';
+  lastPageLabel = 'Ostatnia strona';
 
   getRangeLabel= function(page: number, pageSize: number, length: number): string {
     if (length === 0 || pageSize === 0) {
@@ -81,6 +81,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     RegistryComponent,
     FindclientComponent,
     UserPageComponent,
+    NewaccountComponent,
 
 
   ],
@@ -147,13 +148,13 @@ export class CustomPaginator extends MatPaginatorIntl {
           path: "user",
           component: UserPageComponent
         },
-        
+
 
       ]
     )
 
   ],
-  exports:[
+  exports: [
     MatSelectModule,
     CdkTableModule,
     MatNativeDateModule,
