@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
+import {Element} from '../history/history.component';
 
 @Component({
   selector: 'app-user-page',
@@ -47,6 +48,30 @@ export class UserPageComponent implements OnInit {
       sender: 'Szymon Jarzabek',
       title: 'Przelew',
       amount: '-22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
+    {
+      date: '03/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
+    {
+      date: '02/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '-22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
+    {
+      date: '01/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '22.30zł',
       balanceAfterTransaction: '452.34zł'
     },
   ];

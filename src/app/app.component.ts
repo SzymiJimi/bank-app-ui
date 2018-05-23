@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class AppComponent {
   title = 'app';
   user=false;
-
+  mode = new FormControl('over');
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) {
     // this.http.get<any>(environment.endpointBase +'home').subscribe(res => {

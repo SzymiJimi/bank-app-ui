@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" style="display: -webkit-inline-box;">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="min-width: 20%; margin-top: 1%">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -12,33 +12,25 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span> <i class="material-icons">
-monetization_on
-</i></span>
+              <span> <i class="material-icons">monetization_on</i></span>
               Oferty
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span><i class="material-icons">
-money
-</i></span>
+              <span><i class="material-icons">money</i></span>
               Obrót
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span><i class="material-icons">
-people
-</i></span>
+              <span><i class="material-icons">people</i></span>
               Pracownicy
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span ><i class="material-icons">
-people_outline
-</i></span>
+              <span><i class="material-icons">people_outline</i></span>
               Klienci
             </a>
           </li>
@@ -46,8 +38,8 @@ people_outline
       </div>
     </nav>
 
-    <div style="width: 80%; left: 10%; position: absolute">
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div style="width: 100%; left: 0%; ">
+      <main role="main" class="col-lg-10">
         <div
           class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Obrót pieniędzy</h1>
@@ -63,7 +55,7 @@ people_outline
         </div>
         <div style="display: block;">
 
-          <canvas baseChart class="my-4 w-100" id="myChart" width="900" height="380"
+          <canvas baseChart class="my-4 w-100" id="myChart" width="700" height="380"
                   [datasets]="lineChartData"
                   [labels]="lineChartLabels"
                   [options]="lineChartOptions"
@@ -75,15 +67,6 @@ people_outline
           ></canvas>
         </div>
 
-        <!--<canvas baseChart width="400" height="400"-->
-        <!--[datasets]="lineChartData"-->
-        <!--[labels]="lineChartLabels"-->
-        <!--[options]="lineChartOptions"-->
-        <!--[colors]="lineChartColors"-->
-        <!--[legend]="lineChartLegend"-->
-        <!--[chartType]="lineChartType"-->
-        <!--(chartHover)="chartHovered($event)"-->
-        <!--(chartClick)="chartClicked($event)"></canvas>-->
 
         <h2>Klienci z największym obrotem</h2>
         <div class="table-responsive">

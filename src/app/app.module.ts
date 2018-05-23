@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injectable, NgModule} from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,7 +17,14 @@ import {
   MatPaginatorIntl,
   MatSelectModule,
   MatDatepickerModule,
-  MatInputModule, MatNativeDateModule, MatGridListModule, MatDialogModule, MatButtonModule, MatCardModule
+  MatInputModule,
+  MatNativeDateModule,
+  MatGridListModule,
+  MatDialogModule,
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatSidenavModule, MatRadioModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -43,6 +50,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistryComponent } from './registry/registry.component';
 import { FindclientComponent } from './findclient/findclient.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { UserCreditsComponent } from './user/user-credits/user-credits.component';
+import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
+import {AppRouterModule} from './app.router.module';
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -94,6 +104,8 @@ export class CustomPaginator extends MatPaginatorIntl {
     ManagerComponent,
     ManagerHomeComponent,
     ManagerStatsComponent,
+    UserCreditsComponent,
+    UserManageAccountComponent,
 
   ],
   imports: [
@@ -101,6 +113,8 @@ export class CustomPaginator extends MatPaginatorIntl {
     BrowserModule,
     CdkTableModule,
     MatTableModule,
+    MatSidenavModule,
+    MatRadioModule,
     MatSelectModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -116,60 +130,10 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatGridListModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(
-      [{
-        path: 'user/history',
-        component: HistoryComponent
-      },
-        {
-          path: 'user/transaction',
-          component: TransactionComponent
-        },
-        {
-          path: 'user/card',
-          component: CardManagementComponent
-        },
-        {
-          path: 'user/card/changepin',
-          component: ChangePinComponent
-        },
-        {
-          path: 'user/card/blockcard',
-          component: BlockCardComponent
-        },
-        {
-          path: "",
-          component: HomepageComponent
-        },
-        {
-          path: "login",
-          component: LoginComponent
-        },
-
-        {
-          path: "signIn",
-          component: RegistryComponent
-        },
-        {
-          path: "findClient",
-          component: FindclientComponent
-        },
-        {
-          path: "user",
-          component: UserPageComponent
-        },
-       {
-          path: 'manager/home',
-          component: ManagerHomeComponent
-        },
-        {
-          path: 'manager/stats',
-          component: ManagerStatsComponent
-        }]
-    )
-
+      AppRouterModule
   ],
   exports:[
     MatSelectModule,
@@ -177,6 +141,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
+    MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
   ],

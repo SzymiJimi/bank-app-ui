@@ -1,6 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!--<app-transaction></app-transaction>-->
 <!--<app-navbar-user></app-navbar-user>-->
-<app-navbar *ngIf="funkcja()"></app-navbar>
-<app-navbar-user *ngIf="!funkcja()"></app-navbar-user>
-<router-outlet ></router-outlet>
+<div class="background-style">
+  <app-navbar *ngIf="funkcja()"></app-navbar>
+  <app-navbar-user *ngIf="!funkcja()"></app-navbar-user>
+  <div class="main-style">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
