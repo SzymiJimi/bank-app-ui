@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, MinLengthValidator, Validators} from '@angular/forms';
 import {UserModel} from '../../user/user.model';
 import {TransactionDataModel} from '../transaction-data.model';
+import {MatDatepicker, MatExpansionPanel} from '@angular/material';
 
 @Component({
   selector: 'app-input-data',
@@ -21,6 +22,9 @@ export class InputDataComponent implements OnInit {
   bankAccountNr: string="07 1020 2629 0000 9202 0321 1018";
   avaibleFounds: string="452,34zł";
   today: number = Date.now();
+  transactionTypeList= ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
+  selected: string = 'Zewnętrzny';
+  additionalDataOk:boolean= true;
 
   transactionForm: FormGroup;
   name: FormControl;
@@ -29,6 +33,7 @@ export class InputDataComponent implements OnInit {
   title: FormControl;
   amount: FormControl;
   furtherClicked: boolean=false;
+  pernamentOrderSaved=false;
 
 
   createFormControls(){
@@ -77,6 +82,32 @@ export class InputDataComponent implements OnInit {
 
     this.sendTransactionDataEvent.emit(this.transactionData);
 
+  }
+
+  clicked(type: string, panel: MatExpansionPanel,  event: Event) {
+    this.selected = type;
+    console.log('Panel ' + panel);
+    panel.close();
+    console.log(this.selected);
+    if( this.selected!==('Zewnętrzny' || ''))
+    {
+      this.additionalDataOk=false;
+    }else{
+      this.additionalDataOk=true;
+    }
+
+  }
+
+  receiveMessage($event) {
+    this.pernamentOrderSaved= $event;
+    console.log("Wywołałem się");
+    console.log(this.pernamentOrderSaved);
+    if(this.pernamentOrderSaved===true)
+    {
+      this.additionalDataOk=true;
+    }else{
+      this.additionalDataOk=false;
+    }
   }
 
 }

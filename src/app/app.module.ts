@@ -24,7 +24,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatExpansionModule,
-  MatSidenavModule, MatRadioModule
+  MatSidenavModule, MatRadioModule, MatListModule, MatIconModule, MatHorizontalStepper, MatStepperModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -53,6 +53,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserCreditsComponent } from './user/user-credits/user-credits.component';
 import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
 import {AppRouterModule} from './app.router.module';
+import { PernamentOrderComponent } from './transaction/input-data/pernament-order/pernament-order.component';
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -68,7 +69,6 @@ export class CustomPaginator extends MatPaginatorIntl {
     }
     length = Math.max(length, 0);
     const startIndex = page * pageSize;
-    // If the start index exceeds the list length, do not try and fix the end index to the end.
     const endIndex = startIndex < length ?
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
@@ -106,6 +106,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     ManagerStatsComponent,
     UserCreditsComponent,
     UserManageAccountComponent,
+    PernamentOrderComponent,
 
   ],
   imports: [
@@ -114,6 +115,8 @@ export class CustomPaginator extends MatPaginatorIntl {
     CdkTableModule,
     MatTableModule,
     MatSidenavModule,
+    MatStepperModule,
+    MatListModule,
     MatRadioModule,
     MatSelectModule,
     BrowserModule,
@@ -121,6 +124,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatIconModule,
     MatMenuModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -138,6 +142,7 @@ export class CustomPaginator extends MatPaginatorIntl {
   exports:[
     MatSelectModule,
     CdkTableModule,
+    MatIconModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,

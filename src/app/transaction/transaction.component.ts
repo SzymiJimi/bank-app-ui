@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionDataModel} from './transaction-data.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-transaction',
@@ -9,15 +10,24 @@ import {TransactionDataModel} from './transaction-data.model';
 export class TransactionComponent implements OnInit {
 
 
-  constructor() {
+  constructor(private _formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   received: boolean = false;
   transactionData: TransactionDataModel = new TransactionDataModel();
   transactionStatus: boolean = false;
+  isLinear = true;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   receiveMessage($event) {
     this.received = true;

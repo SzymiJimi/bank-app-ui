@@ -14,3 +14,15 @@
   right: 0;
   position: absolute;
 }
+
+mat-list-item:hover{
+  background-color: #009688;
+  color: white;
+  border-radius: 4px;
+}
+
+.custom-btn-color{
+  color: white;
+  background-color: #009688;
+}
+

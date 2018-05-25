@@ -1,0 +1,44 @@
+.select-frequency{
+  margin-left: 2%;
+  width: 94%;
+}
+
+.custom-btn-color{
+  color: white;
+  background-color: #009688;
+}
+
+.period-btns{
+  display: inline-block;
+  width: 94%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+}
+
+.save-period-btn{
+  width: 45%;
+  margin-right: 10%;
+}
+
+.change-period-btn{
+  width: 45%;
+}
+
+.standing-order {
+  margin-top: 2%;
+  margin-left: 9%;
+  width: 35rem !important;
+}
+
+.date-picker-form{
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+.date-picker{
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 45%
+}
+
+
