@@ -1,0 +1,16 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 50%;
+}
+
+.headline{
+  background-color: #009688;
+  color: white;
+  margin: 2% auto 1%;
+  text-align: center;
+  border-radius: 2px;
+}

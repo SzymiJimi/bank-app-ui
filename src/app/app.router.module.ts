@@ -14,6 +14,9 @@ import {ChangePinComponent} from './card-management/dialog/change-pin/change-pin
 import {HomepageComponent} from './homepage/homepage.component';
 import {RegistryComponent} from './registry/registry.component';
 import {UserPageComponent} from './user-page/user-page.component';
+import {UserCreditComponent} from './user-credit/user-credit.component';
+import {InvestmentsComponent} from './investments/investments.component';
+import {NewInvestmentComponent} from './investments/new-investment/new-investment.component';
 
 
 const appRoutes: Routes =
@@ -40,6 +43,10 @@ const appRoutes: Routes =
     {
       path: 'user/card/blockcard',
       component: BlockCardComponent
+    },
+    {
+      path: 'user/credit/new',
+      component: UserCreditComponent
     },
     {
       path: 'user/accountManage',
@@ -73,8 +80,15 @@ const appRoutes: Routes =
     {
       path: 'manager/stats',
       component: ManagerStatsComponent
+    },
+    {
+      path: 'user/investment',
+      component: InvestmentsComponent
+    },
+    {
+      path: 'user/investment/new',
+      component: NewInvestmentComponent
     }];
-
 
 @NgModule({
   imports: [

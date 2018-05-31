@@ -1,8 +1,17 @@
 <div class="card content-style">
-  <h5 class="card-header">Twoja lista kredytów</h5>
-
+  <h5 class="card-header">Zarządzaj kredytami</h5>
+  <h3 class="" style="text-align: center; margin-top:1%">Weź nowy kredyt online</h3>
   <mat-card>
+  <div class="cards-container">
+    <button  mat-raised-button routerLink="/user/credit/new" (click)="clickedCashCredit()" class="small-card-style">
+      Kredyt gotówkowy
+     </button >
+    <button  mat-raised-button routerLink="/user/credit/new" (click)="clickedMortgage()" class="small-card-style">
+    Kredyt hipoteczny
+    </button >
+  </div>
     <div>
+      <h3 class="" style="text-align: center; margin-top:1%">Twoja lista kredytów</h3>
       <div class="card panel">
         <div class="panel-heading">
           <div class="text-center">

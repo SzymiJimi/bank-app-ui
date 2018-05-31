@@ -1,0 +1,38 @@
+<div class="card content-style">
+  <h5 class="card-header">Zarządzaj lokatami</h5>
+  <h3 class="" style="text-align: center; margin-top:1%">Załóż nową lokatę przez internet</h3>
+    <div class="cards-container">
+      <button  mat-raised-button routerLink="/user/investment/new" (click)="clickedNewInvestment()" class="small-card-style">
+        Nowa lokata
+      </button >
+    </div>
+    <div>
+      <h3 class="" style="text-align: center; margin-top:1%">Twoja lista lokat</h3>
+      <mat-card *ngFor="let investment of investments" class="card panel single-card">
+          <div class="text-center">
+            <h3 class="" style="margin-right: 70%; margin-top:1%">{{investment.name}}</h3>
+          </div>
+
+        <div class="panel-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item card-info-data">Data zawarcia kredytu: <span
+              class="text-muted user-details-info">{{investment.startDate}}</span>
+            </li>
+            <li class="list-group-item card-info-data">Ilość rat do spłaty:<span
+              class="text-muted user-details-info">{{investment.installmentToGo}}</span>
+            </li>
+            <li class="list-group-item card-info-data">Wysokość raty: <span
+              class="text-muted user-details-info">{{investment.installmentAmount}}</span>
+            </li>
+            <li class="list-group-item card-info-data">Termin płacenia rat: <span
+              class="text-muted user-details-info">{{investment.payDay}} dzień każdego miesiąca</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <a href="#">Szczegóły></a>
+        </div>
+      </mat-card>
+    </div>
+</div>

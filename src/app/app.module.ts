@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
@@ -24,7 +24,14 @@ import {
   MatButtonModule,
   MatCardModule,
   MatExpansionModule,
-  MatSidenavModule, MatRadioModule, MatListModule, MatIconModule, MatHorizontalStepper, MatStepperModule
+  MatSidenavModule,
+  MatRadioModule,
+  MatListModule,
+  MatIconModule,
+  MatHorizontalStepper,
+  MatStepperModule,
+  MatSliderModule,
+  MatSlideToggleModule, GestureConfig, MatCheckboxModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -54,6 +61,14 @@ import { UserCreditsComponent } from './user/user-credits/user-credits.component
 import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
 import {AppRouterModule} from './app.router.module';
 import { PernamentOrderComponent } from './transaction/input-data/pernament-order/pernament-order.component';
+import { UserCreditComponent } from './user-credit/user-credit.component';
+import {InstallmentValuePipe} from './user-credit/installment-value.pipe';
+import { UserCreditInputDataComponent } from './user-credit/user-credit-input-data/user-credit-input-data.component';
+import { UserCreditFinishScreenComponent } from './user-credit/user-credit-finish-screen/user-credit-finish-screen.component';
+import {CreditDataService} from './user-credit/credit-data.service';
+import { InvestmentsComponent } from './investments/investments.component';
+import { NewInvestmentComponent } from './investments/new-investment/new-investment.component';
+
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -78,6 +93,7 @@ export class CustomPaginator extends MatPaginatorIntl {
 
 @NgModule({
   declarations: [
+    InstallmentValuePipe,
     AppComponent,
     TransactionComponent,
     UserComponent,
@@ -107,6 +123,11 @@ export class CustomPaginator extends MatPaginatorIntl {
     UserCreditsComponent,
     UserManageAccountComponent,
     PernamentOrderComponent,
+    UserCreditComponent,
+    UserCreditInputDataComponent,
+    UserCreditFinishScreenComponent,
+    InvestmentsComponent,
+    NewInvestmentComponent,
 
   ],
   imports: [
@@ -114,11 +135,13 @@ export class CustomPaginator extends MatPaginatorIntl {
     BrowserModule,
     CdkTableModule,
     MatTableModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatStepperModule,
     MatListModule,
     MatRadioModule,
     MatSelectModule,
+    MatSliderModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -131,6 +154,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatPaginatorModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSlideToggleModule,
     MatGridListModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -145,6 +169,9 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatIconModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatExpansionModule,
     MatTableModule,
@@ -156,7 +183,11 @@ export class CustomPaginator extends MatPaginatorIntl {
     ChangeAddressComponent,
   ]
   ,
-  providers: [{provide: MatPaginatorIntl, useClass: CustomPaginator}],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: CustomPaginator},
+    {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
+    {provide: CreditDataService, useClass: CreditDataService}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,47 @@
+<h4 class="card-header" style="text-align: center">Nowy {{headTitle}}</h4>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Wybierz wielkość lokaty</ng-template>
+    <mat-card class="sliders-box">
+      <div class="slider-input">
+
+
+        Wielkość lokaty {{investmentSize}}
+
+        <input type="range" min="{{minInvestment}}" max="{{maxInvestment}}"  step="500" class="slider"
+               [(ngModel)]="investmentSize"
+               id="loanSlider">
+      </div>
+      <div class="slider-input">
+        Ilość składek {{contributionNumber}}
+
+        <input type="range" min="{{minContribution}}" max="{{maxContribution}}" step="1" class="slider" [(ngModel)]="contributionNumber"
+               id="installmentSlider">
+      </div>
+    </mat-card>
+    <mat-card style="width: 100%; display: grid; margin-top:3%">
+      <mat-checkbox style="right: 5%; margin-top:1%; position: absolute" [(ngModel)]="insurance">Pobieraj kwotę automatycznie z mojego konta.
+      </mat-checkbox>
+      <h2  class="installment"> Twoja wysokość składki:
+        {{((investmentSize+(investmentSize*(investmentRate/100)))/contributionNumber |installmentValue)}}</h2>
+
+      <h5 class="additional-info">Oprocentowanie lokaty:<span class="additional-info-value">{{investmentRate}}% </span></h5>
+      <hr>
+      <h5 class="additional-info">Zysk w skali miesiąca: <span class="additional-info-value">{{(investmentSize*investmentRate/100)/contributionNumber | installmentValue}} </span>
+      </h5>
+      <hr>
+      <h5 class="additional-info">Całkowity zysk: <span class="additional-info-value"> {{(investmentSize*investmentRate/100) | installmentValue}} </span>
+      </h5>
+      <hr>
+    </mat-card>
+    <div>
+      <a mat-button routerLink="." class="back-button">Powrót</a>
+      <button mat-raised-button matStepperNext class="forward-button" color="primary">Dalej</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Weryfikacja</ng-template>
+    <app-user-credit-finish-screen></app-user-credit-finish-screen>
+
+  </mat-step>
+</mat-horizontal-stepper>
