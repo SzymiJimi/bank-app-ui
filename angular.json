@@ -22,9 +22,13 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -71,11 +75,19 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
-              "../node_modules/jquery/dist/jquery.js"
+              "../node_modules/jquery/dist/jquery.js",
+              "../node_modules/jquery/dist/jquery.js",
+              "../node_modules/hammerjs/hammer.js",
+              "../node_modules/materialize-css/dist/js/materialize.js",
+              "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js",
+              "https://unpkg.com/feather-icons/dist/feather.min.js",
+              "https://code.jquery.com/jquery-3.3.1.slim.min.js"
+
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/materialize-css/dist/css/materialize.css"
             ],
             "assets": [
               "src/assets",

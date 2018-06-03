@@ -1,7 +1,10 @@
+///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
+import {Element} from '../history/history.component';
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -47,6 +50,30 @@ export class UserPageComponent implements OnInit {
       amount: '-22.30zł',
       balanceAfterTransaction: '452.34zł'
     },
+    {
+      date: '03/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
+    {
+      date: '02/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '-22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
+    {
+      date: '01/05/2018',
+      recipient: 'Szymon Dudek',
+      sender: 'Szymon Jarzabek',
+      title: 'Przelew',
+      amount: '22.30zł',
+      balanceAfterTransaction: '452.34zł'
+    },
   ];
 
 
@@ -68,10 +95,8 @@ export class UserPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user.name="Szymon"
-    this.user.surname="Dudek"
-
-    
+    this.user.name="Szymon";
+    this.user.surname="Dudek";
 
   }
 

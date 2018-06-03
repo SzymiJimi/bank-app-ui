@@ -1,6 +1,7 @@
 import {UserModel} from '../user/user.model';
 
-export class CardModel {
+
+  export class CardModel {
   type: string;
   number: string;
   expirationDate: string;

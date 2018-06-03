@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injectable, NgModule} from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,7 +17,14 @@ import {
   MatPaginatorIntl,
   MatSelectModule,
   MatDatepickerModule,
-  MatInputModule, MatNativeDateModule, MatGridListModule, MatDialogModule, MatButtonModule, MatCardModule
+  MatInputModule,
+  MatNativeDateModule,
+  MatGridListModule,
+  MatDialogModule,
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatSidenavModule, MatRadioModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -27,6 +34,13 @@ import { CardInformationComponent } from './card-management/card-information/car
 import { DialogComponent } from './card-management/dialog/dialog.component';
 import { ChangePinComponent } from './card-management/dialog/change-pin/change-pin.component';
 import { BlockCardComponent } from './card-management/dialog/block-card/block-card.component';
+import { CancelCardComponent } from './card-management/dialog/cancel-card/cancel-card.component';
+import { ChangeLimitsComponent } from './card-management/dialog/change-limits/change-limits.component';
+import { ChangeAddressComponent } from './card-management/dialog/change-address/change-address.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
+import { ManagerStatsComponent } from './manager/manager-stats/manager-stats.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import {NavbarComponent} from './navbar/navbar.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
@@ -36,6 +50,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistryComponent } from './registry/registry.component';
 import { FindclientComponent } from './findclient/findclient.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { UserCreditsComponent } from './user/user-credits/user-credits.component';
+import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
+import {AppRouterModule} from './app.router.module';
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -81,14 +98,25 @@ export class CustomPaginator extends MatPaginatorIntl {
     RegistryComponent,
     FindclientComponent,
     UserPageComponent,
+    CancelCardComponent,
+    ChangeLimitsComponent,
+    ChangeAddressComponent,
+    ManagerComponent,
+    ManagerHomeComponent,
+    ManagerStatsComponent,
+    UserCreditsComponent,
+    UserManageAccountComponent,
     NewaccountComponent,
 
 
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     CdkTableModule,
     MatTableModule,
+    MatSidenavModule,
+    MatRadioModule,
     MatSelectModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -104,6 +132,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatGridListModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
@@ -153,6 +182,7 @@ export class CustomPaginator extends MatPaginatorIntl {
       ]
     )
 
+      AppRouterModule
   ],
   exports: [
     MatSelectModule,
@@ -160,9 +190,16 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
+    MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
   ],
+  entryComponents: [
+    CancelCardComponent,
+    ChangeLimitsComponent,
+    ChangeAddressComponent,
+  ]
+  ,
   providers: [{provide: MatPaginatorIntl, useClass: CustomPaginator}],
   bootstrap: [AppComponent]
 })

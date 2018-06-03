@@ -13,7 +13,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatButton} from '@angular/
 export class BlockCardComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ChangePinComponent>,
+    public dialogRef: MatDialogRef<BlockCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }

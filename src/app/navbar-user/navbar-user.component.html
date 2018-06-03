@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-bg-color" style="">
   <a class="navbar-brand" href="#">{{name}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,31 +8,34 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/transaction">Przelew</a>
+        <a class="nav-link" style="font-size: 21px!important; font-style: italic " routerLink="/user/transaction">PIP Bank</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user/transaction">Przelew</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user/history">Historia</a>
+      </li>
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link" href="#">Zgloszenia</a>-->
+      <!--</li>-->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user/credits">Kredyty</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/history">Historia</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Kontakty</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Zgloszenia</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Kredyty</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Skarbonka</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/card">Zarządzanie kartami</a>
+        <a class="nav-link" routerLink="/user/card">Zarządzanie kartami</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Zarządzanie kontem</a>
       </li>
-      
-      
+      <li class="nav-item">
+        <a class="nav-link" style="right: 0; position: absolute" routerLink="/user/transaction">Szymon Jarząbek</a>
+      </li>
     </ul>
   </div>
 </nav>
+
+
+
