@@ -53,7 +53,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 import { CounselornavbarComponent } from './counselornavbar/counselornavbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { RegistryComponent } from './registry/registry.component';
 import { FindclientComponent } from './findclient/findclient.component';
 import { UserPageComponent } from './user-page/user-page.component';

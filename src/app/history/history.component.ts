@@ -3,7 +3,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
-import * as jsPDF from 'jspdf'
 
 
 @Component({
@@ -266,9 +265,9 @@ export class HistoryComponent implements OnInit {
   }
 
   generatePdf(){
-    let doc = new jsPDF();
-    doc.text(20,20,'Hello world');
-    doc.save('Test.pdf');
+    // let doc = new jsPDF();
+    // doc.text(20,20,'Hello world');
+    // doc.save('Test.pdf');
   }
 
   filterData() {

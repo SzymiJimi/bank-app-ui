@@ -9,7 +9,7 @@ import {TransactionComponent} from './transaction/transaction.component';
 import {UserCreditsComponent} from './user/user-credits/user-credits.component';
 import {ManagerHomeComponent} from './manager/manager-home/manager-home.component';
 import {UserManageAccountComponent} from './user/user-manage-account/user-manage-account.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './auth/login/login.component';
 import {ChangePinComponent} from './card-management/dialog/change-pin/change-pin.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {RegistryComponent} from './registry/registry.component';
