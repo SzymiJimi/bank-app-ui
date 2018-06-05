@@ -23,6 +23,7 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: ['progress', 'kjhtml'],
+    node: { fs: 'empty'},
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

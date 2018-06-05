@@ -264,6 +264,12 @@ export class HistoryComponent implements OnInit {
     this.dateFromPicker = null;
   }
 
+  generatePdf(){
+    // let doc = new jsPDF();
+    // doc.text(20,20,'Hello world');
+    // doc.save('Test.pdf');
+  }
+
   filterData() {
 
     if (this.dateFromPicker !== null && this.dateFromPicker !== undefined) {

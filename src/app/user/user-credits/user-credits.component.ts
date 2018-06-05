@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CreditDataService} from '../../user-credit/credit-data.service';
 
 @Component({
   selector: 'app-user-credits',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCreditsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: CreditDataService) { }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
+
   }
+
+  clickedCashCredit(){
+    this.data.changeMessage("cashLoan");
+  }
+
+  clickedMortgage(){
+    this.data.changeMessage("mortgage");
+
+  }
+
+  message: string;
 
 }

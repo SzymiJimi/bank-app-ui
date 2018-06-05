@@ -1,0 +1,58 @@
+<h4 class="card-header" style="text-align: center">Nowy {{headTitle}}</h4>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Wybierz wielkość pożyczki</ng-template>
+    <mat-card class="sliders-box">
+      <div class="slider-input">
+
+
+        Wielkość pożyczki {{loanSize}}
+
+        <input type="range" min="{{minLoan}}" max="{{maxLoan}}" (change)="changedValue()" step="500" class="slider"
+               [(ngModel)]="loanSize"
+               id="loanSlider">
+      </div>
+      <div class="slider-input">
+        Ilość rat {{installmentNumber}}
+
+        <input type="range" min="{{minInst}}" max="{{maxInst}}" step="1" class="slider" [(ngModel)]="installmentNumber"
+               id="installmentSlider">
+      </div>
+    </mat-card>
+    <mat-card style="width: 100%; display: grid; margin-top:3%">
+      <mat-checkbox style="right: 5%; margin-top:1%; position: absolute" [(ngModel)]="insurance">Chcę ubezpieczyć
+        pożyczkę.
+      </mat-checkbox>
+      <h2 *ngIf="insurance===false" class="installment"> Twoja wysokość raty:
+        {{((loanSize+(loanSize*(interestRate/100)))/installmentNumber |installmentValue)}}</h2>
+      <h2 *ngIf="insurance===true" class="installment"> Twoja wysokość raty:
+        {{((loanSize+(loanSize*(interestRateWithInsurance/100)))/installmentNumber |installmentValue)}}</h2>
+      <hr>
+      <h5 class="additional-info">Oprocentowanie:<span class="additional-info-value">{{interestRate}}% </span></h5>
+      <hr>
+      <h5 class="additional-info">Miesięczna kwota ubezpieczenia: <span class="additional-info-value">{{(((interestRateWithInsurance-interestRate)/100)*loanSize)/installmentNumber |installmentValue}} </span>
+      </h5>
+      <hr>
+      <h5 class="additional-info">Prowizja: <span class="additional-info-value"> {{loanSize*provision/100 | installmentValue}} </span>
+      </h5>
+      <hr>
+    </mat-card>
+    <div>
+      <a mat-button routerLink="." class="back-button">Powrót</a>
+      <button mat-raised-button matStepperNext class="forward-button" color="primary">Dalej</button>
+    </div>
+
+
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Wypełnij swoje dane</ng-template>
+    <app-user-credit-input-data></app-user-credit-input-data>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Weryfikacja</ng-template>
+    <app-user-credit-finish-screen></app-user-credit-finish-screen>
+
+  </mat-step>
+</mat-horizontal-stepper>

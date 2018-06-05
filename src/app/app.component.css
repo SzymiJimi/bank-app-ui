@@ -8,5 +8,6 @@
 .background-style{
   width: 100%;
   background: url("../assets/background16_9.jpg") no-repeat fixed;
+  min-height: 900px;
   background-size: cover;
 }

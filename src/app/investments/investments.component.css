@@ -1,0 +1,20 @@
+.content-style{
+  margin: auto;
+}
+
+.small-card-style{
+  background-color: #bcdeff;
+  width: 40%;
+  margin: 2% 5%;
+  height: 8em;
+}
+
+.cards-container{
+  width: 100%;
+  display: flex;
+}
+
+.single-card{
+  width: 95%;
+  margin: 2% auto;
+}

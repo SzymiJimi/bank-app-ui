@@ -1,0 +1,19 @@
+<span>{{responseMessage}}</span>
+<form>
+    <div class="group">
+
+      <input type="text" placeholder="Login" [(ngModel)]="username"  [ngModelOptions]="{standalone: true}" required><span class="highlight"></span><span class="bar"></span>
+
+    </div>
+    <div class="group">
+
+      <input type="password" placeholder="Haslo" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required><span class="highlight"></span><span class="bar"></span>
+
+    </div>
+    <button type="button" class="button buttonBlue" (click)="login()">Zaloguj<div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+    </button>
+
+    <a routerLink="/"><button type="button" class="button buttonBlue">Powrót
+        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+      </button></a>
+  </form>

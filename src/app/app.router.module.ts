@@ -9,11 +9,14 @@ import {TransactionComponent} from './transaction/transaction.component';
 import {UserCreditsComponent} from './user/user-credits/user-credits.component';
 import {ManagerHomeComponent} from './manager/manager-home/manager-home.component';
 import {UserManageAccountComponent} from './user/user-manage-account/user-manage-account.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './auth/login/login.component';
 import {ChangePinComponent} from './card-management/dialog/change-pin/change-pin.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {RegistryComponent} from './registry/registry.component';
 import {UserPageComponent} from './user-page/user-page.component';
+import {UserCreditComponent} from './user-credit/user-credit.component';
+import {InvestmentsComponent} from './investments/investments.component';
+import {NewInvestmentComponent} from './investments/new-investment/new-investment.component';
 
 
 const appRoutes: Routes =
@@ -40,6 +43,10 @@ const appRoutes: Routes =
     {
       path: 'user/card/blockcard',
       component: BlockCardComponent
+    },
+    {
+      path: 'user/credit/new',
+      component: UserCreditComponent
     },
     {
       path: 'user/accountManage',
@@ -73,8 +80,15 @@ const appRoutes: Routes =
     {
       path: 'manager/stats',
       component: ManagerStatsComponent
+    },
+    {
+      path: 'user/investment',
+      component: InvestmentsComponent
+    },
+    {
+      path: 'user/investment/new',
+      component: NewInvestmentComponent
     }];
-
 
 @NgModule({
   imports: [
