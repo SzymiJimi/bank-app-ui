@@ -53,6 +53,11 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserCreditsComponent } from './user/user-credits/user-credits.component';
 import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
 import {AppRouterModule} from './app.router.module';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { LoginhistoryComponent } from './loginhistory/loginhistory.component';
+import { CashwithdrawalComponent } from './cashwithdrawal/cashwithdrawal.component';
+import { SummarycashwithdrawalComponent } from './cashwithdrawal/summarycashwithdrawal/summarycashwithdrawal.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
 
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
@@ -62,7 +67,7 @@ export class CustomPaginator extends MatPaginatorIntl {
   firstPageLabel = 'Pierwsza strona';
   lastPageLabel = 'Ostatnia strona';
 
-  getRangeLabel= function(page: number, pageSize: number, length: number): string {
+  getRangeLabel = function(page: number, pageSize: number, length: number): string {
     if (length === 0 || pageSize === 0) {
       return `0 z ${length}`;
     }
@@ -73,7 +78,7 @@ export class CustomPaginator extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} z ${length}`;
-  }
+  };
 }
 
 @NgModule({
@@ -106,7 +111,11 @@ export class CustomPaginator extends MatPaginatorIntl {
     ManagerStatsComponent,
     UserCreditsComponent,
     UserManageAccountComponent,
-    NewaccountComponent,
+    FavoriteComponent,
+    LoginhistoryComponent,
+    CashwithdrawalComponent,
+    CreateaccountComponent
+
 
 
   ],
@@ -157,32 +166,48 @@ export class CustomPaginator extends MatPaginatorIntl {
           component: BlockCardComponent
         },
         {
-          path: "",
+          path: '',
           component: HomepageComponent
         },
         {
-          path: "login",
+          path: 'login',
           component: LoginComponent
         },
 
         {
-          path: "signIn",
+          path: 'signIn',
           component: RegistryComponent
         },
         {
-          path: "findClient",
+          path: 'findClient',
           component: FindclientComponent
         },
         {
-          path: "user",
+          path: 'user',
           component: UserPageComponent
         },
+        {
+          path: 'favorite',
+          component: FavoriteComponent
+        },
+        {
+          path: 'loginhistory',
+          component: LoginhistoryComponent
+        },
+        {
+          path: 'cashwithdrawl',
+          component: CashwithdrawalComponent
+        },
+        {
+          path: 'registry',
+          component: RegistryComponent
+        }
 
 
       ]
-    )
+    ),
 
-      AppRouterModule
+
   ],
   exports: [
     MatSelectModule,

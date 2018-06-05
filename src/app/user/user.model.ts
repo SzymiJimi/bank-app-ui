@@ -7,6 +7,7 @@ export class UserModel {
    surname: string;
    email: string;
    phone: string;
+   pesel: string;
    role_idRole: number;
    bankAccountNr: string;
 

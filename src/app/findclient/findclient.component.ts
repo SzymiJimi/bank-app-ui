@@ -69,6 +69,12 @@ export class FindclientComponent implements OnInit {
   }
 
 }
-
+export interface Element {
+  name: string;
+  surname: string;
+  pesel: string;
+  type: string;
+  number: string;
+}
 
 

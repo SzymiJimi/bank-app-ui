@@ -1,18 +1,28 @@
-<form>
+<form [formGroup]="myForm" novalidate>
+
     <div class="group">
-       
-      <input type="text" placeholder="Login" required><span class="highlight"></span><span class="bar"></span>
-      
+      <input type="text" formControlName="login" class="form-control "
+
+             placeholder="Login" required><span class="highlight"></span><span class="bar"></span>
+
     </div>
     <div class="group">
-       
-      <input type="password" placeholder="Haslo" required><span class="highlight"></span><span class="bar"></span>
-      
+
+
+      <input type="password" formControlName="password" class="form-control"
+
+             placeholder="Haslo" required><span class="highlight"></span><span class="bar"></span>
+
     </div>
-    <button type="button" class="button buttonBlue">Zaloguj
+    <button type="button" [disabled]="myForm.invalid" [ngClass]="{
+    'button buttonBlue': myForm.controls.password.valid,
+    'invalid': myForm.controls.password.invalid
+    }">Zaloguj
       <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
     </button>
     <a routerLink="/"><button type="button" class="button buttonBlue">Powrót
         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
       </button></a>
   </form>
+  <pre>{{myForm.value | json}}</pre>
+  <pre>{{myForm.valid | json}}</pre>
