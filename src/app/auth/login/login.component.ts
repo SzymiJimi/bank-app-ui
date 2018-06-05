@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   login(){
     console.log("Login: "+ this.username+" hasło: "+ this.password);
     let credentials : CredentialsModel= new CredentialsModel(this.username, this.password);
-    this.http.post(environment.endpointBase +'add',JSON.stringify(credentials),{headers:{'Content-Type': 'application/json'}, responseType:'text'} ).subscribe(res=>{
+    this.http.post(environment.endpointBase +'login',JSON.stringify(credentials),{headers:{'Content-Type': 'application/json'}, responseType:'text'} ).subscribe(res=>{
       console.log("Jestem tuuuu");
 
     });
