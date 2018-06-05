@@ -60,6 +60,11 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserCreditsComponent } from './user/user-credits/user-credits.component';
 import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
 import {AppRouterModule} from './app.router.module';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { LoginhistoryComponent } from './loginhistory/loginhistory.component';
+import { CashwithdrawalComponent } from './cashwithdrawal/cashwithdrawal.component';
+import { SummarycashwithdrawalComponent } from './cashwithdrawal/summarycashwithdrawal/summarycashwithdrawal.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
 import { PernamentOrderComponent } from './transaction/input-data/pernament-order/pernament-order.component';
 import { UserCreditComponent } from './user-credit/user-credit.component';
 import {InstallmentValuePipe} from './user-credit/installment-value.pipe';
@@ -73,12 +78,12 @@ import { NewInvestmentComponent } from './investments/new-investment/new-investm
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
   itemsPerPageLabel = 'Wierszy na stronę';
-  nextPageLabel='Następna strona';
-  previousPageLabel='Poprzednia strona';
-  firstPageLabel='Pierwsza strona';
-  lastPageLabel='Ostatnia strona';
+  nextPageLabel = 'Następna strona';
+  previousPageLabel = 'Poprzednia strona';
+  firstPageLabel = 'Pierwsza strona';
+  lastPageLabel = 'Ostatnia strona';
 
-  getRangeLabel= function(page: number, pageSize: number, length: number): string {
+  getRangeLabel = function(page: number, pageSize: number, length: number): string {
     if (length === 0 || pageSize === 0) {
       return `0 z ${length}`;
     }
@@ -88,7 +93,7 @@ export class CustomPaginator extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} z ${length}`;
-  }
+  };
 }
 
 @NgModule({
@@ -122,6 +127,10 @@ export class CustomPaginator extends MatPaginatorIntl {
     ManagerStatsComponent,
     UserCreditsComponent,
     UserManageAccountComponent,
+    FavoriteComponent,
+    LoginhistoryComponent,
+    CashwithdrawalComponent,
+    CreateaccountComponent
     PernamentOrderComponent,
     UserCreditComponent,
     UserCreditInputDataComponent,
@@ -161,9 +170,72 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-      AppRouterModule
+    RouterModule.forRoot(
+      [{
+        path: 'history',
+        component: HistoryComponent
+      },
+        {
+          path: 'transaction',
+          component: TransactionComponent
+        },
+        {
+          path: 'card',
+          component: CardManagementComponent
+        },
+        {
+          path: 'card/changepin',
+          component: ChangePinComponent
+        },
+        {
+          path: 'card/blockcard',
+          component: BlockCardComponent
+        },
+        {
+          path: '',
+          component: HomepageComponent
+        },
+        {
+          path: 'login',
+          component: LoginComponent
+        },
+
+        {
+          path: 'signIn',
+          component: RegistryComponent
+        },
+        {
+          path: 'findClient',
+          component: FindclientComponent
+        },
+        {
+          path: 'user',
+          component: UserPageComponent
+        },
+        {
+          path: 'favorite',
+          component: FavoriteComponent
+        },
+        {
+          path: 'loginhistory',
+          component: LoginhistoryComponent
+        },
+        {
+          path: 'cashwithdrawl',
+          component: CashwithdrawalComponent
+        },
+        {
+          path: 'registry',
+          component: RegistryComponent
+        }
+
+
+      ]
+    ),
+
+
   ],
-  exports:[
+  exports: [
     MatSelectModule,
     CdkTableModule,
     MatIconModule,

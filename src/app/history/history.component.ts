@@ -149,9 +149,9 @@ export class HistoryComponent implements OnInit {
 
   displayedColumns = ['date', 'recipient', 'sender', 'title', 'amount', 'balanceAfterTransaction'];
   dataSource = new MatTableDataSource<Element>(this.transactionData);
-  selectedOperationType: string = '';
+  selectedOperationType = '';
   dateFromPicker: Date;
-  selectedPeriod: string = '';
+  selectedPeriod = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -160,18 +160,18 @@ export class HistoryComponent implements OnInit {
   maxDate = new Date(2018, 9, 24);
 
   user: UserModel = new UserModel();
-  bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
-  balance: string = '452.34zł';
-  blockedFounds: string = '23.15zł';
-  debitLimit: string = '500zł';
-  avaibleFounds: string = '952.34zł';
+  bankAccountNr = '07 1020 2629 0000 9202 0321 1018';
+  balance = '452.34zł';
+  blockedFounds = '23.15zł';
+  debitLimit = '500zł';
+  avaibleFounds = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
 
 
   ngOnInit() {
     this.user.name = 'Szymon';
     this.user.surname = 'Jarząbek';
-    let date: Date = new Date();
+    const date: Date = new Date();
 
     this.dataSource.paginator = this.paginator;
 
@@ -187,8 +187,8 @@ export class HistoryComponent implements OnInit {
 
   compateDates(stringDate: string, dateFromDatepicker: Date): boolean {
 
-    let converterStringDate: Date = new Date();
-    let tmpString: string = '';
+    const converterStringDate: Date = new Date();
+    let tmpString = '';
 
     tmpString = stringDate.slice(0, 2);
     converterStringDate.setDate(Number(tmpString));
@@ -201,7 +201,7 @@ export class HistoryComponent implements OnInit {
 
   compateDateWithTimePeriod(elementDate: string): boolean {
 
-    let todayDate: Date = new Date();
+    const todayDate: Date = new Date();
 
     switch (this.selectedPeriod) {
       case 'week': {
@@ -228,8 +228,8 @@ export class HistoryComponent implements OnInit {
       }
     }
 
-    let converterStringDate: Date = new Date();
-    let tmpString: string = '';
+    const converterStringDate: Date = new Date();
+    let tmpString = '';
 
     tmpString = elementDate.slice(0, 2);
     converterStringDate.setDate(Number(tmpString));
@@ -248,8 +248,8 @@ export class HistoryComponent implements OnInit {
 
 
   checkTypeTransaction(amount: string): boolean {
-    let tmpAmpunt = amount.slice(0, amount.length - 2);
-    let amountNumber: number = Number(tmpAmpunt);
+    const tmpAmpunt = amount.slice(0, amount.length - 2);
+    const amountNumber: number = Number(tmpAmpunt);
     if (amountNumber >= 0 && this.selectedOperationType == 'incomming') {
       return true;
     } else {
@@ -302,7 +302,7 @@ export class HistoryComponent implements OnInit {
               return this.checkTypeTransaction(data.amount);
             }
           ));
-        }else{
+        } else {
           this.dataSource = new MatTableDataSource<Element>(this.transactionData);
         }
       }
@@ -325,8 +325,8 @@ export interface Element {
   recipient: string;
   sender: string;
   title: string;
-  amount: string
-  balanceAfterTransaction: string
+  amount: string;
+  balanceAfterTransaction: string;
 }
 
 
