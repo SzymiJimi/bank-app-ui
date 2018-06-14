@@ -3,6 +3,12 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angular/material';
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
+import {AuthService} from '../auth/auth.service';
+import {BankAccountModel} from '../model/bank-account.model';
+import {BankAccountService} from './bank-account.service';
+import {CreditDataService} from '../user-credit/credit-data.service';
+import {CreditCardModel} from '../model/credit-card.model';
+import {CardInformationService} from '../card-management/card-information/card-information.service';
 
 
 @Component({
@@ -12,7 +18,7 @@ import {FormControl} from '@angular/forms';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() {
+  constructor(private authService: AuthService, private  bankAccountService: BankAccountService, private creditCardService: CardInformationService) {
 
   }
 
@@ -159,18 +165,29 @@ export class HistoryComponent implements OnInit {
   minDate = new Date(2018, 5, 2);
   maxDate = new Date(2018, 9, 24);
 
-  user: UserModel = new UserModel();
+  user: UserModel;
+  bankAccounts: BankAccountModel[];
+  bankAccount: BankAccountModel;
+  creditCards: CreditCardModel[];
+  creditCard: CreditCardModel;
   bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
   balance: string = '452.34zł';
-  blockedFounds: string = '23.15zł';
+  blockedFounds: number = 23.15;
   debitLimit: string = '500zł';
   avaibleFounds: string = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
 
 
   ngOnInit() {
-    this.user.name = 'Szymon';
-    this.user.surname = 'Jarząbek';
+    this.user = this.authService.loggedUser;
+    this.bankAccounts= this.bankAccountService.bankAccounts;
+    this.bankAccount= this.bankAccounts[0];
+    this.creditCards= this.creditCardService.userCards;
+    this.creditCard= this.creditCards[0];
+    console.log("Odczytana osoba:");
+    console.log(this.user);
+    // this.user.person.name = 'Szymon';
+    // this.user.person.surname = 'Jarząbek';
     let date: Date = new Date();
 
     this.dataSource.paginator = this.paginator;

@@ -9,6 +9,9 @@ import {BlockCardComponent} from '../dialog/block-card/block-card.component';
 import {CancelCardComponent} from '../dialog/cancel-card/cancel-card.component';
 import {ChangeLimitsComponent} from '../dialog/change-limits/change-limits.component';
 import {ChangeAddressComponent} from '../dialog/change-address/change-address.component';
+import {PersonModel} from '../../model/person.model';
+import {CreditCardModel} from '../../model/credit-card.model';
+import {BankAccountModel} from '../../model/bank-account.model';
 
 
 @Component({
@@ -25,16 +28,16 @@ export class CardInformationComponent implements OnInit {
 
   constructor(public dialog: MatDialog, elem: ElementRef, renderer: Renderer2) {
     this.tmpVal=this.tmpVal+'px';
-    this.ownerUserData.name='Szymon';
-    this.ownerUserData.surname='Jarząbek';
+    this.ownerPersonData.name='Szymon';
+    this.ownerPersonData.surname='Jarząbek';
   }
 
   ngOnInit() {
 
-    this.ownerUserData.name='Szymon';
-    this.ownerUserData.surname='Jarząbek';
+    this.ownerPersonData.name='Szymon';
+    this.ownerPersonData.surname='Jarząbek';
     this.ownerUserData.email='rekas1@tlen.pl';
-    this.ownerUserData.bankAccountNr= "07 1020 2629 0000 9202 0321 1018";
+    this.bankAccount.accountNumber= "07 1020 2629 0000 9202 0321 1018";
 
 
     this.cardData.number= '3423 1234 3456 8767';
@@ -50,7 +53,10 @@ export class CardInformationComponent implements OnInit {
 
   }
 
+  ownerPersonData: PersonModel = new PersonModel();
   ownerUserData: UserModel=new UserModel();
+  creditCard: CreditCardModel = new CreditCardModel();
+  bankAccount: BankAccountModel = new BankAccountModel();
   cardData: CardModel= new CardModel();
   address: string;
 
@@ -77,7 +83,7 @@ export class CardInformationComponent implements OnInit {
   openBlockDialog(): void {
     let dialogRef = this.dialog.open(BlockCardComponent, {
       width: '500px',
-      data: { cardNumber: this.cardData.number, cardOwner: this.cardData.owner.name+" "+this.cardData.owner.surname, cardName: this.cardData.type}
+      data: { cardNumber: this.cardData.number, cardOwner: this.cardData.owner.idPerson.name+" "+this.cardData.owner.idPerson.surname, cardName: this.cardData.type}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -91,7 +97,7 @@ export class CardInformationComponent implements OnInit {
       width: '500px',
       data: {
         cardNumber: this.cardData.number,
-        cardOwner: this.cardData.owner.name+" "+this.cardData.owner.surname,
+        cardOwner: this.cardData.owner.idPerson.name+" "+this.cardData.owner.idPerson.surname,
         cardName: this.cardData.type,
         expirationDate: this.cardData.expirationDate,
         status: this.cardData.status }
@@ -122,7 +128,7 @@ export class CardInformationComponent implements OnInit {
     let dialogRef = this.dialog.open(ChangeAddressComponent, {
       width: '500px',
       data: {
-        owner: this.ownerUserData.name+ " " + this.ownerUserData.surname,
+        owner: this.ownerUserData.idPerson.name+ " " + this.ownerUserData.idPerson.surname,
         address: this.address,
         email: this.ownerUserData.email
       }

@@ -57,8 +57,8 @@ export class InputDataComponent implements OnInit {
 
   ngOnInit() {
 
-    this.ownerUserData.name="Szymon";
-    this.ownerUserData.surname="Jarząbek";
+    this.ownerUserData.idPerson.name="Szymon";
+    this.ownerUserData.idPerson.surname="Jarząbek";
     this.ownerUserData.email="rekas1@tlen.pl";
 
     this.createFormControls();

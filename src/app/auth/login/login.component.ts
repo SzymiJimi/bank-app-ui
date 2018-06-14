@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {CredentialsModel} from '../../model/credentials.model';
+import {AuthService} from '../auth.service';
+import {UserModel} from '../../user/user.model';
+import {StatusMessage} from '../../model/status-message.model';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,22 +14,29 @@ import {CredentialsModel} from '../../model/credentials.model';
 })
 export class LoginComponent implements OnInit {
 
-  responseMessage='';
+  responseMessage: StatusMessage= new StatusMessage();
   username='';
   password='';
 
-  constructor(private http: HttpClient) { }
+  constructor( private auth: AuthService, private router: Router) { }
+
+  myForm: FormGroup;
+
 
   ngOnInit() {
+    this.myForm = new FormGroup({
+      login: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
   }
+
 
   login(){
     console.log("Login: "+ this.username+" hasło: "+ this.password);
     let credentials : CredentialsModel= new CredentialsModel(this.username, this.password);
-    this.http.post(environment.endpointBase +'login',JSON.stringify(credentials),{headers:{'Content-Type': 'application/json'}, responseType:'text'} ).subscribe(res=>{
-      console.log("Jestem tuuuu");
+    this.responseMessage = this.auth.loginUser(credentials);
+    this.router.navigate(['/user']);
 
-    });
   }
 
 }

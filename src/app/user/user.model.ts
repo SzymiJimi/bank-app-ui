@@ -1,13 +1,16 @@
+import {Serializable} from '../model/serializable.model';
+import {PersonModel} from '../model/person.model';
 
-export class UserModel {
+export class UserModel extends Serializable{
 
    idUser: number;
    username: string;
-   name: string;
-   surname: string;
+   password: string;
    email: string;
-   phone: string;
-   role_idRole: number;
-   bankAccountNr: string;
+   registerDate: string;
+   idRole: number;
+   idPerson: PersonModel;
+
+
 
 }

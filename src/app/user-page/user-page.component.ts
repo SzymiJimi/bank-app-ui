@@ -95,8 +95,8 @@ export class UserPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user.name="Szymon";
-    this.user.surname="Dudek";
+    this.user.idPerson.name="Szymon";
+    this.user.idPerson.surname="Dudek";
 
   }
 
