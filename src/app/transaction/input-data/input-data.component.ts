@@ -4,6 +4,9 @@ import {FormControl, FormGroup, MinLengthValidator, Validators} from '@angular/f
 import {UserModel} from '../../user/user.model';
 import {TransactionDataModel} from '../transaction-data.model';
 import {MatDatepicker, MatExpansionPanel} from '@angular/material';
+import {AuthService} from '../../auth/auth.service';
+import {BankAccountModel} from '../../model/bank-account.model';
+import {BankAccountService} from '../../history/bank-account.service';
 
 @Component({
   selector: 'app-input-data',
@@ -12,14 +15,15 @@ import {MatDatepicker, MatExpansionPanel} from '@angular/material';
 })
 export class InputDataComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService, private bankAccountService: BankAccountService) { }
 
   transactionData: TransactionDataModel= new TransactionDataModel();
 
   @Output()  sendTransactionDataEvent= new EventEmitter<TransactionDataModel>();
 
   ownerUserData: UserModel=new UserModel();
-  bankAccountNr: string="07 1020 2629 0000 9202 0321 1018";
+  bankAccounts: BankAccountModel[];
+  bankAccount: BankAccountModel;
   avaibleFounds: string="452,34zł";
   today: number = Date.now();
   transactionTypeList= ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
@@ -57,10 +61,9 @@ export class InputDataComponent implements OnInit {
 
   ngOnInit() {
 
-    this.ownerUserData.idPerson.name="Szymon";
-    this.ownerUserData.idPerson.surname="Jarząbek";
-    this.ownerUserData.email="rekas1@tlen.pl";
-
+    this.ownerUserData= this.authService.loggedUser;
+    this.bankAccounts = this.bankAccountService.bankAccounts;
+    this.bankAccount= this.bankAccounts[0];
     this.createFormControls();
     this.createForm();
 
@@ -70,7 +73,7 @@ export class InputDataComponent implements OnInit {
 
   continueTransaction(){
     this.transactionData.ownerUserData=this.ownerUserData;
-    this.transactionData.bankAccountNr=this.bankAccountNr;
+    this.transactionData.bankAccountNr=this.bankAccount.accountNumber;
     this.transactionData.avaibleFounds=this.avaibleFounds;
     this.transactionData.transactionDate=this.today;
     this.transactionData.name=this.name.value;

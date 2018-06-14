@@ -61,20 +61,17 @@ export class AuthService{
           });
   }
 
-  // public getUserRole()
-  // {
-  //   let status: StatusMessage = new StatusMessage();
-  //   this.http.post(environment.endpointBase +'login/getRole/'+this.loggedUser.idRole,JSON.stringify(this.loggedUser.idRole),{headers:{'Content-Type': 'application/json'}, responseType:'json'})
-  //     .subscribe((json: Object) => {
-  //         status.status=StatusEnum.OK;
-  //         status.message = "Role loaded succesfully";
-  //         this.role=  new RoleModel().fromJSON(json);
-  //         console.log(this.role);
-  //       },
-  //       error => {
-  //         status.status=StatusEnum.ERROR;
-  //         status.message= "Error with role loading";
-  //         console.log(status.message);
-  //       });
-  // }
+  public saveLoginInfo(){
+    let status: StatusMessage = new StatusMessage();
+    this.http.post(environment.endpointBase +'login/history',JSON.stringify(this.loggedUser.idUser),{headers:{'Content-Type': 'application/json'}, responseType:'json'})
+      .subscribe(res => {
+          status.status=StatusEnum.OK;
+          status.message = "Dodano logowanie do historii";
+        },
+        error => {
+          status.status=StatusEnum.ERROR;
+          status.message= "Niepoprawne dodanie do historii";
+        });
+  }
+
 }

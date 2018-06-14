@@ -71,6 +71,7 @@ import { NewInvestmentComponent } from './investments/new-investment/new-investm
 import {AuthService} from './auth/auth.service';
 import {CardInformationService} from './card-management/card-information/card-information.service';
 import {BankAccountService} from './history/bank-account.service';
+import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 
 
 @Injectable()
@@ -98,6 +99,7 @@ export class CustomPaginator extends MatPaginatorIntl {
   declarations: [
 
     InstallmentValuePipe,
+    BankAccountNumberPipe,
     AppComponent,
     TransactionComponent,
     UserComponent,
