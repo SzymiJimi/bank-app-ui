@@ -73,6 +73,10 @@ import { UserCreditFinishScreenComponent } from './user-credit/user-credit-finis
 import {CreditDataService} from './user-credit/credit-data.service';
 import { InvestmentsComponent } from './investments/investments.component';
 import { NewInvestmentComponent } from './investments/new-investment/new-investment.component';
+import {AuthService} from './auth/auth.service';
+import {CardInformationService} from './card-management/card-information/card-information.service';
+import {BankAccountService} from './history/bank-account.service';
+import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 
 
 @Injectable()
@@ -98,7 +102,9 @@ export class CustomPaginator extends MatPaginatorIntl {
 
 @NgModule({
   declarations: [
+
     InstallmentValuePipe,
+    BankAccountNumberPipe,
     AppComponent,
     TransactionComponent,
     UserComponent,
@@ -140,6 +146,7 @@ export class CustomPaginator extends MatPaginatorIntl {
 
   ],
   imports: [
+
     ChartsModule,
     BrowserModule,
     CdkTableModule,
@@ -258,7 +265,10 @@ export class CustomPaginator extends MatPaginatorIntl {
   providers: [
     {provide: MatPaginatorIntl, useClass: CustomPaginator},
     {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
-    {provide: CreditDataService, useClass: CreditDataService}
+    {provide: CreditDataService, useClass: CreditDataService},
+    {provide: AuthService, useClass: AuthService},
+    {provide: CardInformationService, useClass: CardInformationService},
+    {provide: BankAccountService, useClass: BankAccountService}
     ],
   bootstrap: [AppComponent]
 })

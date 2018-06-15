@@ -25,7 +25,7 @@ export class TransactionComponent implements OnInit {
   received: boolean = false;
   transactionData: TransactionDataModel = new TransactionDataModel();
   transactionStatus: boolean = false;
-  isLinear = true;
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 

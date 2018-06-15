@@ -3,19 +3,19 @@
     <h5 class="card-header">Historia rachunku</h5>
     <div class="card-body row" style="display: inline-flex">
       <div style="margin-left: 3%">
-        <h5 class="card-title">{{user.name+" "+user.surname}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{bankAccountNr}}</h6>
+        <h5 class="card-title">{{user.idPerson.name+" "+user.idPerson.surname}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{bankAccount.accountNumber}}</h6>
       </div>
       <div style="margin-left: 13%">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Blokady: {{blockedFounds}}</li>
-          <li class="list-group-item">Saldo: {{avaibleFounds}}</li>
-          <li class="list-group-item">Limit debetowy: {{debitLimit}}</li>
+          <li class="list-group-item">Blokady: {{blockedFounds}}zł</li>
+          <li class="list-group-item">Saldo: {{bankAccount.amount}}zł</li>
+          <li class="list-group-item">Limit debetowy: {{creditCard.monthLimit}}zł</li>
         </ul>
       </div>
       <div style="margin-left: 17%">
         <h6 class="card-subtitle mb-2 text-muted">Dostępne środki</h6>
-        <h5 class="card-title">{{avaibleFounds}}</h5>
+        <h5 class="card-title">{{bankAccount.amount-blockedFounds}}zł</h5>
         <button type="button" class="btn btn-outline-secondary filter-button" (click)="generatePdf()">Zrób pdf
         </button>
       </div>

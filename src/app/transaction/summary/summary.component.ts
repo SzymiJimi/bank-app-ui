@@ -40,7 +40,7 @@ export class SummaryComponent implements OnInit {
 
 
   finishTransaction(){
-    console.log("Jestem tutaj!");
+    console.log("Jestem tutaj i emituje status!");
     this.transactionStatusEvent.emit(true);
   }
 
