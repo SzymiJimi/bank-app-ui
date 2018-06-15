@@ -4,6 +4,7 @@ import {MatPaginator, MatTableDataSource, MatDatepickerInputEvent} from '@angula
 import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
 import {Element} from '../history/history.component';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-user-page',
@@ -84,7 +85,7 @@ export class UserPageComponent implements OnInit {
   selectedPeriod: string = '';
 
 
-  user: UserModel = new UserModel();
+  user: UserModel;
   bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
   balance: string = '452.34zł';
   blockedFounds: string = '23.15zł';
@@ -92,11 +93,10 @@ export class UserPageComponent implements OnInit {
   avaibleFounds: string = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.user.name="Szymon";
-    this.user.surname="Dudek";
+    this.user= this.authService.loggedUser;
 
   }
 
