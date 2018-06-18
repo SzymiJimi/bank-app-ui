@@ -7,6 +7,10 @@ import {MatDatepicker, MatExpansionPanel} from '@angular/material';
 import {AuthService} from '../../auth/auth.service';
 import {BankAccountModel} from '../../model/bank-account.model';
 import {BankAccountService} from '../../history/bank-account.service';
+import {BankTransferModel} from '../../model/bank-transfer.model';
+import {TransactionService} from '../transaction.service';
+import {AccountTransferModel} from '../../model/account-transfer.model';
+import {ExternalAccountModel} from '../../model/external-account.model';
 
 @Component({
   selector: 'app-input-data',
@@ -15,11 +19,18 @@ import {BankAccountService} from '../../history/bank-account.service';
 })
 export class InputDataComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService, private bankAccountService: BankAccountService) { }
+  constructor(private router: Router,
+              private authService: AuthService,
+              private bankAccountService: BankAccountService,
+              private tansactionService: TransactionService ) { }
 
-  transactionData: TransactionDataModel= new TransactionDataModel();
+  transactionData: BankTransferModel= new BankTransferModel();
+  toAccount : AccountTransferModel = new AccountTransferModel();
+  externalAccount: ExternalAccountModel= new ExternalAccountModel(1, "123456789098765432123456");
 
-  @Output()  sendTransactionDataEvent= new EventEmitter<TransactionDataModel>();
+  @Output()  sendTransactionDataEvent= new EventEmitter<BankTransferModel>();
+  @Output()  sendTransactionOwner= new EventEmitter<UserModel>();
+  @Output()  sendTransactionAccount= new EventEmitter<BankAccountModel>();
 
   ownerUserData: UserModel=new UserModel();
   bankAccounts: BankAccountModel[];
@@ -46,7 +57,7 @@ export class InputDataComponent implements OnInit {
     this.accountNr= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{26}")]);
     this.address= new FormControl('', Validators.required);
     this.title= new FormControl('', Validators.required);
-    this.amount= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
+    this.amount= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8}.[0-9]{2}")]);
   }
 
   createForm(){
@@ -69,22 +80,40 @@ export class InputDataComponent implements OnInit {
 
   }
 
+  // this.transactionData.avaibleFounds=this.avaibleFounds;
+  // this.transactionData.transactionDate=this.today;
+  // this.transactionData.name=this.name.value;
+  // this.transactionData.accountNr=this.accountNr.value;
+  // this.transactionData.address=this.address.value;
+  // this.transactionData.amount=this.amount.value;
+  // this.transactionData.title=this.title.value;
+  // this.furtherClicked=true;
 
+  //trzeba też przesłać dane konta
 
   continueTransaction(){
-    this.transactionData.ownerUserData=this.ownerUserData;
-    this.transactionData.bankAccountNr=this.bankAccount.accountNumber;
-    this.transactionData.avaibleFounds=this.avaibleFounds;
-    this.transactionData.transactionDate=this.today;
-    this.transactionData.name=this.name.value;
-    this.transactionData.accountNr=this.accountNr.value;
+    this.toAccount.idExternalAccount=this.externalAccount;
+    this.toAccount.idInternalAccount=this.bankAccountService.bankAccounts[0];
+    this.toAccount.recipientAccount="12222222222223435231234321";
+    this.transactionData.fromAccount=this.bankAccount;
+    this.transactionData.dateOfOrder=this.today.toString();
+    this.transactionData.dateOfExecution=this.today.toString();
+    this.transactionData.recipient=this.name.value;
+    this.transactionData.toAccount=this.toAccount;
     this.transactionData.address=this.address.value;
     this.transactionData.amount=this.amount.value;
-    this.transactionData.title=this.title.value;
+    this.transactionData.description=this.title.value;
+    this.transactionData.state="CREATED";
+    this.transactionData.amountStateBefore= this.bankAccount.amount;
+    this.transactionData.type= this.transactionTypeList[0];
+
     this.furtherClicked=true;
 
     this.sendTransactionDataEvent.emit(this.transactionData);
+    this.sendTransactionOwner.emit(this.ownerUserData);
+    this.sendTransactionAccount.emit(this.bankAccount);
 
+    this.tansactionService.makeTransaction(this.transactionData);
   }
 
   clicked(type: string, panel: MatExpansionPanel,  event: Event) {

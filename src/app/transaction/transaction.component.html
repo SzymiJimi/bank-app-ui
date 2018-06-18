@@ -6,7 +6,9 @@
       <ng-template matStepLabel>Uzupełnij dane przelewu</ng-template>
     <app-input-data
       *ngIf="!received"
-      (sendTransactionDataEvent)="receiveMessage($event)">
+      (sendTransactionDataEvent)="receiveMessage($event)"
+      (sendTransactionOwner)="receiveOwner($event)"
+      (sendTransactionAccount)="receiveAccountData($event)">
     </app-input-data>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
@@ -14,7 +16,9 @@
       <ng-template matStepLabel>Potwierdź przelew</ng-template>
     <app-summary *ngIf="received && (!transactionStatus)"
                  (transactionStatusEvent)="receivedStatus($event)"
-                 [transactionData]="transactionData">
+                 [transactionData]="transactionData"
+                  [ownerUserData]="ownerUser"
+                  [bankAccountData]="ownerSelectedAccount">
     </app-summary>
   </mat-step>
   <mat-step>

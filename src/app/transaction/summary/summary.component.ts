@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TransactionDataModel} from '../transaction-data.model';
+import {UserModel} from '../../user/user.model';
+import {BankAccountModel} from '../../model/bank-account.model';
+import {BankTransferModel} from '../../model/bank-transfer.model';
 
 @Component({
   selector: 'app-summary',
@@ -9,7 +12,9 @@ import {TransactionDataModel} from '../transaction-data.model';
 export class SummaryComponent implements OnInit {
 
 
-  @Input() transactionData: TransactionDataModel=new TransactionDataModel();
+  @Input() transactionData: BankTransferModel=new BankTransferModel();
+  @Input() ownerUserData: UserModel=new UserModel();
+  @Input() bankAccountData: BankAccountModel=new BankAccountModel();
 
   @Output() transactionStatusEvent= new EventEmitter<boolean>();
 
@@ -18,25 +23,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
   }
 
-  formatAccountNr(accountNr: string): string{
-    let formattedAccountNumber: string='';
-    let slicedString: string;
-    slicedString=accountNr.slice(0,2);
-    formattedAccountNumber=formattedAccountNumber+slicedString;
-    slicedString=accountNr.slice(2,6);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    slicedString=accountNr.slice(6,10);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    slicedString=accountNr.slice(10,14);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    slicedString=accountNr.slice(14,18);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    slicedString=accountNr.slice(18,22);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    slicedString=accountNr.slice(22,26);
-    formattedAccountNumber=formattedAccountNumber+" "+slicedString;
-    return formattedAccountNumber;
-  }
+
 
 
   finishTransaction(){

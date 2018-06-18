@@ -72,6 +72,7 @@ import {AuthService} from './auth/auth.service';
 import {CardInformationService} from './card-management/card-information/card-information.service';
 import {BankAccountService} from './history/bank-account.service';
 import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
+import {TransactionService} from './transaction/transaction.service';
 
 
 @Injectable()
@@ -191,12 +192,14 @@ export class CustomPaginator extends MatPaginatorIntl {
   ]
   ,
   providers: [
+
     {provide: MatPaginatorIntl, useClass: CustomPaginator},
     {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
     {provide: CreditDataService, useClass: CreditDataService},
     {provide: AuthService, useClass: AuthService},
     {provide: CardInformationService, useClass: CardInformationService},
-    {provide: BankAccountService, useClass: BankAccountService}
+    {provide: BankAccountService, useClass: BankAccountService},
+    {provide: TransactionService, useClass: TransactionService}
     ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionDataModel} from './transaction-data.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BankTransferModel} from '../model/bank-transfer.model';
+import {UserModel} from '../user/user.model';
+import {BankAccountModel} from '../model/bank-account.model';
 
 @Component({
   selector: 'app-transaction',
@@ -22,8 +25,10 @@ export class TransactionComponent implements OnInit {
     });
   }
 
+  ownerUser: UserModel;
+  ownerSelectedAccount: BankAccountModel;
   received: boolean = false;
-  transactionData: TransactionDataModel = new TransactionDataModel();
+  transactionData: BankTransferModel = new BankTransferModel();
   transactionStatus: boolean = false;
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -33,6 +38,18 @@ export class TransactionComponent implements OnInit {
     this.received = true;
     this.transactionData = $event;
   }
+
+  receiveOwner($event) {
+
+    this.ownerUser = $event;
+  }
+
+  receiveAccountData($event) {
+
+    this.ownerSelectedAccount = $event;
+  }
+
+
 
   receivedStatus($event) {
 
