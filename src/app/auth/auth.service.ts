@@ -11,11 +11,16 @@ import {PersonModel} from '../model/person.model';
 import {BankAccountService} from '../history/bank-account.service';
 import {CardInformationService} from '../card-management/card-information/card-information.service';
 import {JsonMessageModel} from '../model/json-message.model';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService{
 
-  constructor(private http: HttpClient, private bankAccountService: BankAccountService, private cardService: CardInformationService){
+  constructor(private http: HttpClient,
+              private bankAccountService: BankAccountService,
+              private cardService: CardInformationService,
+              private router: Router
+  ){
   }
 
   loggedUser: UserModel;
@@ -32,8 +37,8 @@ export class AuthService{
           this.loggedUser=  new UserModel().fromJSON(json);
           console.log(this.loggedUser);
           this.getPersonData();
-          this.bankAccountService.getAccountList(this.loggedUser.idUser);
-          this.cardService.getCardInformation(this.loggedUser.idUser);
+
+
       },
       error => {
         status.status=StatusEnum.ERROR;
@@ -52,7 +57,23 @@ export class AuthService{
             message = res as JsonMessageModel;
             this.role=  message.message;
             this.permissionId = message.id;
-            console.log(this.role);
+            if(this.role==='CLIENT')
+            {
+              this.bankAccountService.getAccountList(this.loggedUser.idUser).then((value => {
+                this.cardService.getCardInformation(this.bankAccountService.bankAccounts[0].idBankAccount);
+              }));
+              this.router.navigate(['/user']);
+            }else{
+              if(this.role==='MANAGER')
+              {
+                this.router.navigate(['/manager']);
+              }else{
+                if(this.role==='CONSULTANT')
+                {
+                  this.router.navigate(['/consultant']);
+                }
+              }
+            }
           },
           error => {
             status.status=StatusEnum.ERROR;

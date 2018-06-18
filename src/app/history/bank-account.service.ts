@@ -4,6 +4,8 @@ import {StatusEnum} from '../model/enum/status.enum';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StatusMessage} from '../model/status-message.model';
+import {reject, resolve} from 'q';
+
 
 @Injectable()
 export class BankAccountService {
@@ -17,6 +19,7 @@ export class BankAccountService {
   public getAccountList(idUser) {
 
     let status: StatusMessage = new StatusMessage();
+    var promise = new Promise((resolve, reject) =>{
       this.http.get(environment.endpointBase +'bankAccount/'+idUser,{headers:{'Content-Type': 'application/json'}, responseType:'json'})
         .subscribe(res => {
             status.status=StatusEnum.OK;
@@ -24,12 +27,17 @@ export class BankAccountService {
             this.bankAccounts= res as BankAccountModel[] ;
             console.log("Konto bankowe");
             console.log(this.bankAccounts);
+            resolve();
           },
           error => {
             status.status=StatusEnum.ERROR;
             status.message= "Error with bank account data loading";
             console.log(status.message);
+            reject();
           });
+    } );
+
+    return promise;
 
 
 }
