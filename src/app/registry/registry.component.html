@@ -38,103 +38,125 @@
       </div>
 
     </div>
-    <div class="form-group">
-
-      <input
-        type="text"
-        class="form-control"
-        formControlName="login"
-        placeholder="Login"
-        required>
-      <div
-        class=form-control-feedback>
-        <p
-          *ngIf=" login.invalid">
-          Login jest wymagany...
-        </p>
-      </div>
-      <div class=form-control-feedback>
-        <p *ngIf="login.valid">Login poprawny</p>
-      </div>
-
-    </div>
-    <div class="form-group">
-
-      <input type="password"
-             class="form-control"
-             formControlName="password"
-             placeholder="Hasło"
-             required>
-      <div
-        class=form-control-feedback>
-        <p
-          *ngIf=" password.invalid">
-          Hasło jest wymagane...
-        </p>
-      </div>
-      <div class=form-control-feedback>
-        <p *ngIf="password.valid">Hasło poprawne</p>
-      </div>
-    </div>
-    <div class="form-group">
-
-      <input type="email"
-             class="form-control"
-             formControlName="email"
-             placeholder="Email"
-             required>
-      <div
-        class=form-control-feedback>
-        <p
-          *ngIf=" email.invalid">
-          Email  jest wymagany...
-        </p>
-      </div>
-      <div class=form-control-feedback>
-        <p *ngIf="email.valid">Email poprawny</p>
-      </div>
-    </div>
 
   <div class="form-group" >
 
     <input type="text"
            class="form-control"
-           formControlName="pesel"
+           formControlName="peselNumber"
            placeholder="Pesel"
            required>
     <div
       class=form-control-feedback>
       <p
-        *ngIf=" pesel.invalid">
+        *ngIf=" peselNumber.invalid">
         Pesel jest wymagany...
       </p>
     </div>
     <div class=form-control-feedback>
-      <p *ngIf="pesel.valid">Pesel poprawny</p>
+      <p *ngIf="peselNumber.valid">Pesel poprawny</p>
     </div>
   </div>
+
+  <div class="form-group" >
+
+    <input type="text"
+           id="idCardNumber"
+           class="form-control"
+            formControlName="cardNumber"
+           placeholder="Id karty"
+            value="NSK {{cardNumber}}"
+
+           required>
+    <div
+      class=form-control-feedback>
+      <p>
+        <button (click)="generateCardId()">Generuj</button>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="form-group" >
+
+    <input type="text"
+           class="form-control"
+           formControlName="citizenship"
+           placeholder="Narodowość"
+           required>
+    <div
+      class=form-control-feedback>
+      <p
+        *ngIf=" citizenship.invalid">
+        Pole jest wymagane...
+      </p>
+    </div>
+    <div class=form-control-feedback>
+      <p *ngIf="citizenship.valid">Pole poprawne</p>
+    </div>
+  </div>
+
+  <div class="form-group" >
+
+    <input type="text"
+           class="form-control"
+           formControlName="mothersName"
+           placeholder="Imie matki"
+           required>
+    <div
+      class=form-control-feedback>
+      <p
+        *ngIf=" mothersName.invalid">
+        Pole jest wymagane...
+      </p>
+    </div>
+    <div class=form-control-feedback>
+      <p *ngIf="mothersName.valid">Pole poprawne</p>
+    </div>
+  </div>
+
+  <div class="form-group" >
+
+    <input type="text"
+           class="form-control"
+           formControlName="fathersName"
+           placeholder="Imie ojca"
+           required>
+    <div
+      class=form-control-feedback>
+      <p
+        *ngIf=" fathersName.invalid">
+        Pole jest wymagane...
+      </p>
+    </div>
+    <div class=form-control-feedback>
+      <p *ngIf="fathersName.valid">Pole poprawne</p>
+    </div>
+  </div>
+
+
 
     <div class="form-group">
 
         <input type="tel"
                class="form-control"
-               formControlName="phone"
+               formControlName="telephoneNumber"
                placeholder="Telefon"
                required>
       <div
         class=form-control-feedback>
         <p
-          *ngIf=" phone.invalid">
+          *ngIf=" telephoneNumber.invalid">
          Telefon jest wymagany...
         </p>
       </div>
       <div class=form-control-feedback>
-        <p *ngIf="phone.valid">Telefon poprawny</p>
+        <p *ngIf="telephoneNumber.valid">Telefon poprawny</p>
       </div>
       </div>
     <div class="form-group">
     </div>
-    <button type="submit"  class="btn btn-success "[disabled]="registryForm.invalid"
+    <button type="submit"  (click)="send()" class="btn btn-success "[disabled]="registryForm.invalid"
     >Zarejstruj
     </button>
   </form>
