@@ -1,0 +1,49 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.table-content{
+  max-width: 250px !important;
+  word-wrap: break-word ;
+  padding-right: 3%;
+}
+
+.content-style {
+  /*width: 60% ;*/
+  /*margin: auto;*/
+
+}
+
+.personal-info-style {
+  margin-top: 2% ;
+}
+
+.time-period-select{
+  width: 13%;
+}
+
+.filtering-divider{
+  margin-left: 1.8%;
+}
+
+.operation-type{
+  width: 17%;
+}
+
+.filter-box {
+  display: block;
+}
+
+.filter-button {
+  width: 13%;
+  margin-left: 4%;
+  margin-right: 13% !important;
+}
+
+.filter-input {
+  width: 70%;
+}

@@ -10,6 +10,7 @@ import {CreditDataService} from '../user-credit/credit-data.service';
 import {CreditCardModel} from '../model/credit-card.model';
 import {CardInformationService} from '../card-management/card-information/card-information.service';
 import {BankTransferModel} from '../model/bank-transfer.model';
+import {subscribeToIterable} from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -44,11 +45,7 @@ export class HistoryComponent implements OnInit {
   bankAccount: BankAccountModel;
   creditCards: CreditCardModel[];
   creditCard: CreditCardModel;
-  bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
-  balance: string = '452.34zł';
   blockedFounds: number = 23.15;
-  debitLimit: string = '500zł';
-  avaibleFounds: string = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
   dataSource;
 
@@ -56,7 +53,7 @@ export class HistoryComponent implements OnInit {
     console.log(this.today.getMonth().toString(2));
 
     this.user = this.authService.loggedUser;
-    this.bankAccounts= this.bankAccountService.bankAccounts;
+    this.bankAccounts=  this.bankAccountService.bankAccounts;
     this.bankAccount= this.bankAccounts[0];
     this.creditCards= this.creditCardService.userCards;
     this.creditCard= this.creditCards[0];
