@@ -63,7 +63,6 @@ import {AppRouterModule} from './app.router.module';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { LoginhistoryComponent } from './loginhistory/loginhistory.component';
 import { CashwithdrawalComponent } from './cashwithdrawal/cashwithdrawal.component';
-import { SummarycashwithdrawalComponent } from './cashwithdrawal/summarycashwithdrawal/summarycashwithdrawal.component';
 import { CreateaccountComponent } from './createaccount/createaccount.component';
 import { PernamentOrderComponent } from './transaction/input-data/pernament-order/pernament-order.component';
 import { UserCreditComponent } from './user-credit/user-credit.component';
@@ -78,6 +77,7 @@ import {CardInformationService} from './card-management/card-information/card-in
 import {BankAccountService} from './history/bank-account.service';
 import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 import {TransactionService} from './transaction/transaction.service';
+import { CreateofferComponent } from './createoffer/createoffer.component';
 
 
 @Injectable()
@@ -137,13 +137,14 @@ export class CustomPaginator extends MatPaginatorIntl {
     FavoriteComponent,
     LoginhistoryComponent,
     CashwithdrawalComponent,
-    CreateaccountComponent
+    CreateaccountComponent,
     PernamentOrderComponent,
     UserCreditComponent,
     UserCreditInputDataComponent,
     UserCreditFinishScreenComponent,
     InvestmentsComponent,
     NewInvestmentComponent,
+    CreateofferComponent,
 
   ],
   imports: [
@@ -184,7 +185,7 @@ export class CustomPaginator extends MatPaginatorIntl {
         component: HistoryComponent
       },
         {
-          path: 'transaction',
+          path: 'user/transaction',
           component: TransactionComponent
         },
         {
@@ -209,7 +210,7 @@ export class CustomPaginator extends MatPaginatorIntl {
         },
 
         {
-          path: 'signIn',
+          path: 'manager/sing-up',
           component: RegistryComponent
         },
         {
@@ -235,6 +236,83 @@ export class CustomPaginator extends MatPaginatorIntl {
         {
           path: 'registry',
           component: RegistryComponent
+        },
+        {
+          path: 'user/history',
+          component: HistoryComponent
+        },
+        {
+          path: 'user/transaction',
+          component: TransactionComponent
+        },
+        {
+          path: 'user/card',
+          component: CardManagementComponent
+        },
+        {
+          path: 'user/credits',
+          component: UserCreditsComponent
+        },
+        {
+          path: 'user/card/changepin',
+          component: ChangePinComponent
+        },
+        {
+          path: 'user/card/blockcard',
+          component: BlockCardComponent
+        },
+        {
+          path: 'user/credit/new',
+          component: UserCreditComponent
+        },
+        {
+          path: 'user/accountManage',
+          component: UserManageAccountComponent
+        },
+        {
+          path: "",
+          component: HomepageComponent
+        },
+        {
+          path: "login",
+          component: LoginComponent
+        },
+
+        {
+          path: "signIn",
+          component: RegistryComponent
+        },
+        {
+          path: "findClient",
+          component: FindclientComponent
+        },
+        {
+          path: "user",
+          component: UserPageComponent
+        },
+        {
+          path: 'manager/home',
+          component: ManagerHomeComponent
+        },
+        {
+          path: 'manager/stats',
+          component: ManagerStatsComponent
+        },
+        {
+          path: 'user/investment',
+          component: InvestmentsComponent
+        },
+        {
+          path: 'user/investment/new',
+          component: NewInvestmentComponent
+        },
+        {
+          path: 'manager',
+          component: ManagerHomeComponent
+        },
+        {
+          path: 'manager/offer',
+          component: CreateofferComponent
         }
 
 

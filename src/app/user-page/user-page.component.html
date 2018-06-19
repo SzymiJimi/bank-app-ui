@@ -2,16 +2,16 @@
 
   <div class="row">
       <div class="col-lg-6">
-          <h3>Witaj {{name}}</h3>
-          <p>{{type}}</p>
+          <h3>Witaj {{user.idPerson.name+ " "+ user.idPerson.surname}}</h3>
+          <p></p>
       </div>
 
       <div class="col-lg-6">
           <h5 class="card-subtitle mb-2 text-muted">Numer rachunku:</h5>
-         <h6 class="card-subtitle mb-2 text-muted">{{number}}</h6>
+         <h6 class="card-subtitle mb-2 text-muted">{{bankAccount.accountNumber | accountNumberPipe}}</h6>
 
           <h6 class="card-subtitle mb-2 text-muted">Dostępne środki:</h6>
-          <h5 class="card-title">{{amount}}</h5>
+          <h5 class="card-title">{{bankAccount.amount}}</h5>
       </div>
   </div>
 

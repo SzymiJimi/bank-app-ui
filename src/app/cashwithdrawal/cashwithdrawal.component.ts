@@ -49,13 +49,6 @@ export class CashwithdrawalComponent implements OnInit {
     },
   ];
 
-  onClick() {
-
-   this.ownerUserData.name = 'Szymon';
-    this.ownerUserData.surname = 'Szymon';
-    this.avaibleFounds = '500';
-    this.bankAccountNr = '07 1020 2629 0000 9202 0321 1018';
-  }
 
   ngOnInit() {
 

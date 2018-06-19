@@ -14,26 +14,27 @@ export class RegistryComponent implements OnInit {
   citizenship: FormControl;
   mothersName: FormControl;
   fathersName: FormControl;
-
+  mothersMaidenName: FormControl;
   // login: FormControl;
   // password: FormControl;
   // email: FormControl;
   peselNumber: FormControl;
-  telephoneNumber: FormControl;
-  cardNumber: FormControl;
+  telepohoneNumber: FormControl;
+  idcardNumber: FormControl;
 
 
   createFormControls() {
     this.citizenship = new FormControl('', Validators.required);
     this.mothersName = new FormControl('', Validators.required);
     this.fathersName = new FormControl('', Validators.required);
-    this.cardNumber = new FormControl('' , Validators.required);
+    this.idcardNumber = new FormControl('' , Validators.required);
     this.name = new FormControl('', Validators.required);
     //this.login = new FormControl('', Validators.required);
     this.surname = new FormControl('', Validators.required);
+    this.mothersMaidenName = new FormControl('', Validators.required);
    // this.password = new FormControl('', Validators.required);
    // this.email = new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')]);
-    this.telephoneNumber = new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]);
+    this.telepohoneNumber = new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]);
     this.peselNumber = new FormControl('', [Validators.required,  Validators.pattern('^[0-9]{11}')] );
   }
 
@@ -44,19 +45,17 @@ export class RegistryComponent implements OnInit {
       citizenship: this.citizenship,
       mothersName: this.mothersName,
       fathersName: this.fathersName,
-      //idCardNumber: this.cardNumber,
+      idCardNumber: this.idcardNumber,
       // login: this.login,
       // password: this.password,
       // email: this.email,
       peselNumber: this.peselNumber,
-      telephoneNumber: this.telephoneNumber
+      telepohoneNumber: this.telepohoneNumber,
+      mothersMaidenName: this.mothersMaidenName
     });
   }
 
-  generateCardId() {
-    this.cardNumber = Math.floor((Math.random() * 999999) + 100000);
-    (<HTMLInputElement>document.getElementById('idCardNumber')).innerHTML = 'NSK'+  this.cardNumber;
-  }
+
 
   send() {
     const data = JSON.stringify(this.registryForm.value);

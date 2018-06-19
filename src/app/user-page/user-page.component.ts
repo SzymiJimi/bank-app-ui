@@ -5,6 +5,9 @@ import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
 import {Element} from '../history/history.component';
 import {AuthService} from '../auth/auth.service';
+import {BankAccountModel} from "../model/bank-account.model";
+
+import { BankAccountService } from "../history/bank-account.service";
 
 @Component({
   selector: 'app-user-page',
@@ -13,10 +16,7 @@ import {AuthService} from '../auth/auth.service';
 })
 export class UserPageComponent implements OnInit {
 
-  name:String="Szymon Dudek";
-  amount:Number=10000000;
-  type:String="Konto dla mlodych";
-  number:String="95 2034 4294 4241 4201";
+
 
   transactionData: Element[] = [
     {
@@ -85,18 +85,18 @@ export class UserPageComponent implements OnInit {
   selectedPeriod: string = '';
 
 
-  user: UserModel;
-  bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
-  balance: string = '452.34zł';
-  blockedFounds: string = '23.15zł';
-  debitLimit: string = '500zł';
-  avaibleFounds: string = '952.34zł';
+
+
   datePickerSelectedDate = new FormControl(null);
 
-  constructor(private authService: AuthService) { }
-
+  constructor( private authService: AuthService, private bankAccountService: BankAccountService) { }
+  user: UserModel = new UserModel();
+  bankAccounts: BankAccountModel[];
+  bankAccount: BankAccountModel;
   ngOnInit() {
-    this.user= this.authService.loggedUser;
+    this.user = this.authService.loggedUser;
+    this.bankAccounts = this.bankAccountService.bankAccounts;
+    this.bankAccount = this.bankAccounts[0];
 
   }
 

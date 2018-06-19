@@ -63,16 +63,14 @@
     <input type="text"
            id="idCardNumber"
            class="form-control"
-            formControlName="cardNumber"
+            formControlName="idCardNumber"
            placeholder="Id karty"
-            value="NSK {{cardNumber}}"
+
 
            required>
     <div
       class=form-control-feedback>
-      <p>
-        <button (click)="generateCardId()">Generuj</button>
-      </p>
+
     </div>
 
   </div>
@@ -140,20 +138,40 @@
 
         <input type="tel"
                class="form-control"
-               formControlName="telephoneNumber"
+               formControlName="telepohoneNumber"
                placeholder="Telefon"
                required>
       <div
         class=form-control-feedback>
         <p
-          *ngIf=" telephoneNumber.invalid">
+          *ngIf=" telepohoneNumber.invalid">
          Telefon jest wymagany...
         </p>
       </div>
       <div class=form-control-feedback>
-        <p *ngIf="telephoneNumber.valid">Telefon poprawny</p>
+        <p *ngIf="telepohoneNumber.valid">Telefon poprawny</p>
       </div>
       </div>
+
+  <div class="form-group" >
+
+    <input type="text"
+           class="form-control"
+           formControlName="mothersMaidenName"
+           placeholder="Nazwisko panieńskie"
+           required>
+    <div
+      class=form-control-feedback>
+      <p
+        *ngIf=" mothersMaidenName.invalid">
+        Pole jest wymagane...
+      </p>
+    </div>
+    <div class=form-control-feedback>
+      <p *ngIf="mothersMaidenName.valid">Pole poprawne</p>
+    </div>
+  </div>
+
     <div class="form-group">
     </div>
     <button type="submit"  (click)="send()" class="btn btn-success "[disabled]="registryForm.invalid"
