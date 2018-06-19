@@ -79,8 +79,8 @@ export class HistoryComponent implements OnInit {
 
   compateDates(stringDate: string, dateFromDatepicker: Date): boolean {
 
-    let converterStringDate: Date = new Date();
-    let tmpString: string = '';
+    const converterStringDate: Date = new Date();
+    let tmpString = '';
 
     tmpString = stringDate.slice(0, 2);
     converterStringDate.setDate(Number(tmpString));
@@ -93,7 +93,7 @@ export class HistoryComponent implements OnInit {
 
   compateDateWithTimePeriod(elementDate: string): boolean {
 
-    let todayDate: Date = new Date();
+    const todayDate: Date = new Date();
 
     switch (this.selectedPeriod) {
       case 'week': {
@@ -120,8 +120,8 @@ export class HistoryComponent implements OnInit {
       }
     }
 
-    let converterStringDate: Date = new Date();
-    let tmpString: string = '';
+    const converterStringDate: Date = new Date();
+    let tmpString = '';
 
     tmpString = elementDate.slice(0, 2);
     converterStringDate.setDate(Number(tmpString));
@@ -140,8 +140,8 @@ export class HistoryComponent implements OnInit {
 
 
   checkTypeTransaction(amount: string): boolean {
-    let tmpAmpunt = amount.slice(0, amount.length - 2);
-    let amountNumber: number = Number(tmpAmpunt);
+    const tmpAmpunt = amount.slice(0, amount.length - 2);
+    const amountNumber: number = Number(tmpAmpunt);
     if (amountNumber >= 0 && this.selectedOperationType == 'incomming') {
       return true;
     } else {
@@ -217,8 +217,8 @@ export interface Element {
   recipient: string;
   sender: string;
   title: string;
-  amount: string
-  balanceAfterTransaction: string
+  amount: string;
+  balanceAfterTransaction: string;
 }
 
 

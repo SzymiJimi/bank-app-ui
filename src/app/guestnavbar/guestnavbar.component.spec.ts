@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FindclientComponent } from './findclient.component';
+import { GuestnavbarComponent } from './guestnavbar.component';
 
-describe('FindclientComponent', () => {
-  let component: FindclientComponent;
-  let fixture: ComponentFixture<FindclientComponent>;
+describe('GuestnavbarComponent', () => {
+  let component: GuestnavbarComponent;
+  let fixture: ComponentFixture<GuestnavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindclientComponent ]
+      declarations: [ GuestnavbarComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FindclientComponent);
+    fixture = TestBed.createComponent(GuestnavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

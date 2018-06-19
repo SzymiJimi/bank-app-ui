@@ -1,0 +1,78 @@
+<div class="card personal-info-style">
+  <h5 class="card-header">Wypłata gotówki</h5>
+
+  <div class="card-footer bg-transparent">
+    <div style="display: inline-flex;">
+    </div>
+    <div class="filter-box">
+      <mat-form-field class="filter-input">
+        <input matInput style="padding-left:20px;" (keyup)="applyFilter($event.target.value)" placeholder="Wpisz pesel klienta ">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class=".col-6  ">
+      <div class="card overflow-data" style="width: 35rem !important;">
+        <div class="card-body">
+          <h5 class="card-title">{{ownerUserData.name+ " "+ ownerUserData.surname}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{bankAccountNr}}</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Dostępne środki: <span
+              class="text-muted user-details-info">{{avaibleFounds}}</span></li>
+          </ul>
+          <form class="cashWithDrawl">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ilosc gotowki">
+            </mat-form-field>
+            <button type="submit" class="btn btn-primary" (click)="continueTransaction()"
+                     >Dalej
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="example-container mat-elevation-z8">
+
+
+  <table mat-table #table [dataSource]="dataSource">
+
+    <ng-container  matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef style="max-width: 400px">Imie</th>
+      <td mat-cell (click)="onClick()" *matCellDef="let element" class="table-content"> {{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef> Nazwisko</th>
+      <td mat-cell *matCellDef="let element" class="table-content"> {{element.surname}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="pesel">
+      <th mat-header-cell *matHeaderCellDef> Pesel</th>
+      <td mat-cell *matCellDef="let element" class="table-content"> {{element.pesel}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Środki</th>
+      <td mat-cell *matCellDef="let element" class="table-content"> {{element.amount}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>Numer rachunku</th>
+      <td mat-cell *matCellDef="let element" class="table-content"> {{element.number}}</td>
+    </ng-container>
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+
+</div>
+
+

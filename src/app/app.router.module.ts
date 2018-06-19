@@ -17,6 +17,7 @@ import {UserPageComponent} from './user-page/user-page.component';
 import {UserCreditComponent} from './user-credit/user-credit.component';
 import {InvestmentsComponent} from './investments/investments.component';
 import {NewInvestmentComponent} from './investments/new-investment/new-investment.component';
+import {CreateofferComponent} from "./createoffer/createoffer.component";
 
 
 const appRoutes: Routes =
@@ -88,7 +89,12 @@ const appRoutes: Routes =
     {
       path: 'user/investment/new',
       component: NewInvestmentComponent
-    }];
+    },
+    {
+      path: 'manager/offer/new',
+      component: CreateofferComponent
+    }
+  ];
 
 @NgModule({
   imports: [

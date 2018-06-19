@@ -15,8 +15,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   responseMessage: StatusMessage= new StatusMessage();
-  username='client';
-  password='client';
+  username='manager';
+  password='manager';
 
   constructor( private auth: AuthService, private router: Router) { }
 

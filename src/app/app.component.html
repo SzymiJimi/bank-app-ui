@@ -2,9 +2,25 @@
 <!--<app-transaction></app-transaction>-->
 <!--<app-navbar-user></app-navbar-user>-->
 <div class="background-style">
-  <app-navbar *ngIf="authService.role==='MANAGER'"></app-navbar>
-  <app-navbar-user *ngIf="authService.role==='CLIENT'"></app-navbar-user>
+  <app-navbar *ngIf="authService.role==='MANAGER'; else guest"></app-navbar>
+  <app-navbar-user *ngIf="authService.role==='CLIENT'; else guest"></app-navbar-user>
+  <ng-template #guest>
 
+    <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color" style="">
+      <a class="navbar-brand" href="#">{{name}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+      </div>
+    </nav>
+
+
+  </ng-template>
   <div class="main-style">
     <router-outlet></router-outlet>
   </div>

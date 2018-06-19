@@ -1,3 +1,19 @@
+.transaction-form{
+  padding: 5%;
+}
+.overflow-data {
+  margin: 50px auto auto 50px;
+  /*width: 45% !important;*/
+}
+
+.transaction-data{
+  width:  50%!important;
+}
+
+.user-details-info {
+  right: 0;
+  position: absolute;
+}
 .example-container {
   display: flex;
   flex-direction: column;
@@ -47,4 +63,12 @@
 .filter-input {
   width: 70%;
 }
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
+.example-full-width {
+  width: 100%;
+}

@@ -60,6 +60,10 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserCreditsComponent } from './user/user-credits/user-credits.component';
 import { UserManageAccountComponent } from './user/user-manage-account/user-manage-account.component';
 import {AppRouterModule} from './app.router.module';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { LoginhistoryComponent } from './loginhistory/loginhistory.component';
+import { CashwithdrawalComponent } from './cashwithdrawal/cashwithdrawal.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
 import { PernamentOrderComponent } from './transaction/input-data/pernament-order/pernament-order.component';
 import { UserCreditComponent } from './user-credit/user-credit.component';
 import {InstallmentValuePipe} from './user-credit/installment-value.pipe';
@@ -73,6 +77,7 @@ import {CardInformationService} from './card-management/card-information/card-in
 import {BankAccountService} from './history/bank-account.service';
 import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 import {TransactionService} from './transaction/transaction.service';
+import { CreateofferComponent } from './createoffer/createoffer.component';
 import {AddressModel} from './model/address.model';
 import {CardManagementService} from './card-management/card-management.service';
 
@@ -80,12 +85,12 @@ import {CardManagementService} from './card-management/card-management.service';
 @Injectable()
 export class CustomPaginator extends MatPaginatorIntl {
   itemsPerPageLabel = 'Wierszy na stronę';
-  nextPageLabel='Następna strona';
-  previousPageLabel='Poprzednia strona';
-  firstPageLabel='Pierwsza strona';
-  lastPageLabel='Ostatnia strona';
+  nextPageLabel = 'Następna strona';
+  previousPageLabel = 'Poprzednia strona';
+  firstPageLabel = 'Pierwsza strona';
+  lastPageLabel = 'Ostatnia strona';
 
-  getRangeLabel= function(page: number, pageSize: number, length: number): string {
+  getRangeLabel = function(page: number, pageSize: number, length: number): string {
     if (length === 0 || pageSize === 0) {
       return `0 z ${length}`;
     }
@@ -95,7 +100,7 @@ export class CustomPaginator extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} z ${length}`;
-  }
+  };
 }
 
 @NgModule({
@@ -131,12 +136,17 @@ export class CustomPaginator extends MatPaginatorIntl {
     ManagerStatsComponent,
     UserCreditsComponent,
     UserManageAccountComponent,
+    FavoriteComponent,
+    LoginhistoryComponent,
+    CashwithdrawalComponent,
+    CreateaccountComponent,
     PernamentOrderComponent,
     UserCreditComponent,
     UserCreditInputDataComponent,
     UserCreditFinishScreenComponent,
     InvestmentsComponent,
     NewInvestmentComponent,
+    CreateofferComponent,
 
   ],
   imports: [
@@ -171,9 +181,9 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-      AppRouterModule
+
   ],
-  exports:[
+  exports: [
     MatSelectModule,
     CdkTableModule,
     MatIconModule,
