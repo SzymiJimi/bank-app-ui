@@ -36,11 +36,11 @@
                  placeholder="Nazwisko"
                  required>
           <div class=invalid-feedback>
-            <p *ngIf="surname.hasError('required')">Niepoprawe Nazwisko!...</p>
+            <p *ngIf="surname.hasError('required')">Podane nazwisko jest niepoprawne!...</p>
           </div>
 
    <div class="form-group"></div>
-  
+
 
   <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
@@ -60,7 +60,7 @@
             <p *ngIf="pesel.hasError('pattern')">Niepoprawny pesel...</p>
           </div>
     <div class="form-group"></div>
-       
+
   <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -78,9 +78,9 @@
             <p *ngIf="fathername.hasError('required')">Uzupełnij pole...</p>
           </div>
     <div class="form-group"></div>
-          
- 
-          
+
+
+
           <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -117,7 +117,7 @@
             <p *ngIf="mothernmaiden.hasError('required')">Uzupełnij pole...</p>
           </div>
               <div class="form-group"></div>
-          
+
                <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -136,7 +136,7 @@
           </div>
             <div class="form-group"></div>
 
-          
+
                <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -155,7 +155,7 @@
           </div>
             <div class="form-group"></div>
 
-            
+
                <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -173,10 +173,10 @@
             <p *ngIf="citizenship.hasError('required')">Uzupełnij pole...</p>
           </div>
             <div class="form-group"></div>
-  
-  
 
-        
+
+
+
                <div class=".col-6 addpersonend-data">
       <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
         <div class="form-group">
@@ -196,20 +196,20 @@
           </div>
             <div class="form-group"></div>
 
-  
-  
-     
-     
+
+
+
+
 
 
     </div>
     <div class="form-group">
       </div>
-       
+
     <button  class="button buttonBlue" [disabled]="addpersonendForm.invalid" (click)="onClick($event)">Dodaj</button>
 
     <font size = 6 >{{napis}} </font>
-    
-    
+
+
   </form>
 </div>
