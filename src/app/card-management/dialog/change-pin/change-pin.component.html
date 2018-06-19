@@ -53,5 +53,5 @@
 <hr style=" margin: 2% auto;">
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Anuluj</button>
-  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Zmień PIN</button>
+  <button mat-button class="mat-raised-button mat-primary" [disabled]="!comparePins()" [mat-dialog-close]="data.animal" cdkFocusInitial (click)="changePin()">Zmień PIN</button>
 </div>

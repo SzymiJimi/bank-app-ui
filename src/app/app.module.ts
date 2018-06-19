@@ -78,6 +78,8 @@ import {BankAccountService} from './history/bank-account.service';
 import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 import {TransactionService} from './transaction/transaction.service';
 import { CreateofferComponent } from './createoffer/createoffer.component';
+import {AddressModel} from './model/address.model';
+import {CardManagementService} from './card-management/card-management.service';
 
 
 @Injectable()
@@ -179,146 +181,6 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(
-      [{
-        path: 'history',
-        component: HistoryComponent
-      },
-        {
-          path: 'user/transaction',
-          component: TransactionComponent
-        },
-        {
-          path: 'card',
-          component: CardManagementComponent
-        },
-        {
-          path: 'card/changepin',
-          component: ChangePinComponent
-        },
-        {
-          path: 'card/blockcard',
-          component: BlockCardComponent
-        },
-        {
-          path: '',
-          component: HomepageComponent
-        },
-        {
-          path: 'login',
-          component: LoginComponent
-        },
-
-        {
-          path: 'manager/sing-up',
-          component: RegistryComponent
-        },
-        {
-          path: 'findClient',
-          component: FindclientComponent
-        },
-        {
-          path: 'user',
-          component: UserPageComponent
-        },
-        {
-          path: 'favorite',
-          component: FavoriteComponent
-        },
-        {
-          path: 'loginhistory',
-          component: LoginhistoryComponent
-        },
-        {
-          path: 'cashwithdrawl',
-          component: CashwithdrawalComponent
-        },
-        {
-          path: 'registry',
-          component: RegistryComponent
-        },
-        {
-          path: 'user/history',
-          component: HistoryComponent
-        },
-        {
-          path: 'user/transaction',
-          component: TransactionComponent
-        },
-        {
-          path: 'user/card',
-          component: CardManagementComponent
-        },
-        {
-          path: 'user/credits',
-          component: UserCreditsComponent
-        },
-        {
-          path: 'user/card/changepin',
-          component: ChangePinComponent
-        },
-        {
-          path: 'user/card/blockcard',
-          component: BlockCardComponent
-        },
-        {
-          path: 'user/credit/new',
-          component: UserCreditComponent
-        },
-        {
-          path: 'user/accountManage',
-          component: UserManageAccountComponent
-        },
-        {
-          path: "",
-          component: HomepageComponent
-        },
-        {
-          path: "login",
-          component: LoginComponent
-        },
-
-        {
-          path: "signIn",
-          component: RegistryComponent
-        },
-        {
-          path: "findClient",
-          component: FindclientComponent
-        },
-        {
-          path: "user",
-          component: UserPageComponent
-        },
-        {
-          path: 'manager/home',
-          component: ManagerHomeComponent
-        },
-        {
-          path: 'manager/stats',
-          component: ManagerStatsComponent
-        },
-        {
-          path: 'user/investment',
-          component: InvestmentsComponent
-        },
-        {
-          path: 'user/investment/new',
-          component: NewInvestmentComponent
-        },
-        {
-          path: 'manager',
-          component: ManagerHomeComponent
-        },
-        {
-          path: 'manager/offer',
-          component: CreateofferComponent
-        }
-
-
-      ]
-    ),
-
 
   ],
   exports: [
@@ -349,7 +211,8 @@ export class CustomPaginator extends MatPaginatorIntl {
     {provide: AuthService, useClass: AuthService},
     {provide: CardInformationService, useClass: CardInformationService},
     {provide: BankAccountService, useClass: BankAccountService},
-    {provide: TransactionService, useClass: TransactionService}
+    {provide: TransactionService, useClass: TransactionService},
+    {provide: CardManagementService, useClass: CardManagementService}
     ],
   bootstrap: [AppComponent]
 })
