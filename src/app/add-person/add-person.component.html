@@ -1,0 +1,73 @@
+<div style="width:600px; text-align:center; margin:0 auto;">
+  <h3>Wpisz dane klienta</h3>
+
+
+      <div class=".col-6 addperson-data">
+      <form [formGroup]="addpersonForm" class="addperson-form" novalidate>
+        <div class="form-group">
+        <p> Imię: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':name.invalid && name.dirty,
+               'is-valid':name.valid
+                }"
+                 formControlName="name"
+                 placeholder="Imie"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="name.hasError('required')">Niepoprawe imię...</p>
+          </div>
+
+           <div class="form-group">
+
+      <div class=".col-6 addperosn-data">
+      <form [formGroup]="addpersonForm" class="addperson-form" novalidate>
+        <div class="form-group">
+        <p> Nazwisko: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':surname.invalid && surname.dirty,
+               'is-valid':surname.valid
+                }"
+                 formControlName="surname"
+                 placeholder="Nazwisko"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="surname.hasError('required')">Niepoprawe Nazwisko!...</p>
+          </div>
+  
+
+  <div class=".col-6 addperson-data">
+      <form [formGroup]="addpersonForm" class="addperson-form" novalidate>
+        <div class="form-group">
+          <p> Pesel: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':pesel.invalid && pesel.dirty,
+               'is-valid':pesel.valid
+                }"
+                 formControlName="pesel"
+                 placeholder="Pesel"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="pesel.hasError('required')">Uzupełnij pesel...</p>
+            <p *ngIf="pesel.hasError('pattern')">Niepoprawny pesel...</p>
+          </div>
+  
+       
+     
+     
+
+
+    </div>
+    <div class="form-group">
+      </div>
+       
+        <a class="nav-link" routerLink="/consultant/addpersonend"><button  [disabled]="addpersonForm.invalid" >Dalej</button></a>
+    
+    
+  </form>
+</div>

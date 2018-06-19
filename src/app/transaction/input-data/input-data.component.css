@@ -1,0 +1,28 @@
+.transaction-form{
+  padding: 5%;
+}
+.overflow-data {
+  margin: 50px auto auto 50px;
+  /*width: 45% !important;*/
+}
+
+.transaction-data{
+  width:  50%!important;
+}
+
+.user-details-info {
+  right: 0;
+  position: absolute;
+}
+
+mat-list-item:hover{
+  background-color: #009688;
+  color: white;
+  border-radius: 4px;
+}
+
+.custom-btn-color{
+  color: white;
+  background-color: #009688;
+}
+

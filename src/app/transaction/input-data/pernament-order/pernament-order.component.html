@@ -1,0 +1,70 @@
+<div class="card standing-order" >
+  <h5 class="card-header ">Zlecenie stałe: </h5>
+  <div class="date-picker-form">
+    <mat-form-field class="example-full-width date-picker">
+      <input matInput
+             [matDatepicker]="startPicker"
+             [min]="startMinDate"
+             [max]=""
+             (dateChange)="dataChanged()"
+             [(ngModel)]="startDate"
+             [disabled]="selectedFrequency=='' || timePeriodIsSet===true"
+             placeholder="Wybierz datę rozpoczęcia">
+      <mat-datepicker-toggle matSuffix [for]="startPicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width date-picker">
+      <input matInput
+             [matDatepicker]="endPicker"
+             [min]="endMinDate"
+             [max]=""
+             (dateChange)="endDateChanged()"
+             [(ngModel)]="endDate"
+             [disabled]="selectedFrequency=='' || timePeriodIsSet===true"
+             placeholder="Wybierz datę zakończenia">
+
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endPicker">
+        <mat-icon
+          matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #endPicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <mat-form-field class="select-frequency">
+
+      <mat-select
+        [(value)]="selectedFrequency"
+        (valueChange)="changedFrequency()"
+        placeholder="Częstotliwość przelewania pieniędzy">
+
+        <mat-option *ngFor="let transactionFrequency of transactionFrequencies"
+                    value="{{transactionFrequency}}">
+          {{transactionFrequency}}
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+  </div>
+  <div class="period-btns">
+    <button
+      type="button"
+      class="btn custom-btn-color save-period-btn"
+      [disabled]="timePeriodIsSet===false || periodSaved ===true"
+    (click)="savePeriod()">Zapisz
+    </button>
+    <button
+      type="button"
+      class="btn custom-btn-color change-period-btn"
+      [disabled]=""
+      (click)="resetTimePeriod()">Zmień przedział czasu
+    </button>
+  </div>
+
+</div>

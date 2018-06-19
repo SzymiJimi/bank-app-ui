@@ -1,0 +1,76 @@
+<div class="card border-secondary mb-3 summary-data">
+  <div class="card-header">Wypłata gotowki</div>
+  <div class="card-body text-secondary">
+    <p class="blockquote-footer">
+      <small class="text-muted">
+        Dane klienta: {{name}}  {{surname}} nr konta {{account}}
+      </small>
+
+     <div class=".col-6 changedataend-data">
+      <form [formGroup]="changedataendForm" class="changedataend-form" novalidate>
+        <div class="form-group">
+      <label>Kwota do wypłaty</label>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':pass.invalid && pass.dirty,
+               'is-valid':pass.valid
+                }"
+                 formControlName="pass"
+                 placeholder="passowrod"
+                 [(ngModel)]="hajs"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="pass.hasError('required')">Pesel jest wymagany...</p>
+            <p *ngIf="pass.hasError('pattern')">Pesel jest zbyt krotki...</p>
+          </div>
+          <div class="valid-feedback" style="width: 150%">
+            <p>Kwota przelewu jest poprawna</p>
+          </div>
+        </div>
+        <div class="form-group">
+
+
+
+        <div class=".col-6 changedataend-data">
+      <form [formGroup]="changedataendForm" class="changedataend-form" novalidate>
+        <div class="form-group">
+      <label>Powtorz haslo</label>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':pass.invalid && pass.dirty,
+               'is-valid':pass.valid
+                }"
+                 formControlName="pass"
+                 placeholder="password"
+                 [(ngModel)]="hajs"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="pass.hasError('required')">Hasło nie jest takie samo...</p>
+                   </div>
+          <div class="valid-feedback" style="width: 150%">
+            <p>Hasło poprawne</p>
+          </div>
+        </div>
+        <div class="form-group">
+
+
+
+
+
+
+
+    <button type="button" class="button buttonBlue"(click)="onClick($event)"
+      [disabled]="changedataendForm.invalid">Zmień hasło
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+
+
+
+
+<p>
+
+<font size = 6> {{napis}} </font>
+
+ </p>

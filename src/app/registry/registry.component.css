@@ -1,0 +1,19 @@
+.registerForm{
+    padding: 10px;
+  }
+  .overflow-data {
+    margin: 50px auto auto 50px;
+    width: 40rem !important;
+  }
+  
+  .registerForm{
+    width:  50%!important;
+    width: 300px;
+    margin: 0 auto;
+  }
+  label{
+      left: 10px;
+      position: absolute;
+  }
+  
+ 

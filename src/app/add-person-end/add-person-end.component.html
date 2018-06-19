@@ -1,0 +1,215 @@
+
+ <div class="card border-secondary mb-3 summary-data">
+  <h3>Wpisz dane osoby upoważnionej</h3>
+
+
+      <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+        <p >  Imię: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':name.invalid && name.dirty,
+               'is-valid':name.valid
+                }"
+                 formControlName="name"
+                 placeholder="Imie"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="name.hasError('required')">Niepoprawe imię...</p>
+          </div>
+
+           <div class="form-group"></div>
+
+      <div class=".col-6 addperosnend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Nazwisko: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':surname.invalid && surname.dirty,
+               'is-valid':surname.valid
+                }"
+                 formControlName="surname"
+                 placeholder="Nazwisko"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="surname.hasError('required')">Niepoprawe Nazwisko!...</p>
+          </div>
+
+   <div class="form-group"></div>
+  
+
+  <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   pesel </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':pesel.invalid && pesel.dirty,
+               'is-valid':pesel.valid
+                }"
+                 formControlName="pesel"
+                 placeholder="Pesel"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="pesel.hasError('required')">Uzupełnij pesel...</p>
+            <p *ngIf="pesel.hasError('pattern')">Niepoprawny pesel...</p>
+          </div>
+    <div class="form-group"></div>
+       
+  <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Imię ojca: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':fathername.invalid && fathername.dirty,
+               'is-valid':fathername.valid
+                }"
+                 formControlName="fathername"
+                 placeholder="Imie ojca"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="fathername.hasError('required')">Uzupełnij pole...</p>
+          </div>
+    <div class="form-group"></div>
+          
+ 
+          
+          <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Imię matki: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':mothername.invalid && mothername.dirty,
+               'is-valid':mothername.valid
+                }"
+                 formControlName="mothername"
+                 placeholder="Imie matki"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="mothername.hasError('required')">Uzupełnij pole...</p>
+          </div>
+              <div class="form-group"></div>
+
+
+               <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Nazwisko panieńskie matki: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid': mothernmaiden.invalid && mothernmaiden.dirty,
+               'is-valid':mothernmaiden.valid
+                }"
+                 formControlName="mothernmaiden"
+                 placeholder="Nazwisko panieńskie matki"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="mothernmaiden.hasError('required')">Uzupełnij pole...</p>
+          </div>
+              <div class="form-group"></div>
+          
+               <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Adres zamieszkania: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':adress.invalid && adress.dirty,
+               'is-valid':adress.valid
+                }"
+                 formControlName="adress"
+                 placeholder="adres zamieszkania"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="adress.hasError('required')">Uzupełnij pole...</p>
+          </div>
+            <div class="form-group"></div>
+
+          
+               <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Adres korespondencji: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':correspondence.invalid && correspondence.dirty,
+               'is-valid':correspondence.valid
+                }"
+                 formControlName="correspondence"
+                 placeholder="adres korespondencji"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="correspondence.hasError('required')">Uzupełnij pole...</p>
+          </div>
+            <div class="form-group"></div>
+
+            
+               <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   Kraj pochodzenia: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':citizenship.invalid && citizenship.dirty,
+               'is-valid':citizenship.valid
+                }"
+                 formControlName="citizenship"
+                 placeholder="Poland"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="citizenship.hasError('required')">Uzupełnij pole...</p>
+          </div>
+            <div class="form-group"></div>
+  
+  
+
+        
+               <div class=".col-6 addpersonend-data">
+      <form [formGroup]="addpersonendForm" class="addpersonend-form" novalidate>
+        <div class="form-group">
+           <p  >   numer teloefonu: </p>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':phone.invalid && phone.dirty,
+               'is-valid':phone.valid
+                }"
+                 formControlName="phone"
+                 placeholder="adres korespondencji"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="phone.hasError('required')">Uzupełnij pole...</p>
+            <p *ngIf="phone.hasError('pattern')">Niepoprawny numer teloefonu...</p>
+          </div>
+            <div class="form-group"></div>
+
+  
+  
+     
+     
+
+
+    </div>
+    <div class="form-group">
+      </div>
+       
+    <button  class="button buttonBlue" [disabled]="addpersonendForm.invalid" (click)="onClick($event)">Dodaj</button>
+
+    <font size = 6 >{{napis}} </font>
+    
+    
+  </form>
+</div>

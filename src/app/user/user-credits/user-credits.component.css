@@ -1,0 +1,16 @@
+.content-style{
+  margin: auto;
+}
+
+
+.small-card-style{
+  background-color: #bcdeff;
+  width: 40%;
+  margin: 2% 5%;
+  height: 8em;
+}
+
+.cards-container{
+  display: flex;
+}
+

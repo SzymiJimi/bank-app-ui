@@ -1,0 +1,55 @@
+
+ <div class="card border-secondary mb-3 summary-data">
+  <div class="card-header">Wypłata gotowki</div>
+  <div class="card-body text-secondary">
+    <p class="blockquote-footer">
+      <small class="text-muted">
+        Dane klienta: {{name}}  {{surname}} nr konta {{account}}
+      </small>
+    </p>
+     <p class="card-text mb-2  info-style ">Dostępne środki: {{ammount}} zł
+    </p>
+     <div class=".col-6 withdraw-data">
+      <form [formGroup]="withdrawForm" class="withdraw-form" novalidate>
+        <div class="form-group">
+      <label>Kwota do wypłaty</label>
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{
+               'is-invalid':sum.invalid && sum.dirty,
+               'is-valid':sum.valid
+                }"
+                 formControlName="sum"
+                 placeholder="0,00 zł"
+                 [(ngModel)]="hajs"
+                 required>
+          <div class=invalid-feedback>
+            <p *ngIf="sum.hasError('required')">Kwota jest wymagana...</p>
+            <p *ngIf="sum.hasError('pattern')">Podaj prawidłową kwotę...</p>
+          </div>
+          <div class="valid-feedback" style="width: 150%">
+            <p>Kwota przelewu jest poprawna</p>
+          </div>
+        </div>
+        <div class="form-group">
+     
+   
+  
+
+
+    <button type="button" class="button buttonBlue"(click)="onClick($event)"
+      [disabled]="withdrawForm.invalid">Wypłać
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+    
+    
+         <p class="card-text mb-2  info-style">Nowe saldo : {{ammount - hajs}}
+ </p>
+
+<p>
+
+<font size = 6> {{napis}} </font>
+
+ </p>
+   
+   
