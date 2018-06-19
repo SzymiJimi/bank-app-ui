@@ -36,7 +36,7 @@ export class InputDataComponent implements OnInit {
   bankAccounts: BankAccountModel[];
   bankAccount: BankAccountModel;
   avaibleFounds: string="452,34zł";
-  today: number = Date.now();
+  today: Date = new Date() ;
   transactionTypeList= ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
   selected: string = 'Zewnętrzny';
   additionalDataOk:boolean= true;
@@ -87,7 +87,8 @@ export class InputDataComponent implements OnInit {
     this.toAccount.idInternalAccount=this.bankAccountService.bankAccounts[0];
     this.toAccount.recipientAccount=this.accountNr.value;
     this.transactionData.fromAccount=this.bankAccount;
-    this.transactionData.dateOfOrder=this.today.toString();
+    console.log(this.today.getMonth().toPrecision());
+    this.transactionData.dateOfOrder=this.today.getDate().toString()+"/"+(this.today.getMonth()+1).toString()+"/"+this.today.getFullYear().toString();
     this.transactionData.dateOfExecution=this.today.toString();
     this.transactionData.recipient=this.name.value;
     this.transactionData.toAccount=this.toAccount;
