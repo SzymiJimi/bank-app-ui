@@ -97,5 +97,5 @@
 <hr style=" margin: 2% auto;">
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Anuluj</button>
-  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" cdkFocusInitial>Zmień adres</button>
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" cdkFocusInitial (click)="changeAddress()">Zmień adres</button>
 </div>

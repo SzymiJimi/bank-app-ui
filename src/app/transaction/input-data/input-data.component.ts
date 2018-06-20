@@ -36,7 +36,7 @@ export class InputDataComponent implements OnInit {
   bankAccounts: BankAccountModel[];
   bankAccount: BankAccountModel;
   avaibleFounds: string="452,34zł";
-  today: number = Date.now();
+  today: Date = new Date() ;
   transactionTypeList= ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
   selected: string = 'Zewnętrzny';
   additionalDataOk:boolean= true;
@@ -80,23 +80,15 @@ export class InputDataComponent implements OnInit {
 
   }
 
-  // this.transactionData.avaibleFounds=this.avaibleFounds;
-  // this.transactionData.transactionDate=this.today;
-  // this.transactionData.name=this.name.value;
-  // this.transactionData.accountNr=this.accountNr.value;
-  // this.transactionData.address=this.address.value;
-  // this.transactionData.amount=this.amount.value;
-  // this.transactionData.title=this.title.value;
-  // this.furtherClicked=true;
 
-  //trzeba też przesłać dane konta
 
   continueTransaction(){
     this.toAccount.idExternalAccount=this.externalAccount;
     this.toAccount.idInternalAccount=this.bankAccountService.bankAccounts[0];
-    this.toAccount.recipientAccount="12222222222223435231234321";
+    this.toAccount.recipientAccount=this.accountNr.value;
     this.transactionData.fromAccount=this.bankAccount;
-    this.transactionData.dateOfOrder=this.today.toString();
+    console.log(this.today.getMonth().toPrecision());
+    this.transactionData.dateOfOrder=this.today.getDate().toString()+"/"+(this.today.getMonth()+1).toString()+"/"+this.today.getFullYear().toString();
     this.transactionData.dateOfExecution=this.today.toString();
     this.transactionData.recipient=this.name.value;
     this.transactionData.toAccount=this.toAccount;
@@ -113,7 +105,7 @@ export class InputDataComponent implements OnInit {
     this.sendTransactionOwner.emit(this.ownerUserData);
     this.sendTransactionAccount.emit(this.bankAccount);
 
-    this.tansactionService.makeTransaction(this.transactionData);
+
   }
 
   clicked(type: string, panel: MatExpansionPanel,  event: Event) {

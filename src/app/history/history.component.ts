@@ -9,6 +9,8 @@ import {BankAccountService} from './bank-account.service';
 import {CreditDataService} from '../user-credit/credit-data.service';
 import {CreditCardModel} from '../model/credit-card.model';
 import {CardInformationService} from '../card-management/card-information/card-information.service';
+import {BankTransferModel} from '../model/bank-transfer.model';
+import {subscribeToIterable} from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -22,142 +24,15 @@ export class HistoryComponent implements OnInit {
 
   }
 
-  transactionData: Element[] = [
-    {
-      date: '07/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew za uslugi remontowe w domu oraz poza domem u sądsiada oraz u mojej siostry z poza miasta',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452,34zł'
-    },
-    {
-      date: '06/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '05/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '04/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '03/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '02/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '01/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '30/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '29/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Mateusz Jarzabek',
-      title: 'Przelew',
-      amount: '-17.30zł',
-      balanceAfterTransaction: '554.34zł'
-    },
-    {
-      date: '28/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '27/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '26/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '25/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '24/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '23/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '22/04/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-  ];
+
+  transactionHistory: BankTransferModel[];
 
   displayedColumns = ['date', 'recipient', 'sender', 'title', 'amount', 'balanceAfterTransaction'];
-  dataSource = new MatTableDataSource<Element>(this.transactionData);
-  selectedOperationType = '';
+
+  selectedOperationType: string = '';
   dateFromPicker: Date;
-  selectedPeriod = '';
+  selectedPeriod: string = '';
+  today: Date = new Date();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -170,27 +45,27 @@ export class HistoryComponent implements OnInit {
   bankAccount: BankAccountModel;
   creditCards: CreditCardModel[];
   creditCard: CreditCardModel;
-  bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
-  balance: string = '452.34zł';
   blockedFounds: number = 23.15;
-  debitLimit: string = '500zł';
-  avaibleFounds: string = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
-
+  dataSource;
 
   ngOnInit() {
+    console.log(this.today.getMonth().toString(2));
+
     this.user = this.authService.loggedUser;
-    this.bankAccounts= this.bankAccountService.bankAccounts;
+    this.bankAccounts=  this.bankAccountService.bankAccounts;
     this.bankAccount= this.bankAccounts[0];
     this.creditCards= this.creditCardService.userCards;
     this.creditCard= this.creditCards[0];
-    console.log("Odczytana osoba:");
-    console.log(this.user);
-    // this.user.person.name = 'Szymon';
-    // this.user.person.surname = 'Jarząbek';
     let date: Date = new Date();
 
-    this.dataSource.paginator = this.paginator;
+
+
+    this.bankAccountService.getHistoryAccount().then(value => {
+      this.transactionHistory= this.bankAccountService.transferHistory;
+      this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
+      this.dataSource.paginator = this.paginator;
+    });
 
     if (date.getMonth() < 6) {
       this.minDate.setFullYear(date.getFullYear() - 1);
@@ -291,13 +166,13 @@ export class HistoryComponent implements OnInit {
 
     if (this.dateFromPicker !== null && this.dateFromPicker !== undefined) {
 
-      this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
-          return this.compateDates(data.date, this.dateFromPicker);
+      this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
+          return this.compateDates(data.dateOfOrder, this.dateFromPicker);
         }
       ));
 
       if (this.selectedOperationType !== '') {
-        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data.filter(data => {
+        this.dataSource = new MatTableDataSource<BankTransferModel>(this.dataSource.data.filter(data => {
             return this.checkTypeTransaction(data.amount);
           }
         ));
@@ -305,22 +180,22 @@ export class HistoryComponent implements OnInit {
       this.resetSelects();
     } else {
       if (this.selectedPeriod !== '' && this.selectedOperationType !== '') {
-        this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
-            return this.compateDateWithTimePeriod(data.date);
+        this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
+            return this.compateDateWithTimePeriod(data.dateOfOrder);
           }
         ));
-        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data.filter(data => {
+        this.dataSource = new MatTableDataSource<BankTransferModel>(this.dataSource.data.filter(data => {
             return this.checkTypeTransaction(data.amount);
           }
         ));
       } else {
         if (this.selectedOperationType !== '') {
-          this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
-              return this.checkTypeTransaction(data.amount);
+          this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
+              return this.checkTypeTransaction(data.dateOfOrder);
             }
           ));
-        } else {
-          this.dataSource = new MatTableDataSource<Element>(this.transactionData);
+        }else{
+          this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
         }
       }
       this.resetSelects();

@@ -5,12 +5,14 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StatusMessage} from '../model/status-message.model';
 import {reject, resolve} from 'q';
+import {BankTransferModel} from '../model/bank-transfer.model';
 
 
 @Injectable()
 export class BankAccountService {
 
   bankAccounts:BankAccountModel[];
+  transferHistory:BankTransferModel[];
 
   constructor(private http: HttpClient){
   }
@@ -40,6 +42,24 @@ export class BankAccountService {
     return promise;
 
 
+}
+
+public getHistoryAccount()
+{
+  var promise = new Promise((resolve, reject) =>{
+    this.http.get(environment.endpointBase +'bankAccount/history/'+this.bankAccounts[0].idBankAccount,{headers:{'Content-Type': 'application/json'}, responseType:'json'})
+      .subscribe(res => {
+          this.transferHistory= res as BankTransferModel[] ;
+          console.log("Konto historia");
+          console.log(this.transferHistory);
+          resolve();
+        },
+        error => {
+          reject();
+        });
+  } );
+
+  return promise;
 }
 
 

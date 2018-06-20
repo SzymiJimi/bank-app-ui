@@ -2,6 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ChangeLimitsComponent} from '../change-limits/change-limits.component';
+import {AddressModel} from '../../../model/address.model';
+import {AuthService} from '../../../auth/auth.service';
+import {CardManagementService} from '../../card-management.service';
 
 
 @Component({
@@ -13,7 +16,9 @@ export class ChangeAddressComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ChangeAddressComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private authService: AuthService,
+    private cardManageService: CardManagementService) {
 
 
   }
@@ -31,6 +36,8 @@ export class ChangeAddressComponent implements OnInit {
   postalCode: FormControl;
   city: FormControl;
   emailAddress: FormControl;
+
+  newAddress: AddressModel;
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -53,5 +60,16 @@ export class ChangeAddressComponent implements OnInit {
       city: this.city,
       emailAddress: this.emailAddress,
     });
+  }
+
+  changeAddress() {
+
+    this.newAddress = this.authService.loggedUser.idPerson.idAddress;
+    this.newAddress.numberOfTheBuilding= this.houseNr.value;
+    this.newAddress.postCode = this.postalCode.value;
+    this.newAddress.city = this.city.value;
+    this.newAddress.postCity = this.city.value;
+    this.cardManageService.changeClientAddress(this.newAddress);
+
   }
 }
