@@ -6,7 +6,7 @@ export class CreditCardModel  extends Serializable{
   idCreditCard:number;
   name:string;
   creditCardNumber:string;
-  pinCode:string;
+  pinCode:number;
   state:string;
   expirationDate;
   type:string;

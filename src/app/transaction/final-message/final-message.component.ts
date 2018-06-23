@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {BankTransferModel} from '../../model/bank-transfer.model';
-import {MatStepper} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-final-message',
@@ -8,9 +6,6 @@ import {MatStepper} from '@angular/material';
   styleUrls: ['./final-message.component.css']
 })
 export class FinalMessageComponent implements OnInit {
-
-
-  @Input() stepper: MatStepper;
 
   constructor() {
   }

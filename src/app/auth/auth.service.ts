@@ -37,6 +37,8 @@ export class AuthService{
           this.loggedUser=  new UserModel().fromJSON(json);
           console.log(this.loggedUser);
           this.getPersonData();
+
+
       },
       error => {
         status.status=StatusEnum.ERROR;

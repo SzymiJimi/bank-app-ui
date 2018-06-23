@@ -3,8 +3,6 @@ import {TransactionDataModel} from '../transaction-data.model';
 import {UserModel} from '../../user/user.model';
 import {BankAccountModel} from '../../model/bank-account.model';
 import {BankTransferModel} from '../../model/bank-transfer.model';
-import {TransactionService} from '../transaction.service';
-import {MatStepper} from '@angular/material';
 
 @Component({
   selector: 'app-summary',
@@ -17,39 +15,20 @@ export class SummaryComponent implements OnInit {
   @Input() transactionData: BankTransferModel=new BankTransferModel();
   @Input() ownerUserData: UserModel=new UserModel();
   @Input() bankAccountData: BankAccountModel=new BankAccountModel();
-  @Input() stepper: MatStepper;
 
   @Output() transactionStatusEvent= new EventEmitter<boolean>();
 
-  constructor(private tansactionService: TransactionService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.tansactionService.makeTransaction(this.transactionData).then(value => {
-      this.code = value as string;
-    });
   }
 
-  code:string;
-  userInputCode: string;
-  counter: number=0;
-  resultMessage="";
+
+
 
   finishTransaction(){
-
-    if(this.userInputCode===this.code){
-      this.resultMessage="Poprawny kod";
-      this.tansactionService.registerTransaction(this.transactionData).then(value => {
-        this.transactionStatusEvent.emit(true);
-        this.stepper.next();
-      });
-
-    }else{
-      this.counter++;
-      this.resultMessage="Zły kod";
-
-    }
-
-
+    console.log("Jestem tutaj i emituje status!");
+    this.transactionStatusEvent.emit(true);
   }
 
 }

@@ -1,5 +1,4 @@
 import {Serializable} from './serializable.model';
-import {AddressModel} from './address.model';
 
 export class PersonModel  extends Serializable{
 
@@ -13,7 +12,7 @@ export class PersonModel  extends Serializable{
   fathersName:string;
   telepohoneNumber:string;
   mothersMaidenName:string;
-  idAddress: AddressModel;
-  idAddressForCorrespondence: AddressModel;
+  // idAddress: number;
+  // idAddressForCorrespondence: number;
 
 }
