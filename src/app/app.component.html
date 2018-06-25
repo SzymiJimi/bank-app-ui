@@ -22,7 +22,7 @@
 
   </ng-template>
   <div class="main-style">
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="bankAccService.bankAccount!==undefined || authService.unLogged===true"></router-outlet>
   </div>
 </div>
 

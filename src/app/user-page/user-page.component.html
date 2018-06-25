@@ -2,13 +2,13 @@
 
   <div style="margin-top: 2%" class="row">
       <div class="col-lg-6" style="margin-top: 2%">
-          <h3>Witaj {{user?.idPerson.name+ " "+ user?.idPerson.surname}}</h3>
+          <h3>Witaj {{user.idPerson.name+ " "+ user.idPerson.surname}}</h3>
           <p></p>
       </div>
 
       <div class="col-lg-6" style="margin-top: 2%">
           <h5 class="card-subtitle mb-2 text-muted">Numer rachunku:</h5>
-         <h6 class="card-subtitle mb-2 text-muted">{{bankAccount?.accountNumber | accountNumberPipe}}</h6>
+         <h6 class="card-subtitle mb-2 text-muted">{{bankAccount.accountNumber | accountNumberPipe}}</h6>
 
           <h6 class="card-subtitle mb-2 text-muted">Dostępne środki:</h6>
           <h5 class="card-title">{{bankAccount?.amount}}</h5>

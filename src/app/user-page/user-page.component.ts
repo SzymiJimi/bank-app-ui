@@ -50,15 +50,14 @@ export class UserPageComponent implements OnInit {
   ngOnInit() {
 
     this.user= this.authService.loggedUser;
-    this.bankAccountService.getAccountList(this.user.idUser).then(value => {
-      this.bankAccounts= this.bankAccountService.bankAccounts;
-      this.bankAccount= this.bankAccounts[0];
+
+      this.bankAccount= this.bankAccountService.bankAccount;
 
       this.bankAccountService.getHistoryAccount().then(value => {
         this.transactionHistory= this.bankAccountService.transferHistory;
         this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
       });
-    });
+    // });
 
 
   }

@@ -12,6 +12,7 @@ import {BankTransferModel} from '../model/bank-transfer.model';
 export class BankAccountService {
 
   bankAccounts:BankAccountModel[];
+  bankAccount: BankAccountModel;
   transferHistory:BankTransferModel[];
 
   constructor(private http: HttpClient){
@@ -27,6 +28,7 @@ export class BankAccountService {
             status.status=StatusEnum.OK;
             status.message = "Bank account loaded succesfully";
             this.bankAccounts= res as BankAccountModel[] ;
+            this.bankAccount = this.bankAccounts[0];
             console.log("Konto bankowe");
             console.log(this.bankAccounts);
             resolve();
