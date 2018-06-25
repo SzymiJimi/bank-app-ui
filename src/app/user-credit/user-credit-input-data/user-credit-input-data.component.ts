@@ -47,25 +47,17 @@ export class UserCreditInputDataComponent implements OnInit {
 
   createFormControls(){
 
-    this.numberOfDependents= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2}") ]);
-    // this.education= new FormControl('', [Validators.required,  Validators.pattern("^[0-9]{6}")]);
-    // this.maritalStatus= new FormControl('', Validators.required);
-    this.monthlyIncome= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
-    // this.incomeCurrency= new FormControl('', Validators.required);
-    // this.incomeSource= new FormControl('', Validators.required);
-    this.monthlyHouseholdPayments= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{6}")]);
-    this.monthlyMaintenancePayments= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
-    this.monthlyLoansLiabilities= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
+    this.numberOfDependents= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,2}") ]);
+    this.monthlyIncome= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{3,10}")]);
+    this.monthlyHouseholdPayments= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{2,10}")]);
+    this.monthlyMaintenancePayments= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2,10}")]);
+    this.monthlyLoansLiabilities= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2,10}")]);
     this.street= new FormControl('', Validators.required);
-    this.houseNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}")]);
-    this.apartmentNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}")]);
+    this.houseNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,4}")]);
+    this.apartmentNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,4}")]);
     this.postalCode= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2}-[0-9]{3}")]);
     this.city= new FormControl('', Validators.required);
     this.nation= new FormControl('', Validators.required);
-    // this.education= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{26}")]);
-    // this.address= new FormControl('', Validators.required);
-    // this.title= new FormControl('', Validators.required);
-    // this.amount= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
   }
 
 

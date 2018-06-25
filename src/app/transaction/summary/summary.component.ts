@@ -5,6 +5,8 @@ import {BankAccountModel} from '../../model/bank-account.model';
 import {BankTransferModel} from '../../model/bank-transfer.model';
 import {TransactionService} from '../transaction.service';
 import {MatStepper} from '@angular/material';
+import {AuthService} from '../../auth/auth.service';
+import {BankAccountService} from '../../history/bank-account.service';
 
 @Component({
   selector: 'app-summary',
@@ -21,7 +23,7 @@ export class SummaryComponent implements OnInit {
 
   @Output() transactionStatusEvent= new EventEmitter<boolean>();
 
-  constructor(private tansactionService: TransactionService) { }
+  constructor(private tansactionService: TransactionService, private authService: AuthService, private accountService:BankAccountService) { }
 
   ngOnInit() {
     this.tansactionService.makeTransaction(this.transactionData).then(value => {
@@ -39,6 +41,7 @@ export class SummaryComponent implements OnInit {
     if(this.userInputCode===this.code){
       this.resultMessage="Poprawny kod";
       this.tansactionService.registerTransaction(this.transactionData).then(value => {
+        this.accountService.getAccountList(this.authService.loggedUser.idUser);
         this.transactionStatusEvent.emit(true);
         this.stepper.next();
       });

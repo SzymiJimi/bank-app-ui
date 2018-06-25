@@ -63,6 +63,7 @@ export class HistoryComponent implements OnInit {
 
     this.bankAccountService.getHistoryAccount().then(value => {
       this.transactionHistory= this.bankAccountService.transferHistory;
+      this.transactionHistory.reverse();
       this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
       this.dataSource.paginator = this.paginator;
     });

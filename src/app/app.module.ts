@@ -150,7 +150,7 @@ export class CustomPaginator extends MatPaginatorIntl {
 
   ],
   imports: [
-
+    AppRouterModule,
     ChartsModule,
     BrowserModule,
     CdkTableModule,
