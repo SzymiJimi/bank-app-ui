@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   responseMessage: StatusMessage= new StatusMessage();
   username='client';
   password='client';
+  loadingData=false;
 
   constructor( private auth: AuthService, private router: Router) { }
 
@@ -34,10 +35,7 @@ export class LoginComponent implements OnInit {
   login(){
     let credentials : CredentialsModel= new CredentialsModel(this.username, this.password);
     this.responseMessage = this.auth.loginUser(credentials);
-      setTimeout(()=>{
-
-      },1000);
-
+      this.loadingData= true;
 
 
 

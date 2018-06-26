@@ -37,7 +37,6 @@ export class AuthService{
         status.status=StatusEnum.OK;
         status.message = "Zalogowano pomyslnie";
           this.loggedUser=  res.body as UserModel;
-          console.log(this.loggedUser);
           this.getPersonData();
       },
       error => {
@@ -85,14 +84,11 @@ export class AuthService{
   }
 
   public checkLoggedUser(){
-    console.log("Sprawdza się czy zalogowany");
     let status: StatusMessage = new StatusMessage();
     this.http.get(environment.endpointBase +'login',{observe: 'response', headers:{'Content-Type': 'application/json'},withCredentials:true, responseType:'json'})
       .subscribe(res => {
-          // (json: Object) => {
           status.status=StatusEnum.OK;
           this.loggedUser=  res.body as UserModel;
-          console.log(this.loggedUser);
           this.getPersonData();
         },
         error => {
@@ -104,7 +100,6 @@ export class AuthService{
   public logout(){
     this.http.get(environment.endpointBase +'login/out',{observe: 'response', headers:{'Content-Type': 'application/json'},withCredentials:true, responseType:'json'})
       .subscribe(res => {
-          console.log(res);
           this.loggedUser=null;
           this.bankAccountService.bankAccount=null;
           this.bankAccountService.bankAccounts=null;

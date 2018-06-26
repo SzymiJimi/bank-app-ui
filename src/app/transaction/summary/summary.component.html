@@ -34,7 +34,8 @@
         kod potwierdzający: </label>
       <input type="text" class="form-control" [(ngModel)]="userInputCode" style="width: 30%;" id="inputPassword" placeholder="Kod">
       <!--matStepperNext-->
-      <button *ngIf="counter<3" class="btn btn-primary" style="margin-left: 2%" (click)="finishTransaction(stepper)">Zakończ</button>
+
+      <button *ngIf="counter<3" [disabled]="dataLoading" class="btn btn-primary" style="margin-left: 2%" (click)="finishTransaction(stepper)">Zakończ</button>
       <button *ngIf="counter>=3" class="btn btn-primary" style="margin-left: 2%" routerLink="/user">Strona główna</button>
     </div>
     <label *ngIf="counter<3" for="inputPassword" class="col-form-label" >{{resultMessage}} Prób: {{3-counter}}/3</label>
