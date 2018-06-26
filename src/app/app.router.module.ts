@@ -75,7 +75,8 @@ const appRoutes: Routes =
       component: UserPageComponent
     },
     {
-      path: 'manager/home',
+
+      path: 'manager',
       component: ManagerHomeComponent
     },
     {
@@ -92,6 +93,14 @@ const appRoutes: Routes =
     },
     {
       path: 'manager/offer/new',
+      component: CreateofferComponent
+    },
+    {
+      path: 'manager/sing-up',
+      component: RegistryComponent
+    },
+    {
+      path: 'manager/offer',
       component: CreateofferComponent
     }
   ];

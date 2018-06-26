@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
+import {IncomeModel} from '../../model/income.model';
 
 @Component({
   selector: 'app-user-credit-input-data',
@@ -27,15 +28,21 @@ export class UserCreditInputDataComponent implements OnInit {
   creditUserData: FormGroup;
 
   numberOfDependents: FormControl;
-  education: FormControl;
-  maritalStatus: FormControl;
+  education = ['Wyższe', 'Średnie', 'Podstawowe', 'Doktor', 'Licencjat'];
+  selectedEducation;
+
+  maritalStatuses= ['Żonaty', 'Wolny', 'Zamężna', 'Wdowa/wdowiec'];
+  selectedMaritalStatus;
 
 
   incomeFormData: FormGroup;
 
   monthlyIncome: FormControl;
-  incomeCurrency: FormControl;
-  incomeSource: FormControl;
+  incomeCurrencies = ['EUR', 'PLN', 'USD', 'GBR'];
+  selectedIncomeCurrency;
+
+  incomeSources= ['Umowa o pracę', 'Prowadzenie własnej działalności gospodarczej', 'Prowadzenie spółki'];
+  selectedIncomeSource;
 
 
   monthlyPaymentsForm: FormGroup;
@@ -47,25 +54,17 @@ export class UserCreditInputDataComponent implements OnInit {
 
   createFormControls(){
 
-    this.numberOfDependents= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2}") ]);
-    // this.education= new FormControl('', [Validators.required,  Validators.pattern("^[0-9]{6}")]);
-    // this.maritalStatus= new FormControl('', Validators.required);
-    this.monthlyIncome= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
-    // this.incomeCurrency= new FormControl('', Validators.required);
-    // this.incomeSource= new FormControl('', Validators.required);
-    this.monthlyHouseholdPayments= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{6}")]);
-    this.monthlyMaintenancePayments= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
-    this.monthlyLoansLiabilities= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}")]);
+    this.numberOfDependents= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,2}") ]);
+    this.monthlyIncome= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{3,10}")]);
+    this.monthlyHouseholdPayments= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{2,10}")]);
+    this.monthlyMaintenancePayments= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2,10}")]);
+    this.monthlyLoansLiabilities= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2,10}")]);
     this.street= new FormControl('', Validators.required);
-    this.houseNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}")]);
-    this.apartmentNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}")]);
+    this.houseNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,4}")]);
+    this.apartmentNumber= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,4}")]);
     this.postalCode= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{2}-[0-9]{3}")]);
     this.city= new FormControl('', Validators.required);
     this.nation= new FormControl('', Validators.required);
-    // this.education= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{26}")]);
-    // this.address= new FormControl('', Validators.required);
-    // this.title= new FormControl('', Validators.required);
-    // this.amount= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
   }
 
 
@@ -90,14 +89,12 @@ export class UserCreditInputDataComponent implements OnInit {
 
     this.creditUserData = new FormGroup({
       numberOfDependents: this.numberOfDependents,
-      // education: this.education,
-      // maritalStatus: this.maritalStatus
+
     });
 
     this.incomeFormData= new FormGroup( {
       monthlyIncome: this.monthlyIncome,
-      // incomeCurrency: this.incomeCurrency,
-      // incomeSource: this.incomeSource
+
     });
 
     this.monthlyPaymentsForm = new FormGroup({
@@ -109,5 +106,21 @@ export class UserCreditInputDataComponent implements OnInit {
   ngOnInit() {
     this.createFormControls();
     this.createForm();
+  }
+
+  sendData() {
+    let incomeData: IncomeModel;
+    incomeData.sourceOfIncome = this.selectedIncomeSource;
+    incomeData.netIncome = this.monthlyIncome.value;
+    incomeData.currencyOfIncome = this.selectedIncomeCurrency;
+    incomeData.numberOfDependents = this.numberOfDependents.value;
+    incomeData.formOfEmployment = this.selectedIncomeSource;
+    incomeData.liabilitiesAndExpenses = this.monthlyLoansLiabilities.value;
+    incomeData.monthlyFees = this.monthlyHouseholdPayments.value;
+    incomeData.monthlyBenefits = (this.monthlyIncome.value-this.monthlyHouseholdPayments.value).toString();
+    incomeData.monthlyInstalmentsInOtherInstitutions = this.monthlyMaintenancePayments.value;
+
+
+
   }
 }

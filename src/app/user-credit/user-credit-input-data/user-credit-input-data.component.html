@@ -47,18 +47,18 @@
       <mat-error *ngIf="numberOfDependents.invalid">{{getErrorMessage(numberOfDependents)}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="Wykształcenie" [(value)]="selected" required>
-        <mat-option value="option1">Wyższe</mat-option>
-        <mat-option value="option2">Wyższe+Licencjat</mat-option>
-        <mat-option value="option3">Średnie</mat-option>
+      <mat-select placeholder="Wykształcenie" [(ngModel)]="selectedEducation" required>
+        <mat-option *ngFor="let educationEl of education" [value]="educationEl">
+          {{educationEl}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select placeholder="Stan cywilny" [(value)]="selected" required>
-        <mat-option value="option1">Żonaty</mat-option>
-        <mat-option value="option2">Ma dupe</mat-option>
-        <mat-option value="option3">Przegryw</mat-option>
+      <mat-select placeholder="Stan cywilny" [(ngModel)]="selectedMaritalStatus" required>
+        <mat-option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus">
+          {{maritalStatus}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -75,18 +75,18 @@
       <mat-error *ngIf="monthlyIncome.invalid">{{getErrorMessage(monthlyIncome)}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="Waluta dochodu" [(value)]="selected">
-        <mat-option value="option1">EUR</mat-option>
-        <mat-option value="option2">PLN</mat-option>
-        <mat-option value="option3">USD</mat-option>
+      <mat-select placeholder="Waluta dochodu" [(ngModel)]="selectedIncomeCurrency">
+        <mat-option *ngFor="let incomeCurrency of incomeCurrencies" [value]="incomeCurrency">
+          {{incomeCurrency}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select placeholder="Forma zatrudnienia" [(value)]="selected">
-        <mat-option value="option1">Umowa o prace</mat-option>
-        <mat-option value="option2">Prowadzenie własnej działalności gospodarczej</mat-option>
-        <mat-option value="option3">Prowadzenie spółki</mat-option>
+      <mat-select placeholder="Forma zatrudnienia" [(ngModel)]="selectedIncomeSource">
+        <mat-option *ngFor="let incomeSource of incomeSources" [value]="incomeSource">
+          {{incomeSource}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -122,7 +122,7 @@
 
 <div>
   <a mat-button routerLink="." class="back-button">Powrót</a>
-  <button mat-raised-button matStepperNext type="submit" class="forward-button" color="primary">Dalej</button>
+  <button mat-raised-button matStepperNext type="submit" class="forward-button" color="primary" [disabled]="monthlyPaymentsForm.invalid === true && incomeFormData.invalid=== true && creditUserData.invalid=== true" (click)="sendData()">Dalej</button>
 </div>
 
 

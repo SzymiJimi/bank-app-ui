@@ -16,87 +16,36 @@ import { BankAccountService } from "../history/bank-account.service";
 })
 export class UserPageComponent implements OnInit {
 
+  bankAccounts: BankAccountModel[];
+  bankAccount: BankAccountModel;
+  creditCards: CreditCardModel[];
+  creditCard: CreditCardModel;
 
-
-  transactionData: Element[] = [
-    {
-      date: '07/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew za uslugi remontowe w domu oraz poza domem u sądsiada oraz u mojej siostry z poza miasta',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452,34zł'
-    },
-    {
-      date: '06/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '05/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '04/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '03/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '02/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '-22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-    {
-      date: '01/05/2018',
-      recipient: 'Szymon Dudek',
-      sender: 'Szymon Jarzabek',
-      title: 'Przelew',
-      amount: '22.30zł',
-      balanceAfterTransaction: '452.34zł'
-    },
-  ];
-
-
+  transactionHistory: BankTransferModel[];
   displayedColumns = ['date', 'recipient', 'sender', 'title', 'amount', 'balanceAfterTransaction'];
-  dataSource = new MatTableDataSource<Element>(this.transactionData);
+
+  dataSource;
   selectedOperationType: string = '';
   dateFromPicker: Date;
   selectedPeriod: string = '';
 
-
-
-
   datePickerSelectedDate = new FormControl(null);
 
-  constructor( private authService: AuthService, private bankAccountService: BankAccountService) { }
+  constructor( private authService: AuthService, private  bankAccountService: BankAccountService, private creditCardService: CardInformationService) { }
   user: UserModel = new UserModel();
-  bankAccounts: BankAccountModel[];
-  bankAccount: BankAccountModel;
+  // bankAccounts: BankAccountModel[];
+  // bankAccount: BankAccountModel;
   ngOnInit() {
-    this.user = this.authService.loggedUser;
-    this.bankAccounts = this.bankAccountService.bankAccounts;
-    this.bankAccount = this.bankAccounts[0];
+
+    this.user= this.authService.loggedUser;
+
+      this.bankAccount= this.bankAccountService.bankAccount;
+
+      this.bankAccountService.getHistoryAccount().then(value => {
+        this.transactionHistory= this.bankAccountService.transferHistory;
+        this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
+      });
+    // });
 
   }
 

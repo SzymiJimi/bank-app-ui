@@ -32,7 +32,7 @@ import {
   MatHorizontalStepper,
   MatStepperModule,
   MatSliderModule,
-  MatSlideToggleModule, GestureConfig, MatCheckboxModule
+  MatSlideToggleModule, GestureConfig, MatCheckboxModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -81,6 +81,7 @@ import {TransactionService} from './transaction/transaction.service';
 import { CreateofferComponent } from './createoffer/createoffer.component';
 import { NewworkerComponent } from './newworker/newworker.component';
 import { EditofferComponent } from './editoffer/editoffer.component';
+import {OfferService} from "./editoffer/offer.service";
 
 
 @Injectable()
@@ -154,6 +155,7 @@ export class CustomPaginator extends MatPaginatorIntl {
   ],
   imports: [
     BrowserAnimationsModule,
+    AppRouterModule,
     ChartsModule,
     BrowserModule,
     CdkTableModule,
@@ -168,6 +170,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     BrowserModule,
 
     MatCardModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
@@ -326,6 +329,10 @@ export class CustomPaginator extends MatPaginatorIntl {
         {
           path: 'manager/edit',
           component: EditofferComponent
+        },
+        {
+          path: 'user/history',
+          component: HistoryComponent
         }
 
 
@@ -362,7 +369,8 @@ export class CustomPaginator extends MatPaginatorIntl {
     {provide: AuthService, useClass: AuthService},
     {provide: CardInformationService, useClass: CardInformationService},
     {provide: BankAccountService, useClass: BankAccountService},
-    {provide: TransactionService, useClass: TransactionService}
+    {provide: TransactionService, useClass: TransactionService},
+    {provide: OfferService, useClass: OfferService}
     ],
   bootstrap: [AppComponent]
 })
