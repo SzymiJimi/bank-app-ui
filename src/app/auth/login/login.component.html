@@ -16,9 +16,7 @@
            placeholder="Haslo" [(ngModel)]="password"  required><span class="highlight"></span><span class="bar"></span>
 
   </div>
-  <mat-spinner style="margin: auto" *ngIf="loadingData"></mat-spinner>
-
-  <button type="button" *ngIf="!loadingData" [disabled]="myForm.invalid" [ngClass]="{
+  <button type="button" [disabled]="myForm.invalid" [ngClass]="{
     'button buttonBlue': myForm.controls.password.valid,
     'invalid': myForm.controls.password.invalid
     }" (click)="login()">Zaloguj

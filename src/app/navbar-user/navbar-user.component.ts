@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-navbar-user',
@@ -10,13 +8,10 @@ import {AuthService} from '../auth/auth.service';
 })
 export class NavbarUserComponent implements OnInit {
 
-  constructor(private auth:AuthService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  logout(){
-    this.auth.logout();
-  }
 
 }

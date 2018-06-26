@@ -12,9 +12,6 @@ export class BankAccountService {
 
   bankAccounts:BankAccountModel[];
 
-  bankAccount: BankAccountModel;
-  transferHistory:BankTransferModel[];
-
   constructor(private http: HttpClient){
   }
 
@@ -28,7 +25,8 @@ export class BankAccountService {
             status.status=StatusEnum.OK;
             status.message = "Bank account loaded succesfully";
             this.bankAccounts= res as BankAccountModel[] ;
-            this.bankAccount = this.bankAccounts[0];
+            console.log("Konto bankowe");
+            console.log(this.bankAccounts);
             resolve();
           },
           error => {
@@ -43,23 +41,6 @@ export class BankAccountService {
 
 
 }
-
-public getHistoryAccount()
-{
-  var promise = new Promise((resolve, reject) =>{
-    this.http.get(environment.endpointBase +'bankAccount/history/'+this.bankAccounts[0].idBankAccount,{headers:{'Content-Type': 'application/json'}, responseType:'json'})
-      .subscribe(res => {
-          this.transferHistory= res as BankTransferModel[] ;
-          resolve();
-        },
-        error => {
-          reject();
-        });
-  } );
-
-  return promise;
-}
-
 
 
 

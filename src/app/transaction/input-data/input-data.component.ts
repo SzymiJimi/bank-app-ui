@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, MinLengthValidator, Validators} from '@angular/forms';
 import {UserModel} from '../../user/user.model';
@@ -11,7 +11,6 @@ import {BankTransferModel} from '../../model/bank-transfer.model';
 import {TransactionService} from '../transaction.service';
 import {AccountTransferModel} from '../../model/account-transfer.model';
 import {ExternalAccountModel} from '../../model/external-account.model';
-import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-input-data',
@@ -23,27 +22,24 @@ export class InputDataComponent implements OnInit {
   constructor(private router: Router,
               private authService: AuthService,
               private bankAccountService: BankAccountService,
-              private tansactionService: TransactionService) {
-  }
+              private tansactionService: TransactionService ) { }
 
-  transactionData: BankTransferModel = new BankTransferModel();
-  toAccount: AccountTransferModel = new AccountTransferModel();
-  externalAccount: ExternalAccountModel = new ExternalAccountModel(1, '123456789098765432123456');
+  transactionData: BankTransferModel= new BankTransferModel();
+  toAccount : AccountTransferModel = new AccountTransferModel();
+  externalAccount: ExternalAccountModel= new ExternalAccountModel(1, "123456789098765432123456");
 
-  @Output() sendTransactionDataEvent = new EventEmitter<BankTransferModel>();
-  @Output() sendTransactionOwner = new EventEmitter<UserModel>();
-  @Output() sendTransactionAccount = new EventEmitter<BankAccountModel>();
+  @Output()  sendTransactionDataEvent= new EventEmitter<BankTransferModel>();
+  @Output()  sendTransactionOwner= new EventEmitter<UserModel>();
+  @Output()  sendTransactionAccount= new EventEmitter<BankAccountModel>();
 
-  ownerUserData: UserModel = new UserModel();
+  ownerUserData: UserModel=new UserModel();
   bankAccounts: BankAccountModel[];
   bankAccount: BankAccountModel;
-
-  avaibleFounds: string = '452,34zł';
-  today: Date = new Date();
-  transactionTypeList = ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
-
+  avaibleFounds: string="452,34zł";
+  today: number = Date.now();
+  transactionTypeList= ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
   selected: string = 'Zewnętrzny';
-  additionalDataOk: boolean = true;
+  additionalDataOk:boolean= true;
 
   transactionForm: FormGroup;
   name: FormControl;
@@ -51,20 +47,20 @@ export class InputDataComponent implements OnInit {
   address: FormControl;
   title: FormControl;
   amount: FormControl;
-  furtherClicked: boolean = false;
-  pernamentOrderSaved = false;
+  furtherClicked: boolean=false;
+  pernamentOrderSaved=false;
 
 
-  createFormControls() {
+  createFormControls(){
 
-    this.name = new FormControl('', Validators.required);
-    this.accountNr = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{26}')]);
-    this.address = new FormControl('', Validators.required);
-    this.title = new FormControl('', Validators.required);
-    this.amount = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{1,8}.[0-9]{2}')]);
+    this.name= new FormControl('', Validators.required);
+    this.accountNr= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{26}")]);
+    this.address= new FormControl('', Validators.required);
+    this.title= new FormControl('', Validators.required);
+    this.amount= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8}.[0-9]{2}")]);
   }
 
-  createForm() {
+  createForm(){
     this.transactionForm = new FormGroup({
       name: this.name,
       accountNr: this.accountNr,
@@ -76,32 +72,42 @@ export class InputDataComponent implements OnInit {
 
   ngOnInit() {
 
-    this.ownerUserData = this.authService.loggedUser;
+    this.ownerUserData= this.authService.loggedUser;
     this.bankAccounts = this.bankAccountService.bankAccounts;
-    this.bankAccount = this.bankAccounts[0];
+    this.bankAccount= this.bankAccounts[0];
     this.createFormControls();
     this.createForm();
 
   }
 
+  // this.transactionData.avaibleFounds=this.avaibleFounds;
+  // this.transactionData.transactionDate=this.today;
+  // this.transactionData.name=this.name.value;
+  // this.transactionData.accountNr=this.accountNr.value;
+  // this.transactionData.address=this.address.value;
+  // this.transactionData.amount=this.amount.value;
+  // this.transactionData.title=this.title.value;
+  // this.furtherClicked=true;
 
-  continueTransaction() {
-    this.toAccount.idExternalAccount = this.externalAccount;
-    this.toAccount.idInternalAccount = this.bankAccountService.bankAccounts[0];
-    this.toAccount.recipientAccount = this.accountNr.value;
-    this.transactionData.fromAccount = this.bankAccount;
-    this.transactionData.dateOfOrder = this.formatDate();
-    this.transactionData.dateOfExecution = this.today.toString();
-    this.transactionData.recipient = this.name.value;
-    this.transactionData.toAccount = this.toAccount;
-    this.transactionData.address = this.address.value;
-    this.transactionData.amount = this.amount.value;
-    this.transactionData.description = this.title.value;
-    this.transactionData.state = 'CREATED';
-    this.transactionData.amountStateBefore = this.bankAccount.amount;
-    this.transactionData.type = this.transactionTypeList[0];
+  //trzeba też przesłać dane konta
 
-    this.furtherClicked = true;
+  continueTransaction(){
+    this.toAccount.idExternalAccount=this.externalAccount;
+    this.toAccount.idInternalAccount=this.bankAccountService.bankAccounts[0];
+    this.toAccount.recipientAccount="12222222222223435231234321";
+    this.transactionData.fromAccount=this.bankAccount;
+    this.transactionData.dateOfOrder=this.today.toString();
+    this.transactionData.dateOfExecution=this.today.toString();
+    this.transactionData.recipient=this.name.value;
+    this.transactionData.toAccount=this.toAccount;
+    this.transactionData.address=this.address.value;
+    this.transactionData.amount=this.amount.value;
+    this.transactionData.description=this.title.value;
+    this.transactionData.state="CREATED";
+    this.transactionData.amountStateBefore= this.bankAccount.amount;
+    this.transactionData.type= this.transactionTypeList[0];
+
+    this.furtherClicked=true;
 
     this.sendTransactionDataEvent.emit(this.transactionData);
     this.sendTransactionOwner.emit(this.ownerUserData);
@@ -110,49 +116,29 @@ export class InputDataComponent implements OnInit {
     this.tansactionService.makeTransaction(this.transactionData);
   }
 
-  formatDate(): string {
-    let day: string;
-    let month: string;
-    let year: string;
-
-    if (this.today.getDate() > 9) {
-      day = this.today.getDate().toString();
-    } else {
-      day = '0' + this.today.getDate().toString();
-    }
-
-    if (this.today.getMonth() >= 9) {
-      month = this.today.getMonth().toString();
-    } else {
-      month = '0' + this.today.getMonth().toString();
-    }
-
-    year =this.today.getFullYear().toString();
-
-    return day+"/"+month+"/"+year;
-  }
-
-  clicked(type: string, panel: MatExpansionPanel, event: Event) {
+  clicked(type: string, panel: MatExpansionPanel,  event: Event) {
     this.selected = type;
     console.log('Panel ' + panel);
     panel.close();
     console.log(this.selected);
-    if (this.selected !== ('Zewnętrzny' || '')) {
-      this.additionalDataOk = false;
-    } else {
-      this.additionalDataOk = true;
+    if( this.selected!==('Zewnętrzny' || ''))
+    {
+      this.additionalDataOk=false;
+    }else{
+      this.additionalDataOk=true;
     }
 
   }
 
   receiveMessage($event) {
-    this.pernamentOrderSaved = $event;
-    console.log('Wywołałem się');
+    this.pernamentOrderSaved= $event;
+    console.log("Wywołałem się");
     console.log(this.pernamentOrderSaved);
-    if (this.pernamentOrderSaved === true) {
-      this.additionalDataOk = true;
-    } else {
-      this.additionalDataOk = false;
+    if(this.pernamentOrderSaved===true)
+    {
+      this.additionalDataOk=true;
+    }else{
+      this.additionalDataOk=false;
     }
   }
 

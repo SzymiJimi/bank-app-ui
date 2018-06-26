@@ -4,7 +4,6 @@ import {environment} from '../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {AuthService} from './auth/auth.service';
-import {BankAccountService} from './history/bank-account.service';
 
 @Component({
   selector: 'app-root',
@@ -16,17 +15,15 @@ export class AppComponent {
   user=false;
   mode = new FormControl('over');
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public authService: AuthService, public bankAccService: BankAccountService) {
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public authService: AuthService) {
     this.checkLoggedUser();
 
   }
 
   checkLoggedUser(){
-    // if(this.authService.role===undefined){
-    //   this.router.navigate(['/login']);
-    // }
-
-    this.authService.checkLoggedUser();
+    if(this.authService.role===undefined){
+      this.router.navigate(['/login']);
+    }
   }
 
 
