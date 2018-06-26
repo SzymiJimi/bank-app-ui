@@ -15,10 +15,12 @@ export class OfferService {
   constructor(private http: HttpClient) {}
 
   public getOfferList() {
-    const status: StatusMessage = new StatusMessage();
+    let status: StatusMessage = new StatusMessage();
     const promise = new Promise((resolve, reject) => {
-      this.http.get(  'http://localhost:8080/offer/edit', {headers: {'Content-Type': 'application/json'}, responseType: 'json'})
+      this.http.get(  'http://localhost:8080/offer/1', {headers: {'Content-Type': 'application/json'}, responseType: 'json'})
         .subscribe(res => {
+            status.status=StatusEnum.OK;
+            status.message = "Offer loaded";
           this.offers = res as OfferModel[] ;
           console.log('Oferty');
           console.log(this.offers);
