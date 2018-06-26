@@ -7,7 +7,6 @@ import {TransactionService} from '../transaction.service';
 import {MatStepper} from '@angular/material';
 import {AuthService} from '../../auth/auth.service';
 import {BankAccountService} from '../../history/bank-account.service';
-import {decoratorArgument} from 'codelyzer/util/astQuery';
 
 @Component({
   selector: 'app-summary',
@@ -36,12 +35,11 @@ export class SummaryComponent implements OnInit {
   userInputCode: string;
   counter: number=0;
   resultMessage="";
-  dataLoading=false;
 
-  finishTransaction(){
-    this.dataLoading=true;
-    if(this.userInputCode===this.code){
-      this.resultMessage="Poprawny kod";
+  finishTransaction() {
+
+    if (this.userInputCode === this.code) {
+      this.resultMessage = "Poprawny kod";
       this.tansactionService.registerTransaction(this.transactionData).then(value => {
         this.accountService.getAccountList(this.authService.loggedUser.idUser);
         this.transactionStatusEvent.emit(true);
@@ -54,7 +52,7 @@ export class SummaryComponent implements OnInit {
 
     }
 
-
   }
+
 
 }

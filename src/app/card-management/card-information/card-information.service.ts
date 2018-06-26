@@ -23,6 +23,7 @@ export class CardInformationService{
           status.status=StatusEnum.OK;
           status.message = "Credit card data loaded succesfully";
           this.userCards= res as CreditCardModel[];
+          console.log(this.userCards);
         },
         error => {
           status.status=StatusEnum.ERROR;

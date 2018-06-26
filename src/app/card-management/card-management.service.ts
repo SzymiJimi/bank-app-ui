@@ -21,7 +21,7 @@ export class CardManagementService {
         responseType: 'json'
       })
         .subscribe(res => {
-
+            // message = res as string;
             resolve();
           },
           error => {

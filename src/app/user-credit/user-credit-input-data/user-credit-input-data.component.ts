@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
-import {IncomeModel} from '../../model/income.model';
 
 @Component({
   selector: 'app-user-credit-input-data',
@@ -28,21 +27,15 @@ export class UserCreditInputDataComponent implements OnInit {
   creditUserData: FormGroup;
 
   numberOfDependents: FormControl;
-  education = ['Wyższe', 'Średnie', 'Podstawowe', 'Doktor', 'Licencjat'];
-  selectedEducation;
-
-  maritalStatuses= ['Żonaty', 'Wolny', 'Zamężna', 'Wdowa/wdowiec'];
-  selectedMaritalStatus;
+  education: FormControl;
+  maritalStatus: FormControl;
 
 
   incomeFormData: FormGroup;
 
   monthlyIncome: FormControl;
-  incomeCurrencies = ['EUR', 'PLN', 'USD', 'GBR'];
-  selectedIncomeCurrency;
-
-  incomeSources= ['Umowa o pracę', 'Prowadzenie własnej działalności gospodarczej', 'Prowadzenie spółki'];
-  selectedIncomeSource;
+  incomeCurrency: FormControl;
+  incomeSource: FormControl;
 
 
   monthlyPaymentsForm: FormGroup;
@@ -89,12 +82,14 @@ export class UserCreditInputDataComponent implements OnInit {
 
     this.creditUserData = new FormGroup({
       numberOfDependents: this.numberOfDependents,
-
+      // education: this.education,
+      // maritalStatus: this.maritalStatus
     });
 
     this.incomeFormData= new FormGroup( {
       monthlyIncome: this.monthlyIncome,
-
+      // incomeCurrency: this.incomeCurrency,
+      // incomeSource: this.incomeSource
     });
 
     this.monthlyPaymentsForm = new FormGroup({
@@ -106,21 +101,5 @@ export class UserCreditInputDataComponent implements OnInit {
   ngOnInit() {
     this.createFormControls();
     this.createForm();
-  }
-
-  sendData() {
-    let incomeData: IncomeModel;
-    incomeData.sourceOfIncome = this.selectedIncomeSource;
-    incomeData.netIncome = this.monthlyIncome.value;
-    incomeData.currencyOfIncome = this.selectedIncomeCurrency;
-    incomeData.numberOfDependents = this.numberOfDependents.value;
-    incomeData.formOfEmployment = this.selectedIncomeSource;
-    incomeData.liabilitiesAndExpenses = this.monthlyLoansLiabilities.value;
-    incomeData.monthlyFees = this.monthlyHouseholdPayments.value;
-    incomeData.monthlyBenefits = (this.monthlyIncome.value-this.monthlyHouseholdPayments.value).toString();
-    incomeData.monthlyInstalmentsInOtherInstitutions = this.monthlyMaintenancePayments.value;
-
-
-
   }
 }

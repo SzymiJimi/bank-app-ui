@@ -31,7 +31,7 @@ import {
   MatHorizontalStepper,
   MatStepperModule,
   MatSliderModule,
-  MatSlideToggleModule, GestureConfig, MatCheckboxModule, MatProgressSpinnerModule
+  MatSlideToggleModule, GestureConfig, MatCheckboxModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -165,7 +165,6 @@ export class CustomPaginator extends MatPaginatorIntl {
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,

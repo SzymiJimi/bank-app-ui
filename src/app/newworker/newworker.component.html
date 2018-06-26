@@ -1,0 +1,184 @@
+<div style="width:600px; text-align:center; margin:0 auto;">
+  <h3>Zarejstruj użytkownika</h3>
+  <form [formGroup]="registryForm" class="register-form" novalidate>
+    <div class="form-group">
+
+      <input type="text"
+             class="form-control"
+             placeholder="Imię"
+             formControlName="name"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" name.invalid">
+          Nazwa jest wymagana...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="name.valid">Nazwa poprawna</p>
+      </div>
+    </div>
+    <div class="form-group ">
+
+      <input type="text"
+             class="form-control"
+             formControlName="surname"
+             placeholder="Nazwisko"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" surname.invalid">
+          Nazwisko jest wymagane...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="surname.valid">Nazwisko poprawna</p>
+      </div>
+
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             class="form-control"
+             formControlName="peselNumber"
+             placeholder="Pesel"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" peselNumber.invalid">
+          Pesel jest wymagany...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="peselNumber.valid">Pesel poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             id="idCardNumber"
+             class="form-control"
+             formControlName="idCardNumber"
+             placeholder="Id karty"
+
+
+             required>
+      <div
+        class=form-control-feedback>
+
+      </div>
+
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             class="form-control"
+             formControlName="citizenship"
+             placeholder="Narodowość"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" citizenship.invalid">
+          Pole jest wymagane...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="citizenship.valid">Pole poprawne</p>
+      </div>
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             class="form-control"
+             formControlName="mothersName"
+             placeholder="Imie matki"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" mothersName.invalid">
+          Pole jest wymagane...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="mothersName.valid">Pole poprawne</p>
+      </div>
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             class="form-control"
+             formControlName="fathersName"
+             placeholder="Imie ojca"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" fathersName.invalid">
+          Pole jest wymagane...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="fathersName.valid">Pole poprawne</p>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+      <input type="tel"
+             class="form-control"
+             formControlName="telepohoneNumber"
+             placeholder="Telefon"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" telepohoneNumber.invalid">
+          Telefon jest wymagany...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="telepohoneNumber.valid">Telefon poprawny</p>
+      </div>
+    </div>
+
+    <div class="form-group" >
+
+      <input type="text"
+             class="form-control"
+             formControlName="mothersMaidenName"
+             placeholder="Nazwisko panieńskie"
+             required>
+      <div
+        class=form-control-feedback>
+        <p
+          *ngIf=" mothersMaidenName.invalid">
+          Pole jest wymagane...
+        </p>
+      </div>
+      <div class=form-control-feedback>
+        <p *ngIf="mothersMaidenName.valid">Pole poprawne</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+    </div>
+    <button type="submit"  (click)="sendManager()" class="btn btn-success "[disabled]="registryForm.invalid"
+    >Zarejstruj Menagera
+    </button>
+    <button type="submit"  (click)="sendConsultant()" class="btn btn-success "[disabled]="registryForm.invalid"
+    >Zarejstruj Konsulatanta
+    </button>
+  </form>
+</div>
