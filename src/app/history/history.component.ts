@@ -58,11 +58,15 @@ export class HistoryComponent implements OnInit {
     this.creditCard= this.creditCards[0];
     console.log("Odczytana osoba:");
     console.log(this.user);
-    // this.user.person.name = 'Szymon';
-    // this.user.person.surname = 'Jarząbek';
     let date: Date = new Date();
 
-    this.dataSource.paginator = this.paginator;
+    this.bankAccountService.getHistoryAccount().then(value => {
+      this.transactionHistory= this.bankAccountService.transferHistory;
+      this.transactionHistory.reverse();
+      this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
+      this.dataSource.paginator = this.paginator;
+    });
+
 
     if (date.getMonth() < 6) {
       this.minDate.setFullYear(date.getFullYear() - 1);
