@@ -38,6 +38,8 @@ export class AuthService{
         status.message = "Zalogowano pomyslnie";
           this.loggedUser=  res.body as UserModel;
           this.getPersonData();
+
+
       },
       error => {
         status.status=StatusEnum.ERROR;

@@ -5,13 +5,13 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StatusMessage} from '../model/status-message.model';
 import {reject, resolve} from 'q';
-import {BankTransferModel} from '../model/bank-transfer.model';
 
 
 @Injectable()
 export class BankAccountService {
 
   bankAccounts:BankAccountModel[];
+
   bankAccount: BankAccountModel;
   transferHistory:BankTransferModel[];
 
@@ -59,6 +59,7 @@ public getHistoryAccount()
 
   return promise;
 }
+
 
 
 

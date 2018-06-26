@@ -12,9 +12,6 @@ import {ChangeAddressComponent} from '../dialog/change-address/change-address.co
 import {PersonModel} from '../../model/person.model';
 import {CreditCardModel} from '../../model/credit-card.model';
 import {BankAccountModel} from '../../model/bank-account.model';
-import {CardInformationService} from './card-information.service';
-import {BankAccountService} from '../../history/bank-account.service';
-import {AuthService} from '../../auth/auth.service';
 
 
 @Component({
@@ -29,32 +26,45 @@ export class CardInformationComponent implements OnInit {
    // $ : any;
 
 
-  constructor(public dialog: MatDialog,
-              elem: ElementRef,
-              renderer: Renderer2,
-              private cardService: CardInformationService,
-              private accountService: BankAccountService,
-              private authService: AuthService
-  ) {
+  constructor(public dialog: MatDialog, elem: ElementRef, renderer: Renderer2) {
+    this.tmpVal=this.tmpVal+'px';
+    this.ownerPersonData.name='Szymon';
+    this.ownerPersonData.surname='Jarząbek';
   }
 
   ngOnInit() {
 
-    this.creditCard= this.cardService.userCards[0];
-    console.log(this.creditCard);
-    this.accountData = this.accountService.bankAccounts[0];
-    this.ownerUserData= this.authService.loggedUser;
+    this.ownerPersonData.name='Szymon';
+    this.ownerPersonData.surname='Jarząbek';
+    this.ownerUserData.email='rekas1@tlen.pl';
+    this.bankAccount.accountNumber= "07 1020 2629 0000 9202 0321 1018";
+
+
+    this.cardData.number= '3423 1234 3456 8767';
+    this.cardData.expirationDate= '03/22' ;
+    this.cardData.owner= this.ownerUserData;
+    this.cardData.status = 'Aktywna';
+    this.cardData.dailyWithdrawalLimit= '500.00';
+    this.cardData.dailyOperationLimit= '500.00';
+    this.cardData.dailyInternetOperationsLimit= '500.00';
+    this.cardData.founds='784.24zł' ;
+    this.cardData.type = 'mastercard'.toUpperCase();
+    this.address= 'Szczechowice 22, 34-534 Szczechów'
 
   }
 
+  ownerPersonData: PersonModel = new PersonModel();
   ownerUserData: UserModel=new UserModel();
   creditCard: CreditCardModel = new CreditCardModel();
-  accountData: BankAccountModel;
-
-
+  bankAccount: BankAccountModel = new BankAccountModel();
+  cardData: CardModel= new CardModel();
   address: string;
+
   title: string;
   messaage: string;
+
+
+
   // animal: string;
   pin: string;
 
@@ -65,7 +75,7 @@ export class CardInformationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed, pin: ');
+      console.log('The dialog was closed');
       this.pin = result;
     });
   }
@@ -73,7 +83,7 @@ export class CardInformationComponent implements OnInit {
   openBlockDialog(): void {
     let dialogRef = this.dialog.open(BlockCardComponent, {
       width: '500px',
-      data: { cardNumber: this.creditCard.creditCardNumber, cardOwner: this.ownerUserData.idPerson.name+" "+this.ownerUserData.idPerson.surname, cardName: this.creditCard.type}
+      data: { cardNumber: this.cardData.number, cardOwner: this.cardData.owner.idPerson.name+" "+this.cardData.owner.idPerson.surname, cardName: this.cardData.type}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -86,11 +96,11 @@ export class CardInformationComponent implements OnInit {
     let dialogRef = this.dialog.open(CancelCardComponent, {
       width: '500px',
       data: {
-        cardNumber: this.creditCard.creditCardNumber,
-        cardOwner: this.ownerUserData.idPerson.name+" "+this.ownerUserData.idPerson.surname,
-        cardName: this.creditCard.type,
-        expirationDate: this.creditCard.expirationDate,
-        status: this.creditCard.state }
+        cardNumber: this.cardData.number,
+        cardOwner: this.cardData.owner.idPerson.name+" "+this.cardData.owner.idPerson.surname,
+        cardName: this.cardData.type,
+        expirationDate: this.cardData.expirationDate,
+        status: this.cardData.status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -107,9 +117,9 @@ export class CardInformationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.creditCard.dayLimit = result.dailyWithdrawalLimit;
-      this.creditCard.dayLimit = result.dailyOperationLimit;
-      this.creditCard.dayLimit = result.dailyInternetOperationsLimit;
+      this.cardData.dailyWithdrawalLimit = result.dailyWithdrawalLimit;
+      this.cardData.dailyOperationLimit = result.dailyOperationLimit;
+      this.cardData.dailyInternetOperationsLimit = result.dailyInternetOperationsLimit;
     });
   }
 
@@ -128,7 +138,7 @@ export class CardInformationComponent implements OnInit {
       console.log('The dialog was closed');
       this.address = result.city+ " "+ result.houseNr+", "+ result.postalCode+" "+result.city;
       this.ownerUserData.email=result.email;
-      this.creditCard.dayLimit = result.dailyInternetOperationsLimit;
+      this.cardData.dailyInternetOperationsLimit = result.dailyInternetOperationsLimit;
     });
 
 

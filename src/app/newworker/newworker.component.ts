@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {UserModel} from '../user/user.model';
-import {send} from 'q';
-import {Jsonp} from "@angular/http";
-import {ClientModel} from "../model/client.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {UserModel} from "../user/user.model";
 
 @Component({
-  selector: 'app-registry',
-  templateUrl: './registry.component.html',
-  styleUrls: ['./registry.component.css']
+  selector: 'app-newworker',
+  templateUrl: './newworker.component.html',
+  styleUrls: ['./newworker.component.css']
 })
-export class RegistryComponent implements OnInit {
+export class NewworkerComponent implements OnInit {
+
   registryForm: FormGroup;
   emailForm: FormGroup;
   name: FormControl;
@@ -22,7 +20,7 @@ export class RegistryComponent implements OnInit {
   mothersMaidenName: FormControl;
   // login: FormControl;
   // password: FormControl;
- // email: FormControl;
+  // email: FormControl;
   peselNumber: FormControl;
   telepohoneNumber: FormControl;
   idcardNumber: FormControl;
@@ -37,7 +35,6 @@ export class RegistryComponent implements OnInit {
 
     this.surname = new FormControl('', Validators.required);
     this.mothersMaidenName = new FormControl('', Validators.required);
-    //this.email = new FormControl('' , Validators.required);
     this.telepohoneNumber = new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]);
     this.peselNumber = new FormControl('', [Validators.required,  Validators.pattern('^[0-9]{11}')] );
   }
@@ -54,25 +51,25 @@ export class RegistryComponent implements OnInit {
       // password: this.password,
       // email: this.email,
       peselNumber: this.peselNumber,
-     // email: this.email,
+      // email: this.email,
       telepohoneNumber: this.telepohoneNumber,
       mothersMaidenName: this.mothersMaidenName
     });
   }
 
- // // createemailForm() {
- //    this.emailForm = new FormGroup({
- //      email: this.email
- //  });
- //  }
+  // // createemailForm() {
+  //    this.emailForm = new FormGroup({
+  //      email: this.email
+  //  });
+  //  }
 
 
-  send() {
+  sendManager() {
     const data = JSON.stringify(this.registryForm.value);
 
 
     console.log(data);
-    this.http.post('http://localhost:8080/person/new', JSON.parse(data) ,
+    this.http.post('http://localhost:8080/worker/new', JSON.parse(data) ,
       {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json'
@@ -81,36 +78,33 @@ export class RegistryComponent implements OnInit {
 
         console.log('res w send' + JSON.stringify(res));
         res as UserModel;
-        this.save(res);
+        this.savePersonManager(res);
 
 
       });
   }
 
 
-  save(res) {
-      console.log('jestem w save ' + JSON.stringify(res));
-   // const userEmail = this.registryForm.controls['email'].value;
+
+  savePersonManager(res) {
+    console.log('jestem w save ' + JSON.stringify(res));
+    // const userEmail = this.registryForm.controls['email'].value;
     // this.res.email = userEmail
-    this.http.post('http://localhost:8080/person/save', res ,
+    this.http.post('http://localhost:8080/worker/savemanager', res ,
       {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json'
       })
       .subscribe(response => {
-        response as ClientModel;
-        this.saveClient(response);
+        this.saveManager(response);
       });
   }
 
+  saveManager(res) {
 
+    console.log('jestem w saveManager ' + JSON.stringify(res));
 
-
-  saveClient(res) {
-
-    console.log('jestem w saveclient ' + JSON.stringify(res));
-
-    this.http.post('http://localhost:8080/person/client', (res) ,
+    this.http.post('http://localhost:8080/worker/manager', (res) ,
       {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json'
@@ -118,12 +112,57 @@ export class RegistryComponent implements OnInit {
       .subscribe(res => console.log(res));
   }
 
+  sendConsultant(){
+    const data = JSON.stringify(this.registryForm.value);
 
+
+    console.log(data);
+    this.http.post('http://localhost:8080/worker/new', JSON.parse(data) ,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        responseType: 'json'
+      })
+      .subscribe(res => {
+
+        console.log('res w send' + JSON.stringify(res));
+        res as UserModel;
+        this.savePersonConsultant(res);
+
+
+      });
+  }
+
+
+
+  savePersonConsultant(res) {
+    console.log('jestem w save ' + JSON.stringify(res));
+    // const userEmail = this.registryForm.controls['email'].value;
+    // this.res.email = userEmail
+    this.http.post('http://localhost:8080/worker/saveconsultant', res ,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        responseType: 'json'
+      })
+      .subscribe(response => {
+        this.saveConsultant(response);
+      });
+  }
+  saveConsultant(res) {
+
+    console.log('jestem w saveManager ' + JSON.stringify(res));
+
+    this.http.post('http://localhost:8080/worker/consultant', (res) ,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        responseType: 'json'
+      })
+      .subscribe(res => console.log(res));
+  }
 
   ngOnInit() {
     this.createFormControls();
     this.createForm();
-   // this.createemailForm();
+    // this.createemailForm();
 
   }
   constructor( private http: HttpClient) {

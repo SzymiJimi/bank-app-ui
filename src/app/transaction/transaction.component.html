@@ -18,15 +18,13 @@
                  (transactionStatusEvent)="receivedStatus($event)"
                  [transactionData]="transactionData"
                   [ownerUserData]="ownerUser"
-                  [bankAccountData]="ownerSelectedAccount"
-                 [stepper]="stepper">
+                  [bankAccountData]="ownerSelectedAccount">
     </app-summary>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Koniec!</ng-template>
     <app-final-message
-      *ngIf="transactionStatus"
-    [stepper]="stepper">
+      *ngIf="transactionStatus">
     </app-final-message>
   </mat-step>
 </mat-horizontal-stepper>

@@ -6,8 +6,8 @@
         Dane przelewającego:
       </small>
     </p>
-    <h5 class="card-title">{{ownerUserData?.idPerson.name+" "+ownerUserData?.idPerson.surname}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{transactionData.toAccount.recipientAccount }}</h6>
+    <h5 class="card-title">{{ownerUserData.idPerson.name+" "+ownerUserData.idPerson.surname}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{transactionData.toAccount | accountNumberPipe}}</h6>
     <p class="card-text mb-2  info-style ">Dostępne środki: <span class="mb-1 font-weight-bold">{{bankAccountData.amount}}</span>
     </p>
     <!--<p class="card-text mb-2">Kwota przelewu: <span class="mb-1">{{transactionData.}}</span></p>-->
@@ -21,7 +21,7 @@
       </small>
     </p>
     <h5 class="card-title">{{transactionData.recipient}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{transactionData.toAccount.recipientAccount}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{transactionData.toAccount | accountNumberPipe}}</h6>
     <p class="card-text mb-2  info-style ">Adres odbiorcy: <span class="mb-1 font-weight-bold">{{transactionData.address}}</span>
     </p>
     <p class="card-text mb-2  info-style">Kwota przelewu: <span
@@ -32,13 +32,11 @@
     <div class="form-group row ">
       <label for="inputPassword" class="col-sm-2 col-form-label" style="display: inline-table; white-space: nowrap">Podaj
         kod potwierdzający: </label>
+
       <input type="text" class="form-control" [(ngModel)]="userInputCode" style="width: 30%;" id="inputPassword" placeholder="Kod">
-      <!--matStepperNext-->
 
       <button *ngIf="counter<3" [disabled]="dataLoading" class="btn btn-primary" style="margin-left: 2%" (click)="finishTransaction(stepper)">Zakończ</button>
       <button *ngIf="counter>=3" class="btn btn-primary" style="margin-left: 2%" routerLink="/user">Strona główna</button>
     </div>
-    <label *ngIf="counter<3" for="inputPassword" class="col-form-label" >{{resultMessage}} Prób: {{3-counter}}/3</label>
-    <label *ngIf="counter>=3" for="inputPassword" class="col-form-label" >Nie można wykonać transakcji, zbyt dużo prób...</label>
   </div>
 </div>

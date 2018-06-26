@@ -9,8 +9,6 @@ import {BankAccountService} from './bank-account.service';
 import {CreditDataService} from '../user-credit/credit-data.service';
 import {CreditCardModel} from '../model/credit-card.model';
 import {CardInformationService} from '../card-management/card-information/card-information.service';
-import {BankTransferModel} from '../model/bank-transfer.model';
-import {subscribeToIterable} from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -19,20 +17,19 @@ import {subscribeToIterable} from 'rxjs/internal-compatibility';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  private transactionData: any;
 
   constructor(private authService: AuthService, private  bankAccountService: BankAccountService, private creditCardService: CardInformationService) {
 
   }
 
 
-  transactionHistory: BankTransferModel[];
 
   displayedColumns = ['date', 'recipient', 'sender', 'title', 'amount', 'balanceAfterTransaction'];
-
-  selectedOperationType: string = '';
+  dataSource = new MatTableDataSource<Element>(this.transactionData);
+  selectedOperationType = '';
   dateFromPicker: Date;
-  selectedPeriod: string = '';
-  today: Date = new Date();
+  selectedPeriod = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -45,21 +42,23 @@ export class HistoryComponent implements OnInit {
   bankAccount: BankAccountModel;
   creditCards: CreditCardModel[];
   creditCard: CreditCardModel;
+  bankAccountNr: string = '07 1020 2629 0000 9202 0321 1018';
+  balance: string = '452.34zł';
   blockedFounds: number = 23.15;
+  debitLimit: string = '500zł';
+  avaibleFounds: string = '952.34zł';
   datePickerSelectedDate = new FormControl(null);
-  dataSource;
+
 
   ngOnInit() {
-    console.log(this.today.getMonth().toString(2));
-
     this.user = this.authService.loggedUser;
-    this.bankAccounts=  this.bankAccountService.bankAccounts;
+    this.bankAccounts= this.bankAccountService.bankAccounts;
     this.bankAccount= this.bankAccounts[0];
     this.creditCards= this.creditCardService.userCards;
     this.creditCard= this.creditCards[0];
+    console.log("Odczytana osoba:");
+    console.log(this.user);
     let date: Date = new Date();
-
-
 
     this.bankAccountService.getHistoryAccount().then(value => {
       this.transactionHistory= this.bankAccountService.transferHistory;
@@ -67,6 +66,7 @@ export class HistoryComponent implements OnInit {
       this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
       this.dataSource.paginator = this.paginator;
     });
+
 
     if (date.getMonth() < 6) {
       this.minDate.setFullYear(date.getFullYear() - 1);
@@ -167,13 +167,13 @@ export class HistoryComponent implements OnInit {
 
     if (this.dateFromPicker !== null && this.dateFromPicker !== undefined) {
 
-      this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
-          return this.compateDates(data.dateOfOrder, this.dateFromPicker);
+      this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
+          return this.compateDates(data.date, this.dateFromPicker);
         }
       ));
 
       if (this.selectedOperationType !== '') {
-        this.dataSource = new MatTableDataSource<BankTransferModel>(this.dataSource.data.filter(data => {
+        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data.filter(data => {
             return this.checkTypeTransaction(data.amount);
           }
         ));
@@ -181,22 +181,22 @@ export class HistoryComponent implements OnInit {
       this.resetSelects();
     } else {
       if (this.selectedPeriod !== '' && this.selectedOperationType !== '') {
-        this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
-            return this.compateDateWithTimePeriod(data.dateOfOrder);
+        this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
+            return this.compateDateWithTimePeriod(data.date);
           }
         ));
-        this.dataSource = new MatTableDataSource<BankTransferModel>(this.dataSource.data.filter(data => {
+        this.dataSource = new MatTableDataSource<Element>(this.dataSource.data.filter(data => {
             return this.checkTypeTransaction(data.amount);
           }
         ));
       } else {
         if (this.selectedOperationType !== '') {
-          this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory.filter(data => {
-              return this.checkTypeTransaction(data.dateOfOrder);
+          this.dataSource = new MatTableDataSource<Element>(this.transactionData.filter(data => {
+              return this.checkTypeTransaction(data.amount);
             }
           ));
-        }else{
-          this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
+        } else {
+          this.dataSource = new MatTableDataSource<Element>(this.transactionData);
         }
       }
       this.resetSelects();

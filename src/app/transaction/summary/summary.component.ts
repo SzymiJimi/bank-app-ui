@@ -9,6 +9,7 @@ import {AuthService} from '../../auth/auth.service';
 import {BankAccountService} from '../../history/bank-account.service';
 import {decoratorArgument} from 'codelyzer/util/astQuery';
 
+
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -20,16 +21,13 @@ export class SummaryComponent implements OnInit {
   @Input() transactionData: BankTransferModel=new BankTransferModel();
   @Input() ownerUserData: UserModel=new UserModel();
   @Input() bankAccountData: BankAccountModel=new BankAccountModel();
-  @Input() stepper: MatStepper;
 
   @Output() transactionStatusEvent= new EventEmitter<boolean>();
+
 
   constructor(private tansactionService: TransactionService, private authService: AuthService, private accountService:BankAccountService) { }
 
   ngOnInit() {
-    this.tansactionService.makeTransaction(this.transactionData).then(value => {
-      this.code = value as string;
-    });
   }
 
   code:string;
@@ -55,6 +53,10 @@ export class SummaryComponent implements OnInit {
     }
 
 
+
+  finishTransaction(){
+    console.log("Jestem tutaj i emituje status!");
+    this.transactionStatusEvent.emit(true);
   }
 
 }

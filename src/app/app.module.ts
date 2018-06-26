@@ -11,6 +11,7 @@ import { SummaryComponent } from './transaction/summary/summary.component';
 import { InputDataComponent } from './transaction/input-data/input-data.component';
 import { FinalMessageComponent } from './transaction/final-message/final-message.component';
 import { HistoryComponent } from './history/history.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatTableModule,
   MatPaginatorModule,
@@ -35,7 +36,7 @@ import {
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkTableModule} from '@angular/cdk/table';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { CardManagementComponent } from './card-management/card-management.component';
 import { CardInformationComponent } from './card-management/card-information/card-information.component';
 import { DialogComponent } from './card-management/dialog/dialog.component';
@@ -78,8 +79,9 @@ import {BankAccountService} from './history/bank-account.service';
 import {BankAccountNumberPipe} from './pipe/bank-account-number.pipe';
 import {TransactionService} from './transaction/transaction.service';
 import { CreateofferComponent } from './createoffer/createoffer.component';
-import {AddressModel} from './model/address.model';
-import {CardManagementService} from './card-management/card-management.service';
+import { NewworkerComponent } from './newworker/newworker.component';
+import { EditofferComponent } from './editoffer/editoffer.component';
+import {OfferService} from "./editoffer/offer.service";
 
 
 @Injectable()
@@ -147,9 +149,12 @@ export class CustomPaginator extends MatPaginatorIntl {
     InvestmentsComponent,
     NewInvestmentComponent,
     CreateofferComponent,
+    NewworkerComponent,
+    EditofferComponent,
 
   ],
   imports: [
+    BrowserAnimationsModule,
     AppRouterModule,
     ChartsModule,
     BrowserModule,
@@ -163,7 +168,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatSelectModule,
     MatSliderModule,
     BrowserModule,
-    BrowserAnimationsModule,
+
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
@@ -177,11 +182,163 @@ export class CustomPaginator extends MatPaginatorIntl {
     MatDatepickerModule,
     MatSlideToggleModule,
     MatGridListModule,
-    BrowserAnimationsModule,
+
     HttpClientModule,
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(
+      [{
+        path: 'history',
+        component: HistoryComponent
+      },
+        {
+          path: 'user/transaction',
+          component: TransactionComponent
+        },
+        {
+          path: 'card',
+          component: CardManagementComponent
+        },
+        {
+          path: 'card/changepin',
+          component: ChangePinComponent
+        },
+        {
+          path: 'card/blockcard',
+          component: BlockCardComponent
+        },
+        {
+          path: '',
+          component: HomepageComponent
+        },
+        {
+          path: 'login',
+          component: LoginComponent
+        },
+
+        {
+          path: 'manager/sing-up',
+          component: RegistryComponent
+        },
+        {
+          path: 'findClient',
+          component: FindclientComponent
+        },
+        {
+          path: 'user',
+          component: UserPageComponent
+        },
+        {
+          path: 'favorite',
+          component: FavoriteComponent
+        },
+        {
+          path: 'loginhistory',
+          component: LoginhistoryComponent
+        },
+        {
+          path: 'cashwithdrawl',
+          component: CashwithdrawalComponent
+        },
+        {
+          path: 'registry',
+          component: RegistryComponent
+        },
+        {
+          path: 'user/history',
+          component: HistoryComponent
+        },
+        {
+          path: 'user/transaction',
+          component: TransactionComponent
+        },
+        {
+          path: 'user/card',
+          component: CardManagementComponent
+        },
+        {
+          path: 'user/credits',
+          component: UserCreditsComponent
+        },
+        {
+          path: 'user/card/changepin',
+          component: ChangePinComponent
+        },
+        {
+          path: 'user/card/blockcard',
+          component: BlockCardComponent
+        },
+        {
+          path: 'user/credit/new',
+          component: UserCreditComponent
+        },
+        {
+          path: 'user/accountManage',
+          component: UserManageAccountComponent
+        },
+        {
+          path: "",
+          component: HomepageComponent
+        },
+        {
+          path: "login",
+          component: LoginComponent
+        },
+
+        {
+          path: "signIn",
+          component: RegistryComponent
+        },
+        {
+          path: "findClient",
+          component: FindclientComponent
+        },
+        {
+          path: "user",
+          component: UserPageComponent
+        },
+        {
+          path: 'manager/home',
+          component: ManagerHomeComponent
+        },
+        {
+          path: 'manager/stats',
+          component: ManagerStatsComponent
+        },
+        {
+          path: 'user/investment',
+          component: InvestmentsComponent
+        },
+        {
+          path: 'user/investment/new',
+          component: NewInvestmentComponent
+        },
+        {
+          path: 'manager',
+          component: ManagerHomeComponent
+        },
+        {
+          path: 'manager/offer',
+          component: CreateofferComponent
+        },
+        {
+          path: 'manager/newworker',
+          component: NewworkerComponent
+        },
+        {
+          path: 'manager/edit',
+          component: EditofferComponent
+        },
+        {
+          path: 'user/history',
+          component: HistoryComponent
+        }
+
+
+      ]
+    ),
+
 
   ],
   exports: [
@@ -213,7 +370,7 @@ export class CustomPaginator extends MatPaginatorIntl {
     {provide: CardInformationService, useClass: CardInformationService},
     {provide: BankAccountService, useClass: BankAccountService},
     {provide: TransactionService, useClass: TransactionService},
-    {provide: CardManagementService, useClass: CardManagementService}
+    {provide: OfferService, useClass: OfferService}
     ],
   bootstrap: [AppComponent]
 })
