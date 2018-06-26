@@ -25,18 +25,17 @@ export class AuthService{
 
   loggedUser: UserModel;
   personData: PersonModel;
-  unLogged: boolean=false;
   role : string;
   permissionId: number;
 
   public loginUser(credentials: CredentialsModel):StatusMessage{
     let status: StatusMessage = new StatusMessage();
-    this.http.post<any>(environment.endpointBase +'login',JSON.stringify(credentials),{observe: 'response', headers:{'Content-Type': 'application/json'},withCredentials:true, responseType:'json'})
-      .subscribe( res => {
-        // (json: Object) => {
+    this.http.post(environment.endpointBase +'login',JSON.stringify(credentials),{headers:{'Content-Type': 'application/json'}, responseType:'json'})
+      .subscribe((json: Object) => {
         status.status=StatusEnum.OK;
         status.message = "Zalogowano pomyslnie";
-          this.loggedUser=  res.body as UserModel;
+          this.loggedUser=  new UserModel().fromJSON(json);
+          console.log(this.loggedUser);
           this.getPersonData();
 
 
@@ -53,7 +52,6 @@ export class AuthService{
       let message = new JsonMessageModel();
       this.http.get(environment.endpointBase +'login/'+this.loggedUser.idUser,{headers:{'Content-Type': 'application/json'}, responseType:'json'})
         .subscribe(res => {
-
             status.status=StatusEnum.OK;
             status.message = "User data loaded succesfully";
             message = res as JsonMessageModel;
@@ -63,9 +61,8 @@ export class AuthService{
             {
               this.bankAccountService.getAccountList(this.loggedUser.idUser).then((value => {
                 this.cardService.getCardInformation(this.bankAccountService.bankAccounts[0].idBankAccount);
-                this.router.navigate(['/user']);
               }));
-
+              this.router.navigate(['/user']);
             }else{
               if(this.role==='MANAGER')
               {
@@ -85,35 +82,17 @@ export class AuthService{
           });
   }
 
-  public checkLoggedUser(){
+  public saveLoginInfo(){
     let status: StatusMessage = new StatusMessage();
-    this.http.get(environment.endpointBase +'login',{observe: 'response', headers:{'Content-Type': 'application/json'},withCredentials:true, responseType:'json'})
+    this.http.post(environment.endpointBase +'login/history',JSON.stringify(this.loggedUser.idUser),{headers:{'Content-Type': 'application/json'}, responseType:'json'})
       .subscribe(res => {
           status.status=StatusEnum.OK;
-          this.loggedUser=  res.body as UserModel;
-          this.getPersonData();
+          status.message = "Dodano logowanie do historii";
         },
         error => {
-          this.unLogged=true;
-          this.router.navigate(['/login']);
+          status.status=StatusEnum.ERROR;
+          status.message= "Niepoprawne dodanie do historii";
         });
-  }
-
-  public logout(){
-    this.http.get(environment.endpointBase +'login/out',{observe: 'response', headers:{'Content-Type': 'application/json'},withCredentials:true, responseType:'json'})
-      .subscribe(res => {
-          this.loggedUser=null;
-          this.bankAccountService.bankAccount=null;
-          this.bankAccountService.bankAccounts=null;
-          this.cardService.userCards=null;
-          this.personData=null;
-          this.role=null;
-          this.router.navigate(['/login'])
-        },
-        error => {
-
-        });
-
   }
 
 }

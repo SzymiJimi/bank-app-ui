@@ -32,11 +32,8 @@
     <div class="form-group row ">
       <label for="inputPassword" class="col-sm-2 col-form-label" style="display: inline-table; white-space: nowrap">Podaj
         kod potwierdzający: </label>
-
-      <input type="text" class="form-control" [(ngModel)]="userInputCode" style="width: 30%;" id="inputPassword" placeholder="Kod">
-
-      <button *ngIf="counter<3" [disabled]="dataLoading" class="btn btn-primary" style="margin-left: 2%" (click)="finishTransaction(stepper)">Zakończ</button>
-      <button *ngIf="counter>=3" class="btn btn-primary" style="margin-left: 2%" routerLink="/user">Strona główna</button>
+      <input type="text" class="form-control" style="width: 30%;" id="inputPassword" placeholder="Kod">
+      <button matStepperNext class="btn btn-primary" style="margin-left: 2%" (click)="finishTransaction()">Zakończ</button>
     </div>
   </div>
 </div>

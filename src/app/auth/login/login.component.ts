@@ -15,9 +15,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   responseMessage: StatusMessage= new StatusMessage();
-  username='client';
-  password='client';
-  loadingData=false;
+  username='manager';
+  password='manager';
 
   constructor( private auth: AuthService, private router: Router) { }
 
@@ -33,9 +32,13 @@ export class LoginComponent implements OnInit {
 
 
   login(){
+    console.log("Login: "+ this.username+" hasło: "+ this.password);
     let credentials : CredentialsModel= new CredentialsModel(this.username, this.password);
     this.responseMessage = this.auth.loginUser(credentials);
-      this.loadingData= true;
+      setTimeout(()=>{
+
+      },1000);
+
 
 
 
