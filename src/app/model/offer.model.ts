@@ -5,7 +5,7 @@ export class OfferModel extends Serializable {
   idBankAccountOffer: number;
   name: string;
   bankTransferPrice: number;
-  accountManagementPrice: number;
+  accountManagmentPrice: number;
   cardPrice: number;
   stateOfOffer: string;
   idManager: number;

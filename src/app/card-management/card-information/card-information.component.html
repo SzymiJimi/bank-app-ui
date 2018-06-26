@@ -3,8 +3,8 @@
     <h5 class="card-header">Zarządzanie kartą</h5>
   <div class="card overflow-data" style="width: 100%;">
     <div class="card-body">
-      <h5 class="card-title">Karta {{cardData.type +" "+ cardData.number}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Dostępne środki: {{cardData.founds}}</h6>
+      <h5 class="card-title">Karta {{creditCard.creditCardNumber}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Dostępne środki: {{accountData.amount}}</h6>
     </div>
   </div>
   <div class="card overflow-data" style="width: 100%;">
@@ -15,29 +15,30 @@
             <h6 class="card-title">Podstawowe informacje: </h6>
             <ul class="list-group list-group-flush">
               <li class="list-group-item card-info-data">Nazwa karty: <span
-                class="text-muted user-details-info">Moja nazwa karty ziomek</span></li>
+                class="text-muted user-details-info">Moja nazwa karty </span></li>
               <li class="list-group-item card-info-data">Posiadacz karty:
                 <span class="text-muted user-details-info">
-                  {{ownerUserData.name+ " "+ ownerUserData.surname}}
+                  {{ownerUserData.idPerson.name+ " "+ ownerUserData.idPerson.surname}}
                 </span>
               </li>
               <li class="list-group-item card-info-data">Numer karty: <span
-                class="text-muted user-details-info">{{cardData.number}}</span>
+                class="text-muted user-details-info">{{creditCard.creditCardNumber}}</span>
               </li>
               <li class="list-group-item card-info-data">Data ważności:<span
-                class="text-muted user-details-info">{{cardData.expirationDate}}</span>
+                class="text-muted user-details-info">{{creditCard.expirationDate}}</span>
               </li>
               <li class="list-group-item card-info-data">Status karty: <span
-                class="text-muted user-details-info">{{cardData.status}}</span>
+                class="text-muted user-details-info">{{creditCard.state}}</span>
               </li>
               <li class="list-group-item card-info-data">Rachunek dla którego wydano kartę: <span
-                class="text-muted user-details-info">{{cardData.owner.bankAccountNr}}</span>
+                class="text-muted user-details-info">{{creditCard.idBankAccount.idBankAccount}}</span>
               </li>
               <li class="list-group-item card-info-data">Posiadacz rachunku: <span
-                class="text-muted user-details-info">{{cardData.owner.name+ " "+ cardData.owner.surname}}</span>
+                class="text-muted user-details-info">{{ownerUserData.idPerson.name+ " "+ ownerUserData.idPerson.surname}}</span>
               </li>
               <li class="list-group-item card-info-data">Adres korespondencyjny: <span
-                class="text-muted user-details-info">{{address}}</span>
+                class="text-muted user-details-info">{{ownerUserData.idPerson.idAddress.city+", "+ownerUserData.idPerson.idAddress.numberOfTheBuilding+", "+ownerUserData.idPerson.idAddress.postCode+", "+ownerUserData.idPerson.idAddress.postCity}}</span>
+
               </li>
               <li class="list-group-item card-info-data">Adres email: <span
                 class="text-muted user-details-info">{{ownerUserData.email}}</span>
@@ -52,18 +53,18 @@
             <h6 class="card-title">Limity: </h6>
             <ul class="list-group list-group-flush">
               <li class="list-group-item card-info-data">Dzienny limit wypłat gotówki:<span
-                class="text-muted user-details-info">{{cardData.dailyWithdrawalLimit}}zł</span></li>
+                class="text-muted user-details-info">{{creditCard.dayLimit}}zł</span></li>
               <li class="list-group-item card-info-data">Dzienny limit operacji płatniczych: <span
-                class="text-muted user-details-info">{{cardData.dailyOperationLimit}}zł</span></li>
+                class="text-muted user-details-info">{{creditCard.dayLimit}}zł</span></li>
               <li class="list-group-item card-info-data">Dzienny limit operacji internetowych: <span
-                class="text-muted user-details-info">{{cardData.dailyInternetOperationsLimit}}zł</span>
+                class="text-muted user-details-info">{{creditCard.dayLimit}}zł</span>
               </li>
             </ul>
             <h6 class="card-title" style="margin-top: 12%">Usługi: </h6>
             <ul class="list-group list-group-flush">
               <li class="list-group-item card-info-data">Autoryzacja:<span
                 class="text-muted user-details-info">
-                email: rekas1@tlen.pl</span></li>
+                email: {{ownerUserData.email}}</span></li>
               <li class="list-group-item card-info-data">
                 <button type="button" class="btn btn-outline-secondary card-settings-btn2" (click)="openDialog()">Nadaj/zmień PIN</button>
                 <button type="button" class="btn btn-outline-secondary card-settings-btn2" (click)="openBlockDialog()" >Zablokuj czasowo</button>
