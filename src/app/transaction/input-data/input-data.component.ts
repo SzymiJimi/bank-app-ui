@@ -37,11 +37,9 @@ export class InputDataComponent implements OnInit {
   ownerUserData: UserModel = new UserModel();
   bankAccounts: BankAccountModel[];
   bankAccount: BankAccountModel;
-
   avaibleFounds: string = '452,34zł';
   today: Date = new Date();
   transactionTypeList = ['Zewnętrzny', 'Własny', 'Zdefiniowany'];
-
   selected: string = 'Zewnętrzny';
   additionalDataOk: boolean = true;
 
@@ -107,7 +105,7 @@ export class InputDataComponent implements OnInit {
     this.sendTransactionOwner.emit(this.ownerUserData);
     this.sendTransactionAccount.emit(this.bankAccount);
 
-    this.tansactionService.makeTransaction(this.transactionData);
+
   }
 
   formatDate(): string {

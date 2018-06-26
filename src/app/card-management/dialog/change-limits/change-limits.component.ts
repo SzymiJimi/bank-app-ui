@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogActions, MatButton} from '@angular/material';
 
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CardManagementService} from '../../card-management.service';
 
 @Component({
   selector: 'app-change-limits',
@@ -12,7 +13,8 @@ export class ChangeLimitsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ChangeLimitsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private cardManagement: CardManagementService) {
   }
 
   ngOnInit(){
@@ -35,9 +37,9 @@ export class ChangeLimitsComponent implements OnInit {
 
   createFormControls(){
 
-    this.dailyWithdrawalLimit= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
-    this.dailyOperationLimit= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
-    this.dailyInternetOperationsLimit= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{1,8},[0-9]{2}")]);
+    this.dailyWithdrawalLimit= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{1,8}.[0-9]{2}")]);
+    this.dailyOperationLimit= new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,8}.[0-9]{2}")]);
+    this.dailyInternetOperationsLimit= new FormControl('',[Validators.required, Validators.pattern("^[0-9]{1,8}.[0-9]{2}")]);
 
   }
 
@@ -47,6 +49,10 @@ export class ChangeLimitsComponent implements OnInit {
       dailyOperationLimit: this.dailyOperationLimit,
       dailyInternetOperationsLimit: this.dailyInternetOperationsLimit
     });
+  }
+
+  changeLimits(){
+    this.cardManagement.changeLimits(this.dailyOperationLimit.value);
   }
 
 }

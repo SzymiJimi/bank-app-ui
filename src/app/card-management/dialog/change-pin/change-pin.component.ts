@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogActions, MatButton} from '@angular/material';
 import {DialogComponent} from '../dialog.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CardManagementService} from '../../card-management.service';
 
 @Component({
   selector: 'app-change-pin',
@@ -12,7 +13,8 @@ export class ChangePinComponent implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<ChangePinComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private cardManagementService: CardManagementService) {
 
     this.name= data.name;
     this.animal= data.animal;
@@ -58,5 +60,9 @@ export class ChangePinComponent implements OnInit{
       pinCode: this.pinCode,
       pinCodeDuplicate: this.pinCodeDuplicate
     });
+  }
+
+  changePin() {
+    this.cardManagementService.changeCardPin(this.pinCodeDuplicate.value);
   }
 }

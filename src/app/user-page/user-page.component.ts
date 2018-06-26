@@ -5,9 +5,13 @@ import {UserModel} from '../user/user.model';
 import {FormControl} from '@angular/forms';
 import {Element} from '../history/history.component';
 import {AuthService} from '../auth/auth.service';
-import {BankAccountModel} from "../model/bank-account.model";
 
-import { BankAccountService } from "../history/bank-account.service";
+import {BankTransferModel} from '../model/bank-transfer.model';
+import {BankAccountService} from '../history/bank-account.service';
+import {CardInformationService} from '../card-management/card-information/card-information.service';
+import {BankAccountModel} from '../model/bank-account.model';
+import {CreditCardModel} from '../model/credit-card.model';
+
 
 @Component({
   selector: 'app-user-page',
@@ -15,6 +19,8 @@ import { BankAccountService } from "../history/bank-account.service";
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
+
+
 
   bankAccounts: BankAccountModel[];
   bankAccount: BankAccountModel;
@@ -24,10 +30,16 @@ export class UserPageComponent implements OnInit {
   transactionHistory: BankTransferModel[];
   displayedColumns = ['date', 'recipient', 'sender', 'title', 'amount', 'balanceAfterTransaction'];
 
+
+
   dataSource;
   selectedOperationType: string = '';
   dateFromPicker: Date;
   selectedPeriod: string = '';
+
+
+
+
 
   datePickerSelectedDate = new FormControl(null);
 
@@ -46,6 +58,7 @@ export class UserPageComponent implements OnInit {
         this.dataSource = new MatTableDataSource<BankTransferModel>(this.transactionHistory);
       });
     // });
+
 
   }
 

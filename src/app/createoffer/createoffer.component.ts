@@ -17,7 +17,7 @@ export class CreateofferComponent implements OnInit {
   offerForm: FormGroup;
   name: FormControl;
   bankTransferPrice: FormControl;
-  accountManagementPrice: FormControl;
+  accountManagmentPrice: FormControl;
   cardPrice: FormControl;
   stateOfOffer: FormControl;
 
@@ -25,7 +25,7 @@ export class CreateofferComponent implements OnInit {
 
     this.name = new FormControl('', Validators.required);
     this.bankTransferPrice = new FormControl('', Validators.required);
-    this.accountManagementPrice = new FormControl('', Validators.required);
+    this.accountManagmentPrice = new FormControl('', Validators.required);
     this.cardPrice = new FormControl('', Validators.required);
     this.stateOfOffer = new FormControl('', Validators.required);
 
@@ -34,7 +34,7 @@ export class CreateofferComponent implements OnInit {
     this.offerForm = new FormGroup({
       name: new FormControl(),
       bankTransferPrice: new FormControl(),
-      accountManagementPrice: new FormControl(),
+      accountManagmentPrice: new FormControl(),
       cardPrice: new FormControl(),
       stateOfOffer: new FormControl()
     });
