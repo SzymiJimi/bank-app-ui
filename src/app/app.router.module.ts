@@ -18,6 +18,8 @@ import {UserCreditComponent} from './user-credit/user-credit.component';
 import {InvestmentsComponent} from './investments/investments.component';
 import {NewInvestmentComponent} from './investments/new-investment/new-investment.component';
 import {CreateofferComponent} from "./createoffer/createoffer.component";
+import {EditofferComponent} from "./editoffer/editoffer.component";
+import {NewworkerComponent} from "./newworker/newworker.component";
 
 
 const appRoutes: Routes =
@@ -102,6 +104,14 @@ const appRoutes: Routes =
     {
       path: 'manager/offer',
       component: CreateofferComponent
+    },
+    {
+      path: 'manager/edit',
+      component: EditofferComponent
+    },
+    {
+      path: 'manager/addworker',
+      component: NewworkerComponent
     }
   ];
 
