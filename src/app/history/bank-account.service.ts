@@ -29,8 +29,6 @@ export class BankAccountService {
             status.message = "Bank account loaded succesfully";
             this.bankAccounts= res as BankAccountModel[] ;
             this.bankAccount = this.bankAccounts[0];
-            console.log("Konto bankowe");
-            console.log(this.bankAccounts);
             resolve();
           },
           error => {
@@ -52,8 +50,6 @@ public getHistoryAccount()
     this.http.get(environment.endpointBase +'bankAccount/history/'+this.bankAccounts[0].idBankAccount,{headers:{'Content-Type': 'application/json'}, responseType:'json'})
       .subscribe(res => {
           this.transferHistory= res as BankTransferModel[] ;
-          console.log("Konto historia");
-          console.log(this.transferHistory);
           resolve();
         },
         error => {
